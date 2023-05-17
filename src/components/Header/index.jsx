@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return(
-    <header className="container h-20 bg-gray-800 rounded fixed top-0 flex justify-between items-center px-5">
+    <header className="container h-20 bg-gray-800 rounded fixed top-0 flex justify-between items-center px-5 z-10">
       <div className="flex flex-col justify-center items-center h-full">
         <BsShop className="text-red-900" size={30} />
         <h1 className="text-gray-100">Cantina SENAI</h1>
