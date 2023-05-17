@@ -14,6 +14,7 @@ import AdProduto from "./Pages/AdProduto";
 import EdProduto from "./Pages/EdProduto";
 
 import Compras from "./Pages/Compras";
+import AdCompra from "./Pages/AdCompra";
 
 function RoutesApp() {
   return (
@@ -22,6 +23,7 @@ function RoutesApp() {
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/compras" element={<Compras />} />
+          <Route path="/adiciona-compra" element={<AdCompra />} />
           
           <Route path="/clientes" element={<Clientes />} />
           <Route path="/adiciona-cliente" element={<AdCliente />} />

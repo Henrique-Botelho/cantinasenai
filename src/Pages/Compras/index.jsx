@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -41,7 +41,7 @@ function Compras() {
       <main className="container rounded bg-white flex flex-col justify-center items-center">
         <div className="flex justify-between items-center w-full px-5">
           <h1 className="text-black font-bold opacity-75 text-xl">Tabela de Compras</h1>
-          <button className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded">Adicionar Compra</button>
+          <Link to="/adiciona-compra" className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center">Adicionar Compra</Link>
         </div>
         <div className="container bg-white rounded h-96">
           <DataGrid rows={rows} columns={comprasColumns} />

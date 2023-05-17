@@ -15,14 +15,6 @@ const produtosColumns = [
     renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
   },
   {
-    field: "preco",
-    headerName: "Preço",
-    type: "number",
-    flex: 0.166,
-    valueFormatter: (params) => `R$ ${params.value.toFixed(2).replace('.', ',')}`,
-    renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
-  },
-  {
     field: "categoria",
     headerName: "Categoria",
     flex: 0.166,
@@ -32,6 +24,14 @@ const produtosColumns = [
     field: "descricao",
     headerName: "Descrição",
     flex: 0.166,
+    renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+  },
+  {
+    field: "preco",
+    headerName: "Preço",
+    type: "number",
+    flex: 0.166,
+    valueFormatter: (params) => `R$ ${params.value.toFixed(2).replace('.', ',')}`,
     renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
   },
   {
