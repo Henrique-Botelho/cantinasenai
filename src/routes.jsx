@@ -6,8 +6,12 @@ import MainProvider from "./contexts";
 import Login from "./Pages/Login";
 import Clientes from "./Pages/Clientes";
 import AdCliente from "./Pages/AdCliente";
-import Compras from "./Pages/Compras";
+
 import Produtos from "./Pages/Produtos";
+import AdProduto from "./Pages/AdProduto";
+import EdProduto from "./Pages/EdProduto";
+
+import Compras from "./Pages/Compras";
 
 function RoutesApp() {
   return (
@@ -21,6 +25,8 @@ function RoutesApp() {
           <Route path="/adiciona-cliente" element={<AdCliente />} />
 
           <Route path="/produtos" element={<Produtos />} />
+          <Route path="/adiciona-produto" element={<AdProduto />} />
+          <Route path="/edita-produto" element={<EdProduto />} />
         </Routes>
       </BrowserRouter>
     </MainProvider>
