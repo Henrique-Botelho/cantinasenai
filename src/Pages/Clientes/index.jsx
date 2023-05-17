@@ -1,14 +1,21 @@
 import React from "react";
 import imagemCantina from "../../assets/fundo.png";
 import { Link } from "react-router-dom";
+import { DataGrid } from "@mui/x-data-grid";
 
 import Header from "../../components/Header";
+
+import clientesColumns from "./table";
 
 function Clientes() {
   const backgroundImageStyle = {
     backgroundImage: `url('${imagemCantina}')`,
     backgroundSize: "cover",
   };
+
+  const rows = [
+    {id: 1, nome: "Guilherme", numero: "11945673858"}
+  ]
 
   return (
     <div
@@ -22,7 +29,10 @@ function Clientes() {
           <Link to="/adiciona-cliente" className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center">Adicionar Cliente</Link>
         </div>
         <div className="container bg-white rounded h-96">
-
+          <DataGrid
+            columns={clientesColumns}
+            rows={rows}
+          />
         </div>
       </main>
     </div>

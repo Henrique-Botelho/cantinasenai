@@ -9,7 +9,7 @@ function Header() {
         <BsShop className="text-gray-100" size={30} />
         <h1 className="text-gray-100">Cantina SENAI</h1>
       </div>
-      <nav className="flex justify-center items-center gap-3">
+      <nav className="flex justify-center items-center gap-8">
         <Link to="/compras" className="text-gray-100">Compras</Link>
         <Link to="/clientes" className="text-gray-100">Clientes</Link>
         <Link to="/produtos" className="text-gray-100">Produtos</Link>
