@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 import MainProvider from "./contexts";
+import { MainContext } from "./contexts";
 
 import Login from "./Pages/Login";
 import Error from "./Pages/Error";
@@ -18,34 +19,43 @@ import EdProduto from "./Pages/EdProduto";
 import Compras from "./Pages/Compras";
 import AdCompra from "./Pages/AdCompra";
 
-function Private({Item}) {
-  const logado = true;
+function Private({ Item }) {
+  const { autenticado } = useContext(MainContext);
 
-  return logado ? <Item /> : <Navigate to="/" />;
+  return autenticado ? <Item /> : <Navigate to="/" />;
 }
 
 function RoutesApp() {
   return (
-    <MainProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <MainProvider>
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="*" element={<Error/>} />
+          <Route path="/" element={<Login />} />
+          <Route path="*" element={<Error />} />
 
           <Route path="/compras" element={<Private Item={Compras} />} />
-          <Route path="/adiciona-compra" element={<Private Item={AdCompra} />} />
-          
+          <Route
+            path="/adiciona-compra"
+            element={<Private Item={AdCompra} />}
+          />
+
           <Route path="/clientes" element={<Private Item={Clientes} />} />
-          <Route path="/adiciona-cliente" element={<Private Item={AdCliente} />} />
+          <Route
+            path="/adiciona-cliente"
+            element={<Private Item={AdCliente} />}
+          />
           <Route path="/edita-cliente" element={<Private Item={EdCliente} />} />
 
           <Route path="/produtos" element={<Private Item={Produtos} />} />
-          <Route path="/adiciona-produto" element={<Private Item={AdProduto} />} />
+          <Route
+            path="/adiciona-produto"
+            element={<Private Item={AdProduto} />}
+          />
           <Route path="/edita-produto" element={<Private Item={EdProduto} />} />
         </Routes>
-      </BrowserRouter>
-    </MainProvider>
-  )
+      </MainProvider>
+    </BrowserRouter>
+  );
 }
 
 export default RoutesApp;

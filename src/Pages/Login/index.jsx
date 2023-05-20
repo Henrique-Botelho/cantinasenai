@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import { MainContext } from "../../contexts";
+import { useNavigate } from "react-router-dom";
 
 import { BsShop } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 function Login() {
+  const navigate = useNavigate();
+  const {manipulaLogin, autenticado} = useContext(MainContext);
+
+  useEffect(() => {
+    if (autenticado) {
+      navigate('/compras');
+    }
+  }, [autenticado]);
+
   return(
     <div className="flex flex-col justify-center items-center h-screen w-screen bg-gray-900">
       <div className="flex flex-col justify-center items-center h-60">
@@ -21,7 +32,10 @@ function Login() {
           <RiLockPasswordFill className="mx-3" size={25} />
           <input required placeholder="Senha" className=" placeholder:text-gray-100 h-full w-full bg-transparent focus:outline-none text-gray-100" type="text" />
         </div>
-        <button onClick={(e) => e.preventDefault()} className=" text-gray-900 w-96 bg-gray-100 h-10 rounded hover:scale-105 duration-500">Entrar</button>
+        <button onClick={(e) => {
+          e.preventDefault();
+          manipulaLogin("admin@gmail.com", "123456789");
+        }} className=" text-gray-900 w-96 bg-gray-100 h-10 rounded hover:scale-105 duration-500">Entrar</button>
       </form>
     </div>
   )
