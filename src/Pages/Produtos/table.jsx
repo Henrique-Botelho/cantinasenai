@@ -13,6 +13,7 @@ const produtosColumns = [
     headerName: "Nome",
     flex: 0.166,
     renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+    valueFormatter: (params) => params.value[0].toUpperCase() + params.value.slice(1)
   },
   {
     field: "categoria",
@@ -25,6 +26,7 @@ const produtosColumns = [
     headerName: "Descrição",
     flex: 0.166,
     renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+    valueFormatter: (params) => `${params.value[0].toUpperCase() + params.value.slice(1)}.`
   },
   {
     field: "preco",

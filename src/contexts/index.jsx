@@ -36,6 +36,26 @@ function MainProvider({ children }) {
 
   // =================================================
 
+  // ==================== Produtos ====================
+  async function listarProdutos() {
+    try {
+      const { data } = await api.get('/produtos', {
+        params: {
+          key: "07ad11b5bb6e2de98a535070ba93cdaf"
+        }
+      });
+      return data;
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+
+
+  // ==================================================
+
+
+
 
 
   // Verifica toda vez que o usuário entra na página se o token está lá
@@ -57,7 +77,8 @@ function MainProvider({ children }) {
       value={{
         manipulaLogin,
         logout,
-        autenticado
+        autenticado,
+        listarProdutos
       }}
     >
       {children}
