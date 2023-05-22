@@ -99,7 +99,7 @@ function Clientes() {
           </Link>
         </div>
         <div className="container bg-white rounded h-96 p-3">
-          <DataGrid columns={clientesColumns} rows={rows} />
+          <DataGrid autoPageSize columns={clientesColumns} rows={rows} />
         </div>
       </main>
     </div>
