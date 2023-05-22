@@ -23,12 +23,9 @@ function EdCliente() {
     >
       <Header />
       <main className="container w-96 rounded bg-white flex flex-col justify-center items-center p-10">
-        <div className="flex justify-between items-center w-full">
-          <div className="flex flex-row">
-            <Link to="/clientes" className="flex justify-center items-center mr-3"><BiArrowBack size={24} /></Link>
-            <h2 className="my-4 text-xl">Editar cliente</h2>
-          </div>
-          <button className="bg-red-500 text-gray-100 rounded p-2 self-end">Excluir</button>
+        <div className="flex justify-start items-center w-full mb-5">
+          <Link to="/clientes" className="flex justify-center items-center mr-3"><BiArrowBack size={24} /></Link>
+          <h2 className="my-4 text-xl">Editar cliente</h2>
         </div>
         <form className="w-full">
           <div className="flex flex-col mb-5">

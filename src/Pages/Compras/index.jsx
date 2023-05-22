@@ -43,7 +43,7 @@ function Compras() {
           <h1 className="text-black font-bold opacity-75 text-xl">Tabela de Compras</h1>
           <Link to="/adiciona-compra" className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center">Adicionar Compra</Link>
         </div>
-        <div className="container bg-white rounded h-96">
+        <div className="container bg-white rounded h-96 p-3">
           <DataGrid rows={rows} columns={comprasColumns} />
         </div>
       </main>
