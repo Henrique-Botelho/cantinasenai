@@ -42,7 +42,10 @@ const produtosColumns = [
     type: "actions",
     flex: 0.166,
     renderCell: (params) => (
-      <Link to="/edita-produto" state={params.row} className="flex justify-center items-center p-2 rounded bg-yellow-400">Editar</Link>
+      <div className="flex justify-center items-center gap-2">
+        <Link to="/edita-produto" state={params.row} className="flex justify-center items-center p-2 rounded bg-yellow-400">Editar</Link>
+        <Link to="/edita-produto" state={params.row} className="flex justify-center items-center p-2 rounded bg-red-400">Excluir</Link>
+      </div>
     ),
     renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
   }

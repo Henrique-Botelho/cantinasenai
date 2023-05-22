@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import { toast } from "react-toastify";
 
 // Criação do contexto
 export const MainContext = createContext({});
@@ -14,15 +15,27 @@ function MainProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   // ===================== Login =====================
-  async function manipulaLogin (email, senha) {
+  async function manipulaLogin (e, email, senha) {
+    e.preventDefault();
+    email = email.trim();
+    senha = senha.trim();
     try {
       const { data } = await api.post('/usuarios', {email, senha});
-      
       localStorage.setItem('cantinasenaitoken', JSON.stringify(data.token));
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
       setAutenticado(true);
-      navigate('/compras')
+      navigate('/compras');
+      toast.success("Login realizado com sucesso!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER
+      });
     } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme:'colored',
+          position: toast.POSITION.BOTTOM_CENTER
+        });
+      }
       console.log(e);
     }
   }
@@ -32,6 +45,10 @@ function MainProvider({ children }) {
     localStorage.removeItem('cantinasenaitoken');
     api.defaults.headers.Authorization = undefined;
     navigate('/');
+    toast.success("Deslogado com sucesso!", {
+      theme: "colored",
+      position: toast.POSITION.BOTTOM_CENTER
+    });
   }
 
   // =================================================
@@ -49,6 +66,7 @@ function MainProvider({ children }) {
       console.log(e);
     }
   }
+  
 
 
 
