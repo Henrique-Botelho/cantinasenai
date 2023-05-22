@@ -118,7 +118,6 @@ function MainProvider({ children }) {
       api
         .post("/usuarios/verifica-token")
         .then((response) => {
-          console.log(response.data);
           setAutenticado(true);
         })
         .catch((error) => {
