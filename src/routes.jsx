@@ -31,7 +31,6 @@ function RoutesApp() {
       <MainProvider>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="*" element={<Error />} />
 
           <Route path="/compras" element={<Private Item={Compras} />} />
           <Route
@@ -52,6 +51,7 @@ function RoutesApp() {
             element={<Private Item={AdProduto} />}
           />
           <Route path="/edita-produto" element={<Private Item={EdProduto} />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </MainProvider>
     </BrowserRouter>

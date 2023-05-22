@@ -22,13 +22,10 @@ function EdProduto() {
       className="h-screen w-screen flex justify-center items-center"
     >
       <Header />
-      <main className="container w-1/3 rounded bg-white flex flex-col justify-center items-center p-10">
-        <div className="flex justify-between items-center w-full">
-          <div className="flex flex-row">
-            <Link to="/produtos" className="flex justify-center items-center mr-3"><BiArrowBack size={24} /></Link>
-            <h2 className="my-4 text-xl">Editar produto</h2>
-          </div>
-          <button className="bg-red-500 text-gray-100 rounded p-2 self-end">Excluir</button>
+      <main className="container w-1/3 rounded bg-white flex flex-col justify-center items-start p-10">
+        <div className="flex flex-row mb-5">
+          <Link to="/produtos" className="flex justify-center items-center mr-3"><BiArrowBack size={24} /></Link>
+          <h2 className="my-4 text-xl">Editar produto</h2>
         </div>
         <form className="w-full">
           <div className="flex flex-col mb-5">

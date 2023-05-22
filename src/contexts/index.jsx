@@ -11,29 +11,31 @@ import Loading from "../Pages/Loading";
 // Criação do provedor do contexto
 function MainProvider({ children }) {
   const navigate = useNavigate();
+
+  // Variáveis de Estado
   const [autenticado, setAutenticado] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // ===================== Login =====================
-  async function manipulaLogin (e, email, senha) {
+  async function manipulaLogin(e, email, senha) {
     e.preventDefault();
     email = email.trim();
     senha = senha.trim();
     try {
-      const { data } = await api.post('/usuarios', {email, senha});
-      localStorage.setItem('cantinasenaitoken', JSON.stringify(data.token));
+      const { data } = await api.post("/usuarios", { email, senha });
+      localStorage.setItem("cantinasenaitoken", JSON.stringify(data.token));
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
       setAutenticado(true);
-      navigate('/compras');
+      navigate("/compras");
       toast.success("Login realizado com sucesso!", {
         theme: "colored",
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
       if (e.response) {
         toast.error(e.response.data.message, {
-          theme:'colored',
-          position: toast.POSITION.BOTTOM_CENTER
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
         });
       }
       console.log(e);
@@ -42,12 +44,12 @@ function MainProvider({ children }) {
 
   async function logout() {
     setAutenticado(false);
-    localStorage.removeItem('cantinasenaitoken');
+    localStorage.removeItem("cantinasenaitoken");
     api.defaults.headers.Authorization = undefined;
-    navigate('/');
+    navigate("/");
     toast.success("Deslogado com sucesso!", {
       theme: "colored",
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.BOTTOM_CENTER,
     });
   }
 
@@ -56,36 +58,78 @@ function MainProvider({ children }) {
   // ==================== Produtos ====================
   async function listarProdutos() {
     try {
-      const { data } = await api.get('/produtos', {
+      const { data } = await api.get("/produtos", {
         params: {
-          key: "07ad11b5bb6e2de98a535070ba93cdaf"
-        }
+          key: "07ad11b5bb6e2de98a535070ba93cdaf",
+        },
       });
       return data;
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
-  
 
+  async function adicionarProduto(e, nome, preco, categoria, descricao) {
+    e.preventDefault();
+    nome = nome.trim();
+    preco = preco.trim();
+    categoria = categoria.trim();
+    descricao = descricao.trim();
+    try {
+      const response = await api.post("/produtos", {
+        nome,
+        preco,
+        categoria,
+        descricao,
+      });
+      console.log(response);
+      navigate("/produtos");
+      toast.success("Produto adicionado!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
 
+  async function exlcuirProduto(id) {
+    try {
+      const response = await api.delete(`/produtos/${id}`);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   // ==================================================
 
-
-
-
-
   // Verifica toda vez que o usuário entra na página se o token está lá
   useEffect(() => {
-    const token = localStorage.getItem('cantinasenaitoken');
-    if(token) {
+    const token = localStorage.getItem("cantinasenaitoken");
+    if (token) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-      setAutenticado(true);
+
+      api
+        .post("/usuarios/verifica-token")
+        .then((response) => {
+          console.log(response.data);
+          setAutenticado(true);
+        })
+        .catch((error) => {
+          api.defaults.headers.Authorization = undefined;
+          localStorage.removeItem("cantinasenaitoken");
+          setAutenticado(false);
+        });
     }
     setLoading(false); // IMPORTANTE: ele sempre deve deixar de carregar!
-  },[]);
-  
+  }, []);
+
   if (loading) {
     return <Loading />;
   }
@@ -96,7 +140,7 @@ function MainProvider({ children }) {
         manipulaLogin,
         logout,
         autenticado,
-        listarProdutos
+        listarProdutos,
       }}
     >
       {children}
