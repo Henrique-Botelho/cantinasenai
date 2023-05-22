@@ -41,7 +41,7 @@ function Clientes() {
           <Link
             to="/edita-cliente"
             state={params.row}
-            className="flex justify-center items-center p-2 rounded bg-yellow-400"
+            className="flex justify-center items-center p-2 rounded text-black/90 bg-yellow-400"
           >
             Editar
           </Link>
@@ -50,7 +50,7 @@ function Clientes() {
               setIdLinha(params.row.id);
               setModalCliente(true);
             }}
-            className="flex justify-center items-center p-2 rounded bg-red-400"
+            className="flex justify-center items-center p-2 rounded text-white/90 bg-red-400"
           >
             Excluir
           </button>
