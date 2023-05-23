@@ -110,6 +110,7 @@ function Clientes() {
               <button
                 onClick={() => {
                   exlcuirCliente(idLinha);
+                  setModalCliente(false);
                   setReload(!reload);
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
