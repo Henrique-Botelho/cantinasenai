@@ -15,13 +15,14 @@ function Produtos() {
     backgroundSize: "cover",
   };
 
-  const { listarProdutos } = useContext(MainContext);
+  const { listarProdutos, exlcuirProduto } = useContext(MainContext);
 
   const [produtos, setProdutos] = useState([]);
   const [load, setLoad] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const [modalProduto, setModalProduto] = useState(false);
-  const [idLinha, setIdLinha] = useState({});
+  const [idLinha, setIdLinha] = useState();
 
   const produtosColumns = [
     {
@@ -91,12 +92,12 @@ function Produtos() {
   ];
 
   useEffect(() => {
-    (async function getterProdutos() {
-      const prods = await listarProdutos();
-      setProdutos(prods);
-      setLoad(true);
-    })();
-  }, []);
+    listarProdutos()
+      .then((prods) => {
+        setProdutos(prods);
+        setLoad(true);
+      });
+  }, [reload]);
 
   if (load) {
     return (
@@ -116,7 +117,11 @@ function Produtos() {
                 Cancelar
               </button>
               <button
-                onClick={() => console.log(idLinha)}
+                onClick={() => {
+                  exlcuirProduto(idLinha);
+                  setModalProduto(false);
+                  setReload(!reload);
+                }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
                 Sim

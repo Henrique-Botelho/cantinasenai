@@ -71,10 +71,10 @@ function MainProvider({ children }) {
 
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
-    nome = nome.trim();
-    preco = preco.trim();
-    categoria = categoria.trim();
-    descricao = descricao.trim();
+    let indiceVirgula = preco.indexOf(',');
+    if (indiceVirgula > -1) {
+      preco = preco.replace(',', '.');
+    }
     try {
       const response = await api.post("/produtos", {
         nome,
@@ -99,10 +99,46 @@ function MainProvider({ children }) {
     }
   }
 
+  async function editarProduto(e, id, nome, preco, categoria, descricao) {
+    e.preventDefault();
+    let indiceVirgula = preco.indexOf(',');
+    if (indiceVirgula > -1) {
+      preco = preco.replace(',', '.');
+    }
+    try {
+      const response = await api.put(`/produtos/${id}`, { nome, preco, categoria, descricao });
+      console.log(response);
+      navigate('/produtos');
+      toast.success("Produto alterado com sucesso!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch(e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
   async function exlcuirProduto(id) {
     try {
       const response = await api.delete(`/produtos/${id}`);
+      console.log(response);
+      toast.success("Produto deletado com sucesso!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
       console.log(e);
     }
   }
@@ -140,6 +176,9 @@ function MainProvider({ children }) {
         logout,
         autenticado,
         listarProdutos,
+        adicionarProduto,
+        editarProduto,
+        exlcuirProduto
       }}
     >
       {children}
