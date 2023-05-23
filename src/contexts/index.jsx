@@ -71,9 +71,9 @@ function MainProvider({ children }) {
 
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let indiceVirgula = preco.indexOf(',');
+    let indiceVirgula = preco.indexOf(",");
     if (indiceVirgula > -1) {
-      preco = preco.replace(',', '.');
+      preco = preco.replace(",", ".");
     }
     try {
       const response = await api.post("/produtos", {
@@ -101,19 +101,24 @@ function MainProvider({ children }) {
 
   async function editarProduto(e, id, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let indiceVirgula = preco.indexOf(',');
+    let indiceVirgula = preco.indexOf(",");
     if (indiceVirgula > -1) {
-      preco = preco.replace(',', '.');
+      preco = preco.replace(",", ".");
     }
     try {
-      const response = await api.put(`/produtos/${id}`, { nome, preco, categoria, descricao });
+      const response = await api.put(`/produtos/${id}`, {
+        nome,
+        preco,
+        categoria,
+        descricao,
+      });
       console.log(response);
-      navigate('/produtos');
+      navigate("/produtos");
       toast.success("Produto alterado com sucesso!", {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
-    } catch(e) {
+    } catch (e) {
       if (e.response) {
         toast.error(e.response.data.message, {
           theme: "colored",
@@ -144,6 +149,85 @@ function MainProvider({ children }) {
   }
 
   // ==================================================
+
+  // ==================== Clientes ====================
+  async function listarClientes() {
+    try {
+      const { data } = await api.get("/clientes");
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function adicionarCliente(e, nome, numero) {
+    e.preventDefault();
+    try {
+      const response = await api.post("/clientes", {
+        nome,
+        numero,
+      });
+      console.log(response);
+      navigate("/clientes");
+      toast.success("Cliente adicionado!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
+  async function editarCliente(e, nome, numero) {
+    e.preventDefault();
+    try {
+      const response = await api.put("/clientes", {
+        nome,
+        numero,
+      });
+      console.log(response);
+      navigate("/clientes");
+      toast.success("Cliente alterado com sucesso!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
+  async function exlcuirCliente(id) {
+    try {
+      const response = await api.delete(`/produtos/${id}`);
+      console.log(response);
+      toast.success("Cliente deletado com sucesso!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
+  // =================================================
 
   // Verifica toda vez que o usuário entra na página se o token está lá
   useEffect(() => {
@@ -178,7 +262,10 @@ function MainProvider({ children }) {
         listarProdutos,
         adicionarProduto,
         editarProduto,
-        exlcuirProduto
+        exlcuirProduto,
+        listarClientes,
+        adicionarCliente,
+        editarCliente,
       }}
     >
       {children}
