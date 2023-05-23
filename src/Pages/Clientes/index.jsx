@@ -22,20 +22,36 @@ function Clientes() {
     {
       field: "nome",
       headerName: "Nome",
-      flex: 0.33,
+      flex: 0.2,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
       field: "numero",
       headerName: "Telefone",
-      flex: 0.33,
+      flex: 0.2,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+    },
+    {
+      field: "conta",
+      headerName: "Conta",
+      type: "actions",
+      flex: 0.2,
+      renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+      renderCell: (params) => (
+        <Link
+          to="/finalizar-conta"
+          state={params.row}
+          className="flex justify-center items-center p-2 rounded text-white/90 bg-blue-400"
+        >
+          Finalizar conta
+        </Link>
+      ),
     },
     {
       field: "actions",
       headerName: "Ações",
       type: "actions",
-      flex: 0.33,
+      flex: 0.2,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
           <Link

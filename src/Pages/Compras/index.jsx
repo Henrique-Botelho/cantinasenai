@@ -184,7 +184,7 @@ function Compras() {
           </Link>
         </div>
         <div className="container bg-white rounded h-96 p-3">
-          <DataGrid rows={rows} columns={comprasColumns} />
+          <DataGrid autoPageSize rows={rows} columns={comprasColumns} />
         </div>
       </main>
     </div>
