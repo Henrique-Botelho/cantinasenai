@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { Autocomplete } from "@mui/material";
+import { MainContext } from "../../contexts";
 
 // Icones do react icons
 import { BiArrowBack } from "react-icons/bi";
@@ -11,6 +12,7 @@ import { BsArrowRightCircleFill } from "react-icons/bs";
 import imagemCantina from "../../assets/fundo.png";
 
 import Header from "../../components/Header";
+import Loading from "../Loading";
 
 function AdCompra() {
   const backgroundImageStyle = {
@@ -18,37 +20,36 @@ function AdCompra() {
     backgroundSize: "cover",
   };
 
-  // Clientes disponíveis (teste)
-  let clientes = ["Henrique", "Heitor", "Guilherme"];
-
-  // Linhas produtos (teste)
-  const rows = [
-    { id: 1, nome: "Pão de queijo", preco: 3 },
-    { id: 2, nome: "Pão de queijo", preco: 3 },
-    { id: 3, nome: "Pão de queijo", preco: 3 },
-    { id: 4, nome: "Pão de queijo", preco: 3 },
-    { id: 5, nome: "Pão de queijo", preco: 3 },
-    { id: 6, nome: "Pão de queijo", preco: 3 },
-    { id: 7, nome: "Pão de queijo", preco: 3 },
-    { id: 8, nome: "Pão de queijo", preco: 3 },
-    { id: 9, nome: "Pão de queijo", preco: 3 },
-    { id: 10, nome: "Pão de queijo", preco: 3 },
-    { id: 11, nome: "Pão de queijo", preco: 3 },
-    { id: 12, nome: "Pão de queijo", preco: 3 },
-    { id: 13, nome: "Pão de queijo", preco: 3 },
-    { id: 14, nome: "Pão de queijo", preco: 3 },
-    { id: 15, nome: "Pão de queijo", preco: 3 },
-    { id: 16, nome: "Pão de queijo", preco: 3 },
-    { id: 17, nome: "Pão de queijo", preco: 3 },
-    { id: 18, nome: "Pão de queijo", preco: 3 },
-    { id: 19, nome: "Pão de queijo", preco: 3 },
-    { id: 20, nome: "Pão de queijo", preco: 3 },
-  ];
+  const { listarProdutos, listarClientes } = useContext(MainContext);
 
   // Dados a serem enviados para o backend
+  
+  // Dados carregados da API
+  const [produtos, setProdutos] = useState([]);
+  const [clientes, setClientes] = useState([]); 
+  const [load, setLoad] = useState(false);
+
+
+  // Dados que serão enviados para a API
   const [itens, setItens] = useState([]);
   const [cliente, setCliente] = useState(clientes[0]);
   const [total, setTotal] = useState(0);
+  
+  useEffect(() => {
+    listarProdutos()
+      .then((prods) => {
+        setProdutos(prods);
+        return listarClientes();
+      })
+      .then((clients) => {
+        let clientesEntrada = [];
+        clients.map(item => {
+          clientesEntrada.push(item.nome);
+        })
+        setClientes(clientesEntrada);
+        setLoad(true);
+      })
+  },[]);
 
   // Funções para manipulação dos itens
   const adicionaProduto = (linha) => {
@@ -118,6 +119,7 @@ function AdCompra() {
       headerName: "Nome",
       flex: 0.3,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+      valueFormatter: (params) => params.value[0].toUpperCase() + params.value.substr(1)
     },
     {
       field: "preco",
@@ -186,85 +188,91 @@ function AdCompra() {
     calculaTotal();
   }, [itens]);
 
-  return (
-    <div
-      style={backgroundImageStyle}
-      className="h-screen w-screen flex justify-center items-center"
-    >
-      <Header />
+  if (load) {
 
-      <main className="container h-4/5 rounded bg-white flex flex-col justify-start items-center p-3">
-        <div className="flex justify-start items-center w-full">
-          <Link to="/compras" className="flex justify-center items-center mr-3">
-            <BiArrowBack size={24} />
-          </Link>
-          <h2 className="my-4 text-xl">Nova Compra</h2>
-        </div>
-        <div className="flex w-full h-5/6 gap-3">
-          <div className="w-1/2 h-full">
-            <DataGrid
-              columns={produtosColumns}
-              rows={rows}
-              autoPageSize
-              disableRowSelectionOnClick
-            />
+    return (
+      <div
+        style={backgroundImageStyle}
+        className="h-screen w-screen flex justify-center items-center"
+      >
+        <Header />
+  
+        <main className="container h-4/5 rounded bg-white flex flex-col justify-start items-center p-3">
+          <div className="flex justify-start items-center w-full">
+            <Link to="/compras" className="flex justify-center items-center mr-3">
+              <BiArrowBack size={24} />
+            </Link>
+            <h2 className="my-4 text-xl">Nova Compra</h2>
           </div>
-          <div className="w-1/2 h-5/6">
-            <div className="flex flex-col justify-center items-start w-full pl-3">
-              <span className="font-bold opacity-80 text-lg mr-5">Cliente</span>
-              <Autocomplete
-                value={cliente}
-                onChange={(event, novoInput) => {
-                  setCliente(novoInput);
-                }}
-                disablePortal
-                id="combo-box-demo"
-                options={clientes}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <div
-                    className="border-2 border-gray-500 rounded h-"
-                    ref={params.InputProps.ref}
-                  >
-                    <input
-                      style={{
-                        width: "100%",
-                        outline: "none",
-                        padding: "0.5rem",
-                        height: "2rem",
-                      }}
-                      {...params.inputProps}
-                    />
-                  </div>
-                )}
+          <div className="flex w-full h-5/6 gap-3">
+            <div className="w-1/2 h-full">
+              <DataGrid
+                columns={produtosColumns}
+                rows={produtos}
+                autoPageSize
+                disableRowSelectionOnClick
               />
             </div>
-            <div className="h-full">
-              <DataGrid
-                autoPageSize
-                columns={compraColumns}
-                rows={itens}
-                sx={{
-                  border: 0,
-                }}
-              />
-              <div className="space-y-2">
-                <div className="flex h-10 px-2 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
-                  <span className="font-bold text-lg">Total:</span>
-                  <span className="font-bold text-lg opacity-70">
-                    R$ {total.toFixed(2).replace(".", ",")}
-                  </span>
+            <div className="w-1/2 h-5/6">
+              <div className="flex flex-col justify-center items-start w-full pl-3">
+                <span className="font-bold opacity-80 text-lg mr-5">Cliente</span>
+                <Autocomplete
+                  value={cliente}
+                  onChange={(event, novoInput) => {
+                    setCliente(novoInput);
+                  }}
+                  disablePortal
+                  id="combo-box-demo"
+                  options={clientes}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => (
+                    <div
+                      className="border-2 border-gray-500 rounded h-"
+                      ref={params.InputProps.ref}
+                    >
+                      <input
+                        style={{
+                          width: "100%",
+                          outline: "none",
+                          padding: "0.5rem",
+                          height: "2rem",
+                        }}
+                        {...params.inputProps}
+                      />
+                    </div>
+                  )}
+                />
+              </div>
+              <div className="h-full">
+                <DataGrid
+                  autoPageSize
+                  columns={compraColumns}
+                  rows={itens}
+                  sx={{
+                    border: 0,
+                  }}
+                />
+                <div className="space-y-2">
+                  <div className="flex h-10 px-2 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
+                    <span className="font-bold text-lg">Total:</span>
+                    <span className="font-bold text-lg opacity-70">
+                      R$ {total.toFixed(2).replace(".", ",")}
+                    </span>
+                  </div>
+                  <button className="bg-green-500 text-gray-100 p-2 w-full rounded">
+                    Adicionar
+                  </button>
                 </div>
-                <button className="bg-green-500 text-gray-100 p-2 w-full rounded">
-                  Adicionar
-                </button>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
-  );
+        </main>
+      </div>
+    );
+  } else {
+    return <Loading />;
+  }
+
 }
 
 export default AdCompra;
