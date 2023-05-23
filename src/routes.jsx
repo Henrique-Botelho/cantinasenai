@@ -18,6 +18,7 @@ import EdProduto from "./Pages/EdProduto";
 
 import Compras from "./Pages/Compras";
 import AdCompra from "./Pages/AdCompra";
+import FinalizarConta from "./Pages/FinalizarConta";
 
 function Private({ Item }) {
   const { autenticado } = useContext(MainContext);
@@ -36,6 +37,10 @@ function RoutesApp() {
           <Route
             path="/adiciona-compra"
             element={<Private Item={AdCompra} />}
+          />
+          <Route
+            path="/finalizar-conta"
+            element={<Private Item={FinalizarConta} />}
           />
 
           <Route path="/clientes" element={<Private Item={Clientes} />} />
