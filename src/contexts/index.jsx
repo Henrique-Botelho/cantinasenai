@@ -210,7 +210,7 @@ function MainProvider({ children }) {
 
   async function exlcuirCliente(id) {
     try {
-      const response = await api.delete(`/produtos/${id}`);
+      const response = await api.delete(`/clientes/${id}`);
       console.log(response);
       toast.success("Cliente deletado com sucesso!", {
         theme: "colored",
@@ -266,6 +266,7 @@ function MainProvider({ children }) {
         listarClientes,
         adicionarCliente,
         editarCliente,
+        exlcuirCliente
       }}
     >
       {children}

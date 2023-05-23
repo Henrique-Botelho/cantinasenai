@@ -15,7 +15,7 @@ function Clientes() {
     backgroundSize: "cover",
   };
   
-  const { listarClientes } = useContext(MainContext);
+  const { listarClientes, exlcuirCliente } = useContext(MainContext);
 
   const [clientes, setClientes] = useState([]);
   const [load, setLoad] = useState(false);
@@ -108,7 +108,10 @@ function Clientes() {
                 Cancelar
               </button>
               <button
-                onClick={() => console.log(idLinha)}
+                onClick={() => {
+                  exlcuirCliente(idLinha);
+                  setReload(!reload);
+                }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
                 Sim
