@@ -27,7 +27,6 @@ function Compras() {
   const [idLinha, setIdLinha] = useState();
   const [detalhes, setDetalhes] = useState([]);
 
-
   const comprasColumns = [
     {
       field: "nome",
@@ -51,9 +50,15 @@ function Compras() {
       hideable: false,
       renderCell: (params) => {
         if (params.value === 0) {
-          return (<span className="bg-orange-400 text-white p-2 rounded">Não pago</span>)
+          return (
+            <span className="bg-orange-400 text-white p-2 rounded">
+              Não pago
+            </span>
+          );
         } else if (params.value === 1) {
-          return (<span className="bg-green-400 text-white p-2 rounded">Pago</span>)
+          return (
+            <span className="bg-green-400 text-white p-2 rounded">Pago</span>
+          );
         }
       },
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -67,7 +72,7 @@ function Compras() {
         if (params.value == null) {
           return "";
         }
-        return `R$ ${params.value.toFixed(2).replace('.', ',')}`;
+        return `R$ ${params.value.toFixed(2).replace(".", ",")}`;
       },
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -134,10 +139,11 @@ function Compras() {
   ];
 
   useEffect(() => {
-    listarCompras().then((comp) => {
-      setCompras(comp);
-      setLoad(true);
-    });
+    listarCompras()
+      .then((comp) => {
+        setCompras(comp);
+        setLoad(true);
+      });
   }, [reload]);
 
   if (load) {
