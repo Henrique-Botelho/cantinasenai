@@ -92,6 +92,20 @@ function MainProvider({ children }) {
     }
   }
 
+  async function trocarSenha(e, token, senha, confirmaSenha) {
+    e.preventDefault();
+    try {
+      const { data } = await api.post('/usuarios/alterar-senha', { token, senha , confirmaSenha });
+      navigate('/');
+      toast.success(data.message, {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
   async function logout() {
     setAutenticado(false);
     localStorage.removeItem("cantinasenaitoken");
@@ -316,6 +330,7 @@ function MainProvider({ children }) {
       value={{
         manipulaLogin,
         esqueciSenha,
+        trocarSenha,
         logout,
         autenticado,
         listarProdutos,

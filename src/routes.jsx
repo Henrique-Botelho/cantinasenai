@@ -35,7 +35,7 @@ function RoutesApp() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/esqueci-senha" element={<EsqueciSenha />} />
-          <Route path="/trocar-senha/:token" element={<TrocarSenha />} />
+          <Route path="/trocar-senha" element={<TrocarSenha />} />
 
           <Route path="/compras" element={<Private Item={Compras} />} />
           <Route

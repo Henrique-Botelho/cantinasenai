@@ -1,19 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../contexts";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { BsKeyFill } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
 
 function TrocarSenha() {
   const navigate = useNavigate();
-  const { autenticado } = useContext(MainContext);
+  const { autenticado, trocarSenha } = useContext(MainContext);
 
-  const { token } = useParams();
+  const [serachParams] = useSearchParams();
+  const token = serachParams.get('token');
 
   console.log(token);
 
-  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmaSenha, setConfirmaSenha] = useState("");
 
   useEffect(() => {
     if (autenticado) {
@@ -37,9 +39,9 @@ function TrocarSenha() {
         <span className="text-black/90 my-3 text-ellipsis break w-96 text-justify">
           Digite uma nova senha de sua escolha
         </span>
-        <input placeholder="Senha" className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2" type="text" />
-        <input placeholder="Confirmar senha" className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2" type="text" />
-        <button className=" text-white w-96 bg-green-500 h-10 rounded hover:scale-105 duration-500">
+        <input value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="Senha" className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2" type="text" />
+        <input value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} placeholder="Confirmar senha" className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2" type="text" />
+        <button onClick={(e) => trocarSenha(e, token, senha, confirmaSenha)} className=" text-white w-96 bg-green-500 h-10 rounded hover:scale-105 duration-500">
           Salvar
         </button>
       </form>
