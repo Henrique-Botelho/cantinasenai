@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { BsShop } from "react-icons/bs";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 function Login() {
@@ -14,6 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  const [tipoSenha, setTipoSenha] = useState("password");
 
   useEffect(() => {
     if (autenticado) {
@@ -47,8 +48,27 @@ function Login() {
             onChange={(e) => setSenha(e.target.value)}
             placeholder="Senha"
             className=" placeholder:text-gray-100 h-full w-full bg-transparent focus:outline-none text-gray-100"
-            type="password"
+            type={tipoSenha}
           />
+          {tipoSenha === "password" ? (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoSenha("text");
+              }}
+            >
+              <MdVisibility className="mx-3" size={25} />
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoSenha("password");
+              }}
+            >
+              <MdVisibilityOff className="mx-3" size={25} />
+            </button>
+          )}
         </div>
         <button
           onClick={(e) => manipulaLogin(e, email, senha)}
@@ -56,7 +76,12 @@ function Login() {
         >
           Entrar
         </button>
-        <Link to="/esqueci-senha" className="text-red-800 mt-5 hover:text-red-500">Esqueci minha senha</Link>
+        <Link
+          to="/esqueci-senha"
+          className="text-red-800 mt-5 hover:text-red-500"
+        >
+          Esqueci minha senha
+        </Link>
       </form>
     </div>
   );

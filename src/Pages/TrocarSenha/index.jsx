@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { BsKeyFill } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
 import { VscLoading } from "react-icons/vsc";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 function TrocarSenha() {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ function TrocarSenha() {
   const [loading, setLoading] = useState(false);
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
+
+  const [tipoSenha, setTipoSenha] = useState("password");
+  const [tipoConfSenha, setTipoConfSenha] = useState("password");
 
   useEffect(() => {
     if (autenticado) {
@@ -39,29 +43,75 @@ function TrocarSenha() {
         <span className="text-black/90 my-3 text-ellipsis break w-96 text-justify">
           Digite uma nova senha de sua escolha
         </span>
-        <input
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          placeholder="Senha"
-          className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2"
-          type="text"
-        />
-        <input
-          value={confirmaSenha}
-          onChange={(e) => setConfirmaSenha(e.target.value)}
-          placeholder="Confirmar senha"
-          className="placeholder:text-black/70 text-black/90 border-2 rounded border-gray-800 h-10 w-full p-2"
-          type="text"
-        />
+        <div className="w-full flex justify-center items-center">
+          <input
+            autoFocus
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            placeholder="Senha"
+            className="placeholder:text-black/70 focus:outline-none text-black/90 border-2 rounded-l border-r-0 border-gray-800 h-10 w-full p-2"
+            type={tipoSenha}
+          />
+          {tipoSenha === "password" ? (
+            <button
+              className="flex justify-center items-center border-2 rounded-r border-gray-800 h-full border-l-0 px-1"
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoSenha("text");
+              }}
+            >
+              <MdVisibility size={25} />
+            </button>
+          ) : (
+            <button
+              className="flex justify-center items-center border-2 rounded-r border-gray-800 h-full border-l-0 px-1"
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoSenha("password");
+              }}
+            >
+              <MdVisibilityOff size={25} />
+            </button>
+          )}
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <input
+            value={confirmaSenha}
+            onChange={(e) => setConfirmaSenha(e.target.value)}
+            placeholder="Confirmar senha"
+            className="placeholder:text-black/70 focus:outline-none text-black/90 border-2 rounded-l border-r-0 border-gray-800 h-10 w-full p-2"
+            type={tipoConfSenha}
+          />
+          {tipoConfSenha === "password" ? (
+            <button
+              className="flex justify-center items-center border-2 rounded-r border-gray-800 h-full border-l-0 px-1"
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoConfSenha("text");
+              }}
+            >
+              <MdVisibility size={25} />
+            </button>
+          ) : (
+            <button
+              className="flex justify-center items-center border-2 rounded-r border-gray-800 h-full border-l-0 px-1"
+              onClick={(e) => {
+                e.preventDefault();
+                setTipoConfSenha("password");
+              }}
+            >
+              <MdVisibilityOff size={25} />
+            </button>
+          )}
+        </div>
         <button
           onClick={(e) => {
             setLoading(true);
-            trocarSenha(e, token, senha, confirmaSenha)
-              .finally(() => {
-                setLoading(false);
-              });
+            trocarSenha(e, token, senha, confirmaSenha).finally(() => {
+              setLoading(false);
+            });
           }}
-          className=" text-white w-96 bg-green-500 h-10 rounded hover:scale-105 duration-500"
+          className=" text-white w-96 bg-green-500 h-10 rounded hover:scale-105 duration-500 flex justify-center items-center"
         >
           {loading ? (
             <VscLoading className="animate-spin text-white" size={30} />
