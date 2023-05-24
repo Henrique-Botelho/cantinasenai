@@ -76,15 +76,14 @@ function MainProvider({ children }) {
       preco = preco.replace(",", ".");
     }
     try {
-      const response = await api.post("/produtos", {
+      const { data } = await api.post("/produtos", {
         nome,
         preco,
         categoria,
         descricao,
       });
-      console.log(response);
       navigate("/produtos");
-      toast.success("Produto adicionado!", {
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -106,15 +105,14 @@ function MainProvider({ children }) {
       preco = preco.replace(",", ".");
     }
     try {
-      const response = await api.put(`/produtos/${id}`, {
+      const { data } = await api.put(`/produtos/${id}`, {
         nome,
         preco,
         categoria,
         descricao,
       });
-      console.log(response);
       navigate("/produtos");
-      toast.success("Produto alterado com sucesso!", {
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -131,9 +129,8 @@ function MainProvider({ children }) {
 
   async function exlcuirProduto(id) {
     try {
-      const response = await api.delete(`/produtos/${id}`);
-      console.log(response);
-      toast.success("Produto deletado com sucesso!", {
+      const { data } = await api.delete(`/produtos/${id}`);
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -163,13 +160,12 @@ function MainProvider({ children }) {
   async function adicionarCliente(e, nome, numero) {
     e.preventDefault();
     try {
-      const response = await api.post("/clientes", {
+      const { data } = await api.post("/clientes", {
         nome,
         numero,
       });
-      console.log(response);
       navigate("/clientes");
-      toast.success("Cliente adicionado!", {
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -187,13 +183,12 @@ function MainProvider({ children }) {
   async function editarCliente(e, nome, numero) {
     e.preventDefault();
     try {
-      const response = await api.put("/clientes", {
+      const { data } = await api.put("/clientes", {
         nome,
         numero,
       });
-      console.log(response);
       navigate("/clientes");
-      toast.success("Cliente alterado com sucesso!", {
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -210,9 +205,8 @@ function MainProvider({ children }) {
 
   async function exlcuirCliente(id) {
     try {
-      const response = await api.delete(`/clientes/${id}`);
-      console.log(response);
-      toast.success("Cliente deletado com sucesso!", {
+      const { data } = await api.delete(`/clientes/${id}`);
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -242,14 +236,13 @@ function MainProvider({ children }) {
   async function adicionarCompra(cliente, total, compra) {
     compra = JSON.stringify(compra);
     try {
-      const response = await api.post("/compras", {
+      const { data } = await api.post("/compras", {
         cliente,
         total,
         compra
       });
-      console.log(response);
       navigate("/compras");
-      toast.success("Compra criada!", {
+      toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
       });
@@ -264,6 +257,24 @@ function MainProvider({ children }) {
     }
   }
 
+  async function excluirCompra(id) {
+    try {
+      const { data } = await api.delete(`/compras/${id}`);
+      navigate("/compras");
+      toast.success(data.message, {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
 
   // =================================================
 
@@ -306,7 +317,8 @@ function MainProvider({ children }) {
         editarCliente,
         exlcuirCliente,
         listarCompras,
-        adicionarCompra
+        adicionarCompra,
+        excluirCompra
       }}
     >
       {children}

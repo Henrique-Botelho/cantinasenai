@@ -16,14 +16,15 @@ function Compras() {
     backgroundSize: "cover",
   };
 
-  const { listarCompras } = useContext(MainContext);
+  const { listarCompras, excluirCompra } = useContext(MainContext);
 
   const [compras, setCompras] = useState([]);
-  const [load, setLoad] = useState([]);
+  const [load, setLoad] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const [modalCompra, setModalCompra] = useState(false);
   const [modalDetalhes, setModalDetalhes] = useState(false);
-  const [idLinha, setIdLinha] = useState({});
+  const [idLinha, setIdLinha] = useState();
   const [detalhes, setDetalhes] = useState([]);
 
 
@@ -137,7 +138,7 @@ function Compras() {
       setCompras(comp);
       setLoad(true);
     });
-  }, []);
+  }, [reload]);
 
   if (load) {
     return (
@@ -157,7 +158,11 @@ function Compras() {
                 Cancelar
               </button>
               <button
-                onClick={() => console.log(idLinha)}
+                onClick={() => {
+                  excluirCompra(idLinha);
+                  setModalCompra(false);
+                  setReload(!reload);
+                }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
                 Sim
