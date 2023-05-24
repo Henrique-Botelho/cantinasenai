@@ -229,6 +229,44 @@ function MainProvider({ children }) {
 
   // =================================================
 
+  // ==================== Compras ====================
+  async function listarCompras() {
+    try {
+      const { data } = await api.get("/compras");
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function adicionarCompra(cliente, total, compra) {
+    compra = JSON.stringify(compra);
+    try {
+      const response = await api.post("/compras", {
+        cliente,
+        total,
+        compra
+      });
+      console.log(response);
+      navigate("/compras");
+      toast.success("Compra criada!", {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
+
+  // =================================================
+
   // Verifica toda vez que o usuário entra na página se o token está lá
   useEffect(() => {
     const token = localStorage.getItem("cantinasenaitoken");
@@ -266,7 +304,9 @@ function MainProvider({ children }) {
         listarClientes,
         adicionarCliente,
         editarCliente,
-        exlcuirCliente
+        exlcuirCliente,
+        listarCompras,
+        adicionarCompra
       }}
     >
       {children}

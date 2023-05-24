@@ -20,7 +20,7 @@ function AdCompra() {
     backgroundSize: "cover",
   };
 
-  const { listarProdutos, listarClientes } = useContext(MainContext);
+  const { listarProdutos, listarClientes, adicionarCompra } = useContext(MainContext);
 
   // Dados a serem enviados para o backend
   
@@ -118,6 +118,7 @@ function AdCompra() {
       field: "nome",
       headerName: "Nome",
       flex: 0.3,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) => params.value[0].toUpperCase() + params.value.substr(1)
     },
@@ -126,6 +127,7 @@ function AdCompra() {
       headerName: "Preço",
       type: "number",
       flex: 0.3,
+      hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -135,6 +137,7 @@ function AdCompra() {
       headerName: "Ações",
       type: "actions",
       flex: 0.3,
+      hideable: false,
       renderCell: (params) => (
         <button onClick={() => adicionaProduto(params.row)}>
           <BsArrowRightCircleFill className="text-blue-400" size={25} />
@@ -150,6 +153,7 @@ function AdCompra() {
       field: "nome",
       headerName: "Nome",
       flex: 0.2,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
@@ -157,6 +161,7 @@ function AdCompra() {
       headerName: "Preço",
       type: "number",
       flex: 0.2,
+      hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -166,6 +171,7 @@ function AdCompra() {
       headerName: "Quantidade",
       type: "actions",
       flex: 0.2,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       renderCell: (params) => (
         <div className="flex flex-row justify-center items-center gap-3">
@@ -259,7 +265,7 @@ function AdCompra() {
                       R$ {total.toFixed(2).replace(".", ",")}
                     </span>
                   </div>
-                  <button className="bg-green-500 text-gray-100 p-2 w-full rounded">
+                  <button onClick={() => adicionarCompra(cliente, total, itens)} className="bg-green-500 text-gray-100 p-2 w-full rounded">
                     Adicionar
                   </button>
                 </div>

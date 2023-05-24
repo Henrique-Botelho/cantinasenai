@@ -29,12 +29,14 @@ function Produtos() {
       field: "id",
       headerName: "ID",
       flex: 0.166,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
       field: "nome",
       headerName: "Nome",
       flex: 0.166,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
         params.value[0].toUpperCase() + params.value.slice(1),
@@ -43,12 +45,14 @@ function Produtos() {
       field: "categoria",
       headerName: "Categoria",
       flex: 0.166,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
       field: "descricao",
       headerName: "Descrição",
       flex: 0.166,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
         `${params.value[0].toUpperCase() + params.value.slice(1)}.`,
@@ -58,6 +62,7 @@ function Produtos() {
       headerName: "Preço",
       type: "number",
       flex: 0.166,
+      hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -67,6 +72,7 @@ function Produtos() {
       headerName: "Ações",
       type: "actions",
       flex: 0.166,
+      hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
           <Link

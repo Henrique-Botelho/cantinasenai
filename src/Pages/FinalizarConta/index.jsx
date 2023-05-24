@@ -71,13 +71,13 @@ function FinalizarConta() {
       headerName: "Total",
       type: "number",
       flex: 0.25,
+      hideable: false,
       valueFormatter: (params) => {
         if (params.value == null) {
           return "";
         }
         return `R$ ${params.value.toFixed(2).replace(".", ",")}`;
       },
-      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
@@ -85,6 +85,7 @@ function FinalizarConta() {
       headerName: "Ações",
       type: "actions",
       flex: 0.25,
+      hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
           <button
@@ -116,12 +117,14 @@ function FinalizarConta() {
       field: "quantidade",
       headerName: "Quantidade",
       flex: 0.33,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
       field: "nome",
       headerName: "Nome",
       flex: 0.33,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
         params.value[0].toUpperCase() + params.value.slice(1),
@@ -131,6 +134,7 @@ function FinalizarConta() {
       headerName: "Preço",
       type: "number",
       flex: 0.33,
+      hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,

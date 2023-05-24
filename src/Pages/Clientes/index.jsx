@@ -29,12 +29,14 @@ function Clientes() {
       field: "nome",
       headerName: "Nome",
       flex: 0.2,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
       field: "numero",
       headerName: "Telefone",
       flex: 0.2,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
@@ -42,6 +44,7 @@ function Clientes() {
       headerName: "Conta",
       type: "actions",
       flex: 0.2,
+      hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       renderCell: (params) => (
         <Link
@@ -58,6 +61,7 @@ function Clientes() {
       headerName: "Ações",
       type: "actions",
       flex: 0.2,
+      hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
           <Link
