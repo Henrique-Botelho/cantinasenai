@@ -233,6 +233,15 @@ function MainProvider({ children }) {
     }
   }
 
+  async function listarComprasPorCliente(id) {
+    try {
+      const { data } = await api.get(`/compras/${id}`);
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   async function adicionarCompra(cliente, total, compra) {
     compra = JSON.stringify(compra);
     try {
@@ -242,6 +251,25 @@ function MainProvider({ children }) {
         compra
       });
       navigate("/compras");
+      toast.success(data.message, {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      if (e.response) {
+        toast.error(e.response.data.message, {
+          theme: "colored",
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+      console.log(e);
+    }
+  }
+
+  async function finalizarConta(id) {
+    try {
+      const { data } = await api.put(`/compras/${id}`);
+      navigate("/clientes");
       toast.success(data.message, {
         theme: "colored",
         position: toast.POSITION.TOP_CENTER,
@@ -317,7 +345,9 @@ function MainProvider({ children }) {
         editarCliente,
         exlcuirCliente,
         listarCompras,
+        listarComprasPorCliente,
         adicionarCompra,
+        finalizarConta,
         excluirCompra
       }}
     >
