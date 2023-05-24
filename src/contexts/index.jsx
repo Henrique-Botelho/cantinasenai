@@ -16,6 +16,49 @@ function MainProvider({ children }) {
   const [autenticado, setAutenticado] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Função de manipulação de erro
+  function manipulaErros(erro) {
+    if (erro.response) {
+      if (erro.response.data.message === "Token inválido!") {
+        return manipulaVerificaToken();
+      }
+      toast.error(erro.response.data.message, {
+        theme: "colored",
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    } else if (erro.request) {
+      toast.error("Erro ao acessar o servidor!", {
+        theme: "colored",
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    } else {
+      toast.error("Ocorreu um erro inesperado!", {
+        theme: "colored",
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+    console.log(erro);
+  }
+
+  function manipulaVerificaToken() {
+    const token = localStorage.getItem("cantinasenaitoken");
+    if (token) {
+      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+
+      api
+        .post("/usuarios/verifica-token")
+        .then((response) => {
+          setAutenticado(true);
+        })
+        .catch((error) => {
+          api.defaults.headers.Authorization = undefined;
+          localStorage.removeItem("cantinasenaitoken");
+          setAutenticado(false);
+        });
+    }
+    setLoading(false); // IMPORTANTE: ele sempre deve deixar de carregar!
+  }
+
   // ===================== Login =====================
   async function manipulaLogin(e, email, senha) {
     e.preventDefault();
@@ -32,13 +75,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -65,7 +102,7 @@ function MainProvider({ children }) {
       });
       return data;
     } catch (e) {
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -88,13 +125,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -117,13 +148,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -135,13 +160,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -153,7 +172,7 @@ function MainProvider({ children }) {
       const { data } = await api.get("/clientes");
       return data;
     } catch (e) {
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -170,13 +189,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -193,13 +206,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -211,13 +218,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -229,7 +230,7 @@ function MainProvider({ children }) {
       const { data } = await api.get("/compras");
       return data;
     } catch (e) {
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -238,7 +239,7 @@ function MainProvider({ children }) {
       const { data } = await api.get(`/compras/${id}`);
       return data;
     } catch (e) {
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -256,13 +257,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -275,13 +270,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -294,13 +283,7 @@ function MainProvider({ children }) {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (e) {
-      if (e.response) {
-        toast.error(e.response.data.message, {
-          theme: "colored",
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
-      }
-      console.log(e);
+      manipulaErros(e);
     }
   }
 
@@ -308,22 +291,7 @@ function MainProvider({ children }) {
 
   // Verifica toda vez que o usuário entra na página se o token está lá
   useEffect(() => {
-    const token = localStorage.getItem("cantinasenaitoken");
-    if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-
-      api
-        .post("/usuarios/verifica-token")
-        .then((response) => {
-          setAutenticado(true);
-        })
-        .catch((error) => {
-          api.defaults.headers.Authorization = undefined;
-          localStorage.removeItem("cantinasenaitoken");
-          setAutenticado(false);
-        });
-    }
-    setLoading(false); // IMPORTANTE: ele sempre deve deixar de carregar!
+    manipulaVerificaToken();
   }, []);
 
   if (loading) {
