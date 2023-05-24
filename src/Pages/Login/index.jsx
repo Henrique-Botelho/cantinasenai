@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { BsShop } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -27,7 +28,7 @@ function Login() {
         <h1 className="text-gray-100 text-4xl my-3">Cantina SENAI</h1>
         <span className="text-gray-100 my-3">Faça login abaixo</span>
       </div>
-      <form className="flex flex-col justify-center items-center space-y-3">
+      <form className="flex flex-col justify-center items-center gap-3">
         <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-96 rounded">
           <MdEmail className="mx-3" size={25} />
           <input
@@ -55,6 +56,7 @@ function Login() {
         >
           Entrar
         </button>
+        <Link to="/esqueci-senha" className="text-red-800 mt-5 hover:text-red-500">Esqueci minha senha</Link>
       </form>
     </div>
   );

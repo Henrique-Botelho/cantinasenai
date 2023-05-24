@@ -6,7 +6,9 @@ import MainProvider from "./contexts";
 import { MainContext } from "./contexts";
 
 import Login from "./Pages/Login";
+import EsqueciSenha from "./Pages/EsqueciSenha";
 import Error from "./Pages/Error";
+import TrocarSenha from "./Pages/TrocarSenha";
 
 import Clientes from "./Pages/Clientes";
 import AdCliente from "./Pages/AdCliente";
@@ -32,6 +34,8 @@ function RoutesApp() {
       <MainProvider>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+          <Route path="/trocar-senha/:token" element={<TrocarSenha />} />
 
           <Route path="/compras" element={<Private Item={Compras} />} />
           <Route

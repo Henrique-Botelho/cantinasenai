@@ -79,6 +79,19 @@ function MainProvider({ children }) {
     }
   }
 
+  async function esqueciSenha(e, email) {
+    e.preventDefault();
+    try {
+      await api.post('/usuarios/esqueci-senha', { email });
+      toast.success(`Um email foi enviado para ${email}!`, {
+        theme: "colored",
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
   async function logout() {
     setAutenticado(false);
     localStorage.removeItem("cantinasenaitoken");
@@ -302,6 +315,7 @@ function MainProvider({ children }) {
     <MainContext.Provider
       value={{
         manipulaLogin,
+        esqueciSenha,
         logout,
         autenticado,
         listarProdutos,
