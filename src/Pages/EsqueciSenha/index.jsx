@@ -48,7 +48,7 @@ function EsqueciSenha() {
           onClick={(e) => {
             setLoading(true);
             esqueciSenha(e, email)
-              .then(() => {
+              .finally(() => {
                 setLoading(false);
               });
           }}
