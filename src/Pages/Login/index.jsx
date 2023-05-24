@@ -33,6 +33,7 @@ function Login() {
         <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-96 rounded">
           <MdEmail className="mx-3" size={25} />
           <input
+            tabIndex={1}
             autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -44,6 +45,7 @@ function Login() {
         <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-96 rounded">
           <RiLockPasswordFill className="mx-3" size={25} />
           <input
+            tabIndex={2}
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             placeholder="Senha"
@@ -71,6 +73,7 @@ function Login() {
           )}
         </div>
         <button
+          tabIndex={3}
           onClick={(e) => manipulaLogin(e, email, senha)}
           className=" text-gray-900 w-96 bg-gray-100 h-10 rounded hover:scale-105 duration-500"
         >

@@ -45,6 +45,7 @@ function TrocarSenha() {
         </span>
         <div className="w-full flex justify-center items-center">
           <input
+            tabIndex={1}
             autoFocus
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
@@ -76,6 +77,7 @@ function TrocarSenha() {
         </div>
         <div className="w-full flex justify-center items-center">
           <input
+            tabIndex={2}
             value={confirmaSenha}
             onChange={(e) => setConfirmaSenha(e.target.value)}
             placeholder="Confirmar senha"
@@ -105,6 +107,7 @@ function TrocarSenha() {
           )}
         </div>
         <button
+          tabIndex={3}
           onClick={(e) => {
             setLoading(true);
             trocarSenha(e, token, senha, confirmaSenha).finally(() => {
