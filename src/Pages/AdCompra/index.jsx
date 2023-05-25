@@ -265,9 +265,7 @@ function AdCompra() {
                       R$ {total.toFixed(2).replace(".", ",")}
                     </span>
                   </div>
-                  <button onClick={() => adicionarCompra(cliente, total, itens)} className="bg-green-500 text-gray-100 p-2 w-full rounded">
-                    Adicionar
-                  </button>
+                  {clientes.length > 0 ? <button onClick={() => adicionarCompra(cliente, total, itens)} className="bg-green-500 text-gray-100 p-2 w-full rounded">Adicionar</button> : <button disabled className="bg-orange-500 text-gray-100 p-2 w-full rounded">Adicione um cliente antes de adicionar uma compra</button>}
                 </div>
               </div>
             </div>
