@@ -124,9 +124,11 @@ function Produtos() {
               </button>
               <button
                 onClick={() => {
-                  exlcuirProduto(idLinha);
                   setModalProduto(false);
-                  setReload(!reload);
+                  exlcuirProduto(idLinha)
+                    .finally(() => {
+                      setReload(!reload);
+                    });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >

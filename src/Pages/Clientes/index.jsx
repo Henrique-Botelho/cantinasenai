@@ -113,9 +113,11 @@ function Clientes() {
               </button>
               <button
                 onClick={() => {
-                  exlcuirCliente(idLinha);
                   setModalCliente(false);
-                  setReload(!reload);
+                  exlcuirCliente(idLinha)
+                    .finally(() => {
+                      setReload(!reload);
+                    });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >

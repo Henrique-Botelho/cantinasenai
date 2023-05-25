@@ -165,9 +165,11 @@ function Compras() {
               </button>
               <button
                 onClick={() => {
-                  excluirCompra(idLinha);
                   setModalCompra(false);
-                  setReload(!reload);
+                  excluirCompra(idLinha)
+                    .finally(() => {
+                      setReload(!reload);
+                    })
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
