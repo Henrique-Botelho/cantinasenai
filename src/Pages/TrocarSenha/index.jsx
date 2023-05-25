@@ -14,6 +14,12 @@ function TrocarSenha() {
   const [serachParams] = useSearchParams();
   const token = serachParams.get("token");
 
+  if (!token) {
+    useEffect(() => {
+      navigate('/');
+    }, []);
+  }
+
   const [loading, setLoading] = useState(false);
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
