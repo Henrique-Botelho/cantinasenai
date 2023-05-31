@@ -3,6 +3,7 @@ import imagemCantina from "../../assets/fundo.png";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { MainContext } from "../../contexts";
+import CurrencyInput from "react-currency-input-field";
 
 import Header from "../../components/Header";
 
@@ -61,12 +62,17 @@ function EdProduto() {
           </div>
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">Preço</span>
-            <input
-              value={preco}
-              onChange={(e) => setPreco(e.target.value)}
-              required
+            <CurrencyInput
+              decimalsLimit={2}
+              prefix="R$"
+              groupSeparator=" "
+              decimalSeparator=","
+              defaultValue={preco}
+              onValueChange={(value) => {
+                setPreco(value);
+              }}
+              step={1}
               className="h-8 text-sm border-2 border-gray-300 focus:outline-none rounded pl-2"
-              type="text"
             />
           </div>
           <div className="flex flex-col mb-5">

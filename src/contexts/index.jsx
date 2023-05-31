@@ -131,6 +131,8 @@ function MainProvider({ children }) {
 
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
+    preco = preco.replace(',','.');
+    preco = parseFloat(preco);
     try {
       const { data } = await api.post("/produtos", {
         nome,
@@ -147,6 +149,8 @@ function MainProvider({ children }) {
 
   async function editarProduto(e, id, nome, preco, categoria, descricao) {
     e.preventDefault();
+    preco = preco.replace(',','.');
+    preco = parseFloat(preco);
     try {
       const { data } = await api.put(`/produtos/${id}`, {
         nome,
