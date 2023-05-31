@@ -21,6 +21,7 @@ function EdCliente() {
 
   const [nome, setNome] = useState(cliente.nome);
   const [numero, setNumero] = useState(cliente.numero);
+  const [email, setEmail] = useState(cliente.email);
 
   return (
     <div
@@ -64,8 +65,20 @@ function EdCliente() {
               type="tel"
             />
           </div>
+          <div className="flex flex-col mb-5">
+            <span className="font-bold opacity-75 text-sm mb-2">
+              Email do cliente
+            </span>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="h-8 text-sm border-2 border-gray-300 focus:outline-none rounded pl-2"
+              type="email"
+            />
+          </div>
           <button
-            onClick={(e) => editarCliente(e, nome, numero)}
+            onClick={(e) => editarCliente(e, nome, numero, email)}
             className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
           >
             Salvar

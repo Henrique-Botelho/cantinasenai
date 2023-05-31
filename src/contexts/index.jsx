@@ -203,12 +203,13 @@ function MainProvider({ children }) {
     }
   }
 
-  async function adicionarCliente(e, nome, numero) {
+  async function adicionarCliente(e, nome, numero, email) {
     e.preventDefault();
     try {
       const { data } = await api.post("/clientes", {
         nome,
         numero,
+        email
       });
       navigate("/clientes");
       toast.success(data.message, {
@@ -220,12 +221,13 @@ function MainProvider({ children }) {
     }
   }
 
-  async function editarCliente(e, nome, numero) {
+  async function editarCliente(e, nome, numero, email) {
     e.preventDefault();
     try {
       const { data } = await api.put("/clientes", {
         nome,
         numero,
+        email
       });
       navigate("/clientes");
       toast.success(data.message, {

@@ -40,6 +40,13 @@ function Clientes() {
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
+      field: "email",
+      headerName: "Email",
+      flex: 0.2,
+      hideable: false,
+      renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
+    },
+    {
       field: "conta",
       headerName: "Conta",
       type: "actions",
