@@ -281,7 +281,11 @@ function MainProvider({ children }) {
     let hora = new Date().getHours();
     let min = new Date().getMinutes();
 
-    let dataHora = `${dia}/${mes}/${ano} | ${hora}h${min}`;
+    if (min.length == 1) {
+      min = `0${min}`;
+    }
+
+    let dataHora = `${dia}/${mes}/${ano} | ${hora}:${min}`;
 
     try {
       const { data } = await api.post("/compras", {
