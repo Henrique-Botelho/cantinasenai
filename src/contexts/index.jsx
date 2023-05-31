@@ -272,11 +272,22 @@ function MainProvider({ children }) {
 
   async function adicionarCompra(cliente, total, compra) {
     compra = JSON.stringify(compra);
+
+    let dia = new Date().getDate();
+    let mes = new Date().getMonth();
+    let ano = new Date().getFullYear();
+    let hora = new Date().getHours();
+    let min = new Date().getMinutes();
+    let sec = new Date().getSeconds();
+
+    let dataHora = `${dia}/${mes}/${ano} | ${hora}:${min}:${sec}`;
+
     try {
       const { data } = await api.post("/compras", {
         cliente,
         total,
-        compra
+        compra,
+        dataHora
       });
       navigate("/compras");
       toast.success(data.message, {
