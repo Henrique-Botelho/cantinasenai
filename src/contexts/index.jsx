@@ -276,7 +276,7 @@ function MainProvider({ children }) {
     compra = JSON.stringify(compra);
 
     let dia = new Date().getDate();
-    let mes = new Date().getMonth();
+    let mes = new Date().getMonth() + 1;
     let ano = new Date().getFullYear();
     let hora = new Date().getHours();
     let min = new Date().getMinutes();
