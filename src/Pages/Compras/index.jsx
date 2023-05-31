@@ -16,7 +16,7 @@ function Compras() {
     backgroundSize: "cover",
   };
 
-  const { listarCompras, excluirCompra } = useContext(MainContext);
+  const { listarCompras, excluirCompra, pagarCompra } = useContext(MainContext);
 
   const [compras, setCompras] = useState([]);
   const [load, setLoad] = useState(false);
@@ -24,6 +24,8 @@ function Compras() {
 
   const [modalCompra, setModalCompra] = useState(false);
   const [modalDetalhes, setModalDetalhes] = useState(false);
+  const [modalPagar, setModalPagar] = useState(false);
+
   const [idLinha, setIdLinha] = useState();
   const [detalhes, setDetalhes] = useState([]);
 
@@ -85,6 +87,15 @@ function Compras() {
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
+          <button
+            onClick={() => {
+              setIdLinha(params.row.id);
+              setModalPagar(true);
+            }}
+            className="flex justify-center items-center p-2 rounded bg-indigo-600 font-medium text-white text-sm"
+          >
+            Pagar
+          </button>
           <button
             onClick={() => {
               setDetalhes(JSON.parse(params.row.compra));
@@ -167,6 +178,32 @@ function Compras() {
                 onClick={() => {
                   setModalCompra(false);
                   excluirCompra(idLinha)
+                    .finally(() => {
+                      setReload(!reload);
+                    })
+                }}
+                className="bg-blue-500 w-32 text-white rounded p-2"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </Modal>
+        <Modal open={modalPagar} onClose={() => setModalPagar(false)}>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+            <IoIosAlert size={60} className="text-yellow-300" />
+            <span>Deseja colocar essa compra como paga?</span>
+            <div className="flex justify-between items-center gap-3">
+              <button
+                onClick={() => setModalPagar(false)}
+                className="bg-gray-300 w-32 text-white rounded p-2"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  setModalCompra(false);
+                  pagarCompra(idLinha)
                     .finally(() => {
                       setReload(!reload);
                     })

@@ -276,6 +276,16 @@ function MainProvider({ children }) {
     }
   }
 
+  async function pagarCompra(id) {
+    try {
+      const { data } = await api.put(`/compras/pagar/${id}`);
+      navigate("/compras");
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
   async function finalizarConta(id) {
     try {
       const { data } = await api.put(`/compras/${id}`);
@@ -326,6 +336,7 @@ function MainProvider({ children }) {
         listarCompras,
         listarComprasPorCliente,
         adicionarCompra,
+        pagarCompra,
         finalizarConta,
         excluirCompra
       }}
