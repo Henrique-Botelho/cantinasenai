@@ -201,10 +201,10 @@ function MainProvider({ children }) {
     }
   }
 
-  async function editarCliente(e, nome, numero, email) {
+  async function editarCliente(e,id, nome, numero, email) {
     e.preventDefault();
     try {
-      const { data } = await api.put("/clientes", {
+      const { data } = await api.put(`/clientes/${id}`, {
         nome,
         numero,
         email

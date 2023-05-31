@@ -91,7 +91,7 @@ function EdCliente() {
             <button
               onClick={(e) => {
                 setCarregando(true);
-                editarCliente(e, nome, numero, email).finally(() =>
+                editarCliente(e, cliente.id, nome, numero, email).finally(() =>
                   setCarregando(false)
                 );
               }}
