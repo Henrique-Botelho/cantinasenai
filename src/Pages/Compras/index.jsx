@@ -87,15 +87,18 @@ function Compras() {
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
-          <button
-            onClick={() => {
-              setIdLinha(params.row.id);
-              setModalPagar(true);
-            }}
-            className="flex justify-center items-center p-2 rounded bg-indigo-600 font-medium text-white text-sm"
-          >
-            Pagar
-          </button>
+          {params.row.status === 0 && (
+            <button
+              onClick={() => {
+                setIdLinha(params.row.id);
+                setModalPagar(true);
+              }}
+              className="flex justify-center items-center p-2 rounded bg-indigo-600 font-medium text-white text-sm"
+            >
+              Pagar
+            </button>
+          )}
+
           <button
             onClick={() => {
               setDetalhes(JSON.parse(params.row.compra));
@@ -150,11 +153,10 @@ function Compras() {
   ];
 
   useEffect(() => {
-    listarCompras()
-      .then((comp) => {
-        setCompras(comp);
-        setLoad(true);
-      });
+    listarCompras().then((comp) => {
+      setCompras(comp);
+      setLoad(true);
+    });
   }, [reload]);
 
   if (load) {
@@ -177,10 +179,9 @@ function Compras() {
               <button
                 onClick={() => {
                   setModalCompra(false);
-                  excluirCompra(idLinha)
-                    .finally(() => {
-                      setReload(!reload);
-                    })
+                  excluirCompra(idLinha).finally(() => {
+                    setReload(!reload);
+                  });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
@@ -203,10 +204,10 @@ function Compras() {
               <button
                 onClick={() => {
                   setModalCompra(false);
-                  pagarCompra(idLinha)
-                    .finally(() => {
-                      setReload(!reload);
-                    })
+                  pagarCompra(idLinha).finally(() => {
+                    setModalPagar(false);
+                    setReload(!reload);
+                  });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
