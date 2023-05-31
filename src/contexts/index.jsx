@@ -131,10 +131,6 @@ function MainProvider({ children }) {
 
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let indiceVirgula = preco.indexOf(",");
-    if (indiceVirgula > -1) {
-      preco = preco.replace(",", ".");
-    }
     try {
       const { data } = await api.post("/produtos", {
         nome,
@@ -203,7 +199,6 @@ function MainProvider({ children }) {
 
   async function editarCliente(e,id, nome, numero, email) {
     e.preventDefault();
-    console.log("olá")
     try {
       const { data } = await api.put(`/clientes/${id}`, {
         nome,

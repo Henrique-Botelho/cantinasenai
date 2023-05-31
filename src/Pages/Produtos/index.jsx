@@ -55,7 +55,7 @@ function Produtos() {
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
-        `${params.value[0].toUpperCase() + params.value.slice(1)}.`,
+        `${params.value[0].toUpperCase() + params.value.slice(1)}`,
     },
     {
       field: "preco",
