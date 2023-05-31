@@ -7,6 +7,7 @@ import { MainContext } from "../../contexts";
 import Header from "../../components/Header";
 
 import { BiArrowBack } from "react-icons/bi";
+import { VscLoading } from "react-icons/vsc";
 
 function EdProduto() {
   const backgroundImageStyle = {
@@ -24,6 +25,8 @@ function EdProduto() {
   const [preco, setPreco] = useState(produto.preco);
   const [categoria, setCategoria] = useState(produto.categoria);
   const [descricao, setDescricao] = useState(produto.descricao);
+
+  const [carregando, setCarregando] = useState(false);
 
   return (
     <div
@@ -99,14 +102,25 @@ function EdProduto() {
               rows="10"
             ></textarea>
           </div>
-          <button
-            onClick={(e) =>
-              editarProduto(e, id, nome, preco, categoria, descricao)
-            }
-            className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
-          >
-            Salvar
-          </button>
+          {carregando ? (
+            <button
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3 flex justify-center items-center"
+              disabled
+            >
+              <VscLoading size={25} className="animate-spin" />
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                setCarregando(true);
+                editarProduto(e, id, nome, preco, categoria, descricao)
+                .finally(() => setCarregando(false));
+              }}
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
+            >
+              Salvar
+            </button>
+          )}
         </form>
       </main>
     </div>

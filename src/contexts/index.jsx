@@ -151,10 +151,6 @@ function MainProvider({ children }) {
 
   async function editarProduto(e, id, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let indiceVirgula = preco.indexOf(",");
-    if (indiceVirgula > -1) {
-      preco = preco.replace(",", ".");
-    }
     try {
       const { data } = await api.put(`/produtos/${id}`, {
         nome,

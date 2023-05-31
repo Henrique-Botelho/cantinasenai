@@ -6,6 +6,7 @@ import { MainContext } from "../../contexts";
 import Header from "../../components/Header";
 
 import { BiArrowBack } from "react-icons/bi";
+import { VscLoading } from "react-icons/vsc";
 
 function AdCliente() {
   const backgroundImageStyle = {
@@ -18,6 +19,8 @@ function AdCliente() {
   const [nome, setNome] = useState("");
   const [numero, setNumero] = useState("");
   const [email, setEmail] = useState("");
+
+  const [carregando, setCarregando] = useState(false);
 
   return (
     <div
@@ -73,12 +76,26 @@ function AdCliente() {
               type="email"
             />
           </div>
-          <button
-            onClick={(e) => adicionarCliente(e, nome, numero, email)}
-            className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
-          >
-            Adicionar
-          </button>
+          {carregando ? (
+            <button
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3 flex justify-center items-center"
+              disabled
+            >
+              <VscLoading className="animate-spin" size={25} />
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                setCarregando(true);
+                adicionarCliente(e, nome, numero, email).finally(() =>
+                  setCarregando(false)
+                );
+              }}
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
+            >
+              Adicionar
+            </button>
+          )}
         </form>
       </main>
     </div>

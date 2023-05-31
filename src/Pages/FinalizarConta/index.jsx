@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLocation } from "react-router-dom";
 import { Modal } from "@mui/material";
 import { BiArrowBack } from "react-icons/bi";
+import { VscLoading } from "react-icons/vsc";
 import { MainContext } from "../../contexts";
 
 import imagemCantina from "../../assets/fundo.png";
@@ -29,6 +30,7 @@ function FinalizarConta() {
 
   const [totalConta, setTotalConta] = useState(0);
 
+  const [carregando, setCarregando] = useState(false);
 
   function calculaTotalConta() {
     let total = 0;
@@ -117,11 +119,10 @@ function FinalizarConta() {
   }, [compras]);
 
   useEffect(() => {
-    listarComprasPorCliente(row.id)
-      .then((comps) => {
-        setCompras(comps);
-        setLoad(true);
-      });
+    listarComprasPorCliente(row.id).then((comps) => {
+      setCompras(comps);
+      setLoad(true);
+    });
   }, []);
 
   if (load) {
@@ -176,7 +177,28 @@ function FinalizarConta() {
                 R$ {totalConta.toFixed(2).replace(".", ",")}
               </span>
             </div>
-            {compras.length ? <button onClick={() => finalizarConta(row.id)} className="w-full rounded p-2 bg-green-500 text-white">Finalizar conta</button> : <button disabled className="w-full rounded p-2 bg-orange-500 text-white">Esse cliente não possui compras em aberto</button>}
+            {carregando ? (
+              <button
+                className="w-full rounded p-2 bg-green-500 text-white flex justify-center items-center"
+                disabled
+              >
+                <VscLoading size={25} className="animate-spin" />
+              </button>
+            ) : compras.length ? (
+              <button
+                onClick={() => finalizarConta(row.id)}
+                className="w-full rounded p-2 bg-green-500 text-white"
+              >
+                Finalizar conta
+              </button>
+            ) : (
+              <button
+                disabled
+                className="w-full rounded p-2 bg-orange-500 text-white"
+              >
+                Esse cliente não possui compras em aberto
+              </button>
+            )}
           </div>
         </main>
       </div>

@@ -8,6 +8,7 @@ import { MainContext } from "../../contexts";
 import { BiArrowBack } from "react-icons/bi";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import { VscLoading } from "react-icons/vsc";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -20,21 +21,23 @@ function AdCompra() {
     backgroundSize: "cover",
   };
 
-  const { listarProdutos, listarClientes, adicionarCompra } = useContext(MainContext);
+  const { listarProdutos, listarClientes, adicionarCompra } =
+    useContext(MainContext);
 
   // Dados a serem enviados para o backend
-  
+
   // Dados carregados da API
   const [produtos, setProdutos] = useState([]);
-  const [clientes, setClientes] = useState([]); 
+  const [clientes, setClientes] = useState([]);
   const [load, setLoad] = useState(false);
-
 
   // Dados que serão enviados para a API
   const [itens, setItens] = useState([]);
   const [cliente, setCliente] = useState(clientes[0]);
   const [total, setTotal] = useState(0);
-  
+
+  const [carregando, setCarregando] = useState(false);
+
   useEffect(() => {
     listarProdutos()
       .then((prods) => {
@@ -43,13 +46,13 @@ function AdCompra() {
       })
       .then((clients) => {
         let clientesEntrada = [];
-        clients.map(item => {
+        clients.map((item) => {
           clientesEntrada.push(item.nome);
-        })
+        });
         setClientes(clientesEntrada);
         setLoad(true);
-      })
-  },[]);
+      });
+  }, []);
 
   // Funções para manipulação dos itens
   const adicionaProduto = (linha) => {
@@ -120,7 +123,8 @@ function AdCompra() {
       flex: 0.3,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
-      valueFormatter: (params) => params.value[0].toUpperCase() + params.value.substr(1)
+      valueFormatter: (params) =>
+        params.value[0].toUpperCase() + params.value.substr(1),
     },
     {
       field: "preco",
@@ -195,17 +199,19 @@ function AdCompra() {
   }, [itens]);
 
   if (load) {
-
     return (
       <div
         style={backgroundImageStyle}
         className="h-screen w-screen flex justify-center items-center"
       >
         <Header />
-  
+
         <main className="container h-4/5 rounded bg-white flex flex-col justify-start items-center p-3">
           <div className="flex justify-start items-center w-full">
-            <Link to="/compras" className="flex justify-center items-center mr-3">
+            <Link
+              to="/compras"
+              className="flex justify-center items-center mr-3"
+            >
               <BiArrowBack size={24} />
             </Link>
             <h2 className="my-4 text-xl">Nova Compra</h2>
@@ -221,7 +227,9 @@ function AdCompra() {
             </div>
             <div className="w-1/2 h-5/6">
               <div className="flex flex-col justify-center items-start w-full pl-3">
-                <span className="font-bold opacity-80 text-lg mr-5">Cliente</span>
+                <span className="font-bold opacity-80 text-lg mr-5">
+                  Cliente
+                </span>
                 <Autocomplete
                   value={cliente}
                   onChange={(event, novoInput) => {
@@ -265,7 +273,34 @@ function AdCompra() {
                       R$ {total.toFixed(2).replace(".", ",")}
                     </span>
                   </div>
-                  {clientes.length > 0 ? <button onClick={() => adicionarCompra(cliente, total, itens)} className="bg-green-500 text-gray-100 p-2 w-full rounded">Adicionar</button> : <button disabled className="bg-orange-500 text-gray-100 p-2 w-full rounded">Adicione um cliente antes de adicionar uma compra</button>}
+                  {carregando ? (
+                    <button
+                      className="bg-green-500 text-gray-100 p-2 w-full rounded flex justify-center items-center"
+                      disabled
+                    >
+                      <VscLoading className="animate-spin" size={25} />
+                    </button>
+                  ) : clientes.length > 0 ? (
+                    <button
+                      onClick={() => {
+                        setCarregando(true);
+                        adicionarCompra(cliente, total, itens).finally(() =>
+                          setCarregando(false)
+                        );
+                      }}
+                      className="bg-green-500 text-gray-100 p-2 w-full rounded"
+                    >
+                      Adicionar
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-orange-500 text-gray-100 p-2 w-full rounded"
+                    >
+                      Adicione um cliente antes de adicionar uma compra
+                    </button>
+                  )}
+                  {}
                 </div>
               </div>
             </div>
@@ -276,7 +311,6 @@ function AdCompra() {
   } else {
     return <Loading />;
   }
-
 }
 
 export default AdCompra;

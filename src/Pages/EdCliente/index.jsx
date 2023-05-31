@@ -7,6 +7,7 @@ import { MainContext } from "../../contexts";
 import Header from "../../components/Header";
 
 import { BiArrowBack } from "react-icons/bi";
+import { VscLoading } from "react-icons/vsc";
 
 function EdCliente() {
   const backgroundImageStyle = {
@@ -22,6 +23,8 @@ function EdCliente() {
   const [nome, setNome] = useState(cliente.nome);
   const [numero, setNumero] = useState(cliente.numero);
   const [email, setEmail] = useState(cliente.email);
+
+  const [carregando, setCarregando] = useState(false);
 
   return (
     <div
@@ -77,12 +80,26 @@ function EdCliente() {
               type="email"
             />
           </div>
-          <button
-            onClick={(e) => editarCliente(e, nome, numero, email)}
-            className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
-          >
-            Salvar
-          </button>
+          {carregando ? (
+            <button
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3 flex justify-center items-center"
+              disabled
+            >
+              <VscLoading size={25} className="animate-spin" />
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                setCarregando(true);
+                editarCliente(e, nome, numero, email).finally(() =>
+                  setCarregando(false)
+                );
+              }}
+              className="bg-green-500 text-gray-100 w-full rounded h-8 mt-3"
+            >
+              Salvar
+            </button>
+          )}
         </form>
       </main>
     </div>
