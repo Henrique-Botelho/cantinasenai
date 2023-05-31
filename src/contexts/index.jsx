@@ -280,9 +280,8 @@ function MainProvider({ children }) {
     let ano = new Date().getFullYear();
     let hora = new Date().getHours();
     let min = new Date().getMinutes();
-    let sec = new Date().getSeconds();
 
-    let dataHora = `${dia}/${mes}/${ano} | ${hora}:${min}:${sec}`;
+    let dataHora = `${dia}/${mes}/${ano} | ${hora}h${min}`;
 
     try {
       const { data } = await api.post("/compras", {
