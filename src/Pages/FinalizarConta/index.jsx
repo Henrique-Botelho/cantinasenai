@@ -23,7 +23,6 @@ function FinalizarConta() {
 
   const [compras, setCompras] = useState([]);
   const [load, setLoad] = useState(false);
-  const [reload, setReload] = useState(false);
 
   const [modalDetalhes, setModalDetalhes] = useState(false);
   const [detalhes, setDetalhes] = useState([]);
@@ -123,7 +122,7 @@ function FinalizarConta() {
         setCompras(comps);
         setLoad(true);
       });
-  }, [reload]);
+  }, []);
 
   if (load) {
     return (
