@@ -16,6 +16,14 @@ function MainProvider({ children }) {
   const [autenticado, setAutenticado] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Função aviso de sucesso
+  function avisoSucesso(mensagem) {
+    toast.success(mensagem, {
+      theme: "colored",
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+
   // Função de manipulação de erro
   function manipulaErros(erro) {
     if (erro.response) {
@@ -70,10 +78,7 @@ function MainProvider({ children }) {
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
       setAutenticado(true);
       navigate("/compras");
-      toast.success("Login realizado com sucesso!", {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso("Login realizado com sucesso!");
     } catch (e) {
       manipulaErros(e);
     }
@@ -83,10 +88,7 @@ function MainProvider({ children }) {
     e.preventDefault();
     try {
       await api.post('/usuarios/esqueci-senha', { email });
-      toast.success(`Um email foi enviado para ${email}!`, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(`Um email foi enviado para ${email}!`);
     } catch (e) {
       manipulaErros(e);
     }
@@ -97,10 +99,7 @@ function MainProvider({ children }) {
     try {
       const { data } = await api.post('/usuarios/alterar-senha', { token, senha , confirmaSenha });
       navigate('/');
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -111,10 +110,7 @@ function MainProvider({ children }) {
     localStorage.removeItem("cantinasenaitoken");
     api.defaults.headers.Authorization = undefined;
     navigate("/");
-    toast.success("Deslogado com sucesso!", {
-      theme: "colored",
-      position: toast.POSITION.BOTTOM_CENTER,
-    });
+    avisoSucesso("Deslogado com sucesso!");
   }
 
   // =================================================
@@ -147,10 +143,7 @@ function MainProvider({ children }) {
         descricao,
       });
       navigate("/produtos");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -170,10 +163,7 @@ function MainProvider({ children }) {
         descricao,
       });
       navigate("/produtos");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -182,10 +172,7 @@ function MainProvider({ children }) {
   async function exlcuirProduto(id) {
     try {
       const { data } = await api.delete(`/produtos/${id}`);
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -212,10 +199,7 @@ function MainProvider({ children }) {
         email
       });
       navigate("/clientes");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -230,10 +214,7 @@ function MainProvider({ children }) {
         email
       });
       navigate("/clientes");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -242,10 +223,7 @@ function MainProvider({ children }) {
   async function exlcuirCliente(id) {
     try {
       const { data } = await api.delete(`/clientes/${id}`);
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -296,10 +274,7 @@ function MainProvider({ children }) {
         dataHora
       });
       navigate("/compras");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -309,10 +284,7 @@ function MainProvider({ children }) {
     try {
       const { data } = await api.put(`/compras/${id}`);
       navigate("/clientes");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
@@ -322,10 +294,7 @@ function MainProvider({ children }) {
     try {
       const { data } = await api.delete(`/compras/${id}`);
       navigate("/compras");
-      toast.success(data.message, {
-        theme: "colored",
-        position: toast.POSITION.TOP_CENTER,
-      });
+      avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
     }
