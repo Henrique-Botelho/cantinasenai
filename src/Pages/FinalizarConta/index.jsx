@@ -186,7 +186,11 @@ function FinalizarConta() {
               </button>
             ) : compras.length ? (
               <button
-                onClick={() => finalizarConta(row.id)}
+                onClick={() => {
+                  setCarregando(true)
+                  finalizarConta(row.id)
+                    .finally(() => setCarregando(false));
+                }}
                 className="w-full rounded p-2 bg-green-500 text-white"
               >
                 Finalizar conta

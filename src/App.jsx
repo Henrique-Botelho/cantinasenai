@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={1500} />
       <RoutesApp />
     </>
   )
