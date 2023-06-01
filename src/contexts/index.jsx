@@ -32,17 +32,17 @@ function MainProvider({ children }) {
       }
       toast.error(erro.response.data.message, {
         theme: "colored",
-        position: toast.POSITION.BOTTOM_CENTER,
+        position: toast.POSITION.TOP_CENTER,
       });
     } else if (erro.request) {
       toast.error("Erro ao acessar o servidor!", {
         theme: "colored",
-        position: toast.POSITION.BOTTOM_CENTER,
+        position: toast.POSITION.TOP_CENTER,
       });
     } else {
       toast.error("Ocorreu um erro inesperado!", {
         theme: "colored",
-        position: toast.POSITION.BOTTOM_CENTER,
+        position: toast.POSITION.TOP_CENTER,
       });
     }
     console.log(erro);
