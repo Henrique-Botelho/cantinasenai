@@ -296,6 +296,16 @@ function MainProvider({ children }) {
     }
   }
 
+  async function excluirComprasPagas() {
+    try {
+      const { data } = await api.delete('/compras/excluir/pagas');
+      navigate('/compras');
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
   async function excluirCompra(id) {
     try {
       const { data } = await api.delete(`/compras/${id}`);
@@ -338,6 +348,7 @@ function MainProvider({ children }) {
         adicionarCompra,
         pagarCompra,
         finalizarConta,
+        excluirComprasPagas,
         excluirCompra
       }}
     >

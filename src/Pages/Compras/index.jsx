@@ -16,7 +16,7 @@ function Compras() {
     backgroundSize: "cover",
   };
 
-  const { listarCompras, excluirCompra, pagarCompra } = useContext(MainContext);
+  const { listarCompras, excluirCompra, pagarCompra, excluirComprasPagas } = useContext(MainContext);
 
   const [compras, setCompras] = useState([]);
   const [load, setLoad] = useState(false);
@@ -25,6 +25,7 @@ function Compras() {
   const [modalCompra, setModalCompra] = useState(false);
   const [modalDetalhes, setModalDetalhes] = useState(false);
   const [modalPagar, setModalPagar] = useState(false);
+  const [modalTodasCompras, setModalTodasCompras] = useState(false);
 
   const [idLinha, setIdLinha] = useState();
   const [detalhes, setDetalhes] = useState([]);
@@ -216,6 +217,32 @@ function Compras() {
             </div>
           </div>
         </Modal>
+        <Modal open={modalTodasCompras} onClose={() => setModalTodasCompras(false)}>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+            <IoIosAlert size={60} className="text-yellow-300" />
+            <span className="text-center">Tem certeza que deseja excluir todas as compras pagas? Essa ação é <strong>irreversível!</strong></span>
+            <div className="flex justify-between items-center gap-3">
+              <button
+                onClick={() => setModalTodasCompras(false)}
+                className="bg-gray-300 w-32 text-white rounded p-2"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  setModalTodasCompras(false);
+                  excluirComprasPagas()
+                    .finally(() => {
+                      setReload(!reload);
+                  });
+                }}
+                className="bg-blue-500 w-32 text-white rounded p-2"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </Modal>
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
           <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-1/3 h-1/2 flex flex-col justify-center items-center p-8 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
@@ -244,12 +271,20 @@ function Compras() {
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Compras
             </h1>
+            <div className="flex justify-center items-center gap-3">
+            <button
+              onClick={() => setModalTodasCompras(true)}
+              className="my-8 bg-red-500 p-1 h-10 text-gray-100 rounded flex justify-center items-center"
+            >
+              Excluir compras pagas
+            </button>
             <Link
               to="/adiciona-compra"
-              className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center"
+              className="my-8 bg-green-500 p-1 px-3 h-10 text-gray-100 rounded flex justify-center items-center"
             >
               Adicionar Compra
             </Link>
+            </div>
           </div>
           <div className="container bg-white rounded h-96 p-3">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
