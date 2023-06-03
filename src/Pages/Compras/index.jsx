@@ -253,11 +253,10 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
-          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:container h-1/2 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:container h-1/2 flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div className="w-full h-full">
+            <div style={{minHeight: 200}} className="w-full">
               <DataGrid
-                style={{minHeight: 200}}
                 autoPageSize
                 columns={detalhesColumns}
                 rows={detalhes}

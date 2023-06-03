@@ -46,6 +46,7 @@ function FinalizarConta() {
       field: "dataHora",
       headerName: "Data/Hora",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -54,6 +55,7 @@ function FinalizarConta() {
       headerName: "Total",
       type: "number",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       valueFormatter: (params) => {
         if (params.value == null) {
@@ -68,6 +70,7 @@ function FinalizarConta() {
       headerName: "Ações",
       type: "actions",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
@@ -91,6 +94,7 @@ function FinalizarConta() {
       field: "quantidade",
       headerName: "Quantidade",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -98,6 +102,7 @@ function FinalizarConta() {
       field: "nome",
       headerName: "Nome",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
@@ -108,6 +113,7 @@ function FinalizarConta() {
       headerName: "Preço",
       type: "number",
       flex: 0.33,
+      minWidth: 210,
       hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
@@ -133,9 +139,9 @@ function FinalizarConta() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
-          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-1/3 h-1/2 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-1/3 h-1/2 flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div className="w-full h-full">
+            <div style={{minHeight: 200}} className="w-full">
               <DataGrid
                 autoPageSize
                 columns={detalhesColumns}
