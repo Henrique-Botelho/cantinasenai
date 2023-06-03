@@ -8,6 +8,7 @@ import { MainContext } from "../../contexts";
 import imagemCantina from "../../assets/fundo.png";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 import Loading from "../Loading";
 
 function Compras() {
@@ -167,7 +168,7 @@ function Compras() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalCompra} onClose={() => setModalCompra(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Excluir esta compra?</span>
             <div className="flex justify-between items-center gap-3">
@@ -192,7 +193,7 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalPagar} onClose={() => setModalPagar(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Deseja colocar essa compra como paga?</span>
             <div className="flex justify-between items-center gap-3">
@@ -218,7 +219,7 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalTodasCompras} onClose={() => setModalTodasCompras(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span className="text-center">Tem certeza que deseja excluir todas as compras pagas? Essa ação é <strong>irreversível!</strong></span>
             <div className="flex justify-between items-center gap-3">
@@ -244,7 +245,7 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
-          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-1/3 h-1/2 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:container h-1/2 flex flex-col justify-center items-center p-8 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div className="w-full h-full">
               <DataGrid
@@ -265,28 +266,29 @@ function Compras() {
         </Modal>
 
         <Header />
+        <Nav />
 
-        <main className="container rounded bg-white flex flex-col justify-center items-center">
-          <div className="flex justify-between items-center w-full px-5">
+        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2">
+          <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Compras
             </h1>
             <div className="flex justify-center items-center gap-3">
-            <button
-              onClick={() => setModalTodasCompras(true)}
-              className="my-8 bg-red-500 p-1 h-10 text-gray-100 rounded flex justify-center items-center"
-            >
-              Excluir compras pagas
-            </button>
-            <Link
-              to="/adiciona-compra"
-              className="my-8 bg-green-500 p-1 px-3 h-10 text-gray-100 rounded flex justify-center items-center"
-            >
-              Adicionar Compra
-            </Link>
+              <button
+                onClick={() => setModalTodasCompras(true)}
+                className=" bg-red-500 p-1 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
+              >
+                Excluir compras pagas
+              </button>
+              <Link
+                to="/adiciona-compra"
+                className=" bg-green-500 p-1 px-3 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
+              >
+                Adicionar Compra
+              </Link>
             </div>
           </div>
-          <div className="container bg-white rounded h-96 p-3">
+          <div className="bg-white flex justify-center items-center w-full h-full p-5 overflow-x-scroll">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
           </div>
         </main>

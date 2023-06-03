@@ -13,6 +13,7 @@ import { VscLoading } from "react-icons/vsc";
 import imagemCantina from "../../assets/fundo.png";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 import Loading from "../Loading";
 
 function AdCompra() {
@@ -205,6 +206,7 @@ function AdCompra() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Header />
+        <Nav />
 
         <main className="container h-4/5 rounded bg-white flex flex-col justify-start items-center p-3">
           <div className="flex justify-start items-center w-full">
