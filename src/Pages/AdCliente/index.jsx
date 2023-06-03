@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MainContext } from "../../contexts";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 
 import { BiArrowBack } from "react-icons/bi";
 import { VscLoading } from "react-icons/vsc";
@@ -28,17 +29,18 @@ function AdCliente() {
       className="h-screen w-screen flex justify-center items-center"
     >
       <Header />
-      <main className="container w-96 rounded bg-white flex flex-col justify-center items-center p-10">
-        <div className="flex justify-start items-center w-full">
+      <Nav />
+      <main className="container fixed top-20 bottom-0 flex flex-col justify-center items-center p-2">
+        <div className="bg-white flex justify-start items-center w-full sm:w-96 rounded-t">
           <Link
             to="/clientes"
-            className="flex justify-center items-center mr-3"
+            className="flex justify-center items-center mr-3 p-2"
           >
             <BiArrowBack size={24} />
           </Link>
           <h2 className="my-4 text-xl">Novo cliente</h2>
         </div>
-        <form className="w-full">
+        <form className="w-full bg-white p-2 sm:w-96 rounded-b">
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">
               Nome do cliente
