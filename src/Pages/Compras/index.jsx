@@ -134,6 +134,7 @@ function Compras() {
     {
       field: "quantidade",
       headerName: "Quantidade",
+      minWidth: 210,
       flex: 0.33,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -141,6 +142,7 @@ function Compras() {
     {
       field: "nome",
       headerName: "Nome",
+      minWidth: 210,
       flex: 0.33,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -151,6 +153,7 @@ function Compras() {
       field: "preco",
       headerName: "Preço",
       type: "number",
+      minWidth: 210,
       flex: 0.33,
       hideable: false,
       valueFormatter: (params) =>
@@ -254,6 +257,7 @@ function Compras() {
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div className="w-full h-full">
               <DataGrid
+                style={{minHeight: 200}}
                 autoPageSize
                 columns={detalhesColumns}
                 rows={detalhes}
