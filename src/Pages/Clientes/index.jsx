@@ -8,6 +8,7 @@ import Loading from "../Loading";
 import { MainContext } from "../../contexts";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 
 function Clientes() {
   const backgroundImageStyle = {
@@ -29,6 +30,7 @@ function Clientes() {
       field: "nome",
       headerName: "Nome",
       flex: 0.2,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -36,6 +38,7 @@ function Clientes() {
       field: "numero",
       headerName: "Telefone",
       flex: 0.2,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -43,6 +46,7 @@ function Clientes() {
       field: "email",
       headerName: "Email",
       flex: 0.2,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -51,6 +55,7 @@ function Clientes() {
       headerName: "Conta",
       type: "actions",
       flex: 0.2,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       renderCell: (params) => (
@@ -68,6 +73,7 @@ function Clientes() {
       headerName: "Ações",
       type: "actions",
       flex: 0.2,
+      minWidth: 210,
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
@@ -134,19 +140,20 @@ function Clientes() {
           </div>
         </Modal>
         <Header />
-        <main className="container rounded bg-white flex flex-col justify-center items-center">
-          <div className="flex justify-between items-center w-full px-5">
+        <Nav />
+        <main className="container rounded fixed top-20 bottom-0 flex flex-col justify-center items-center p-2">
+          <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full p-5 gap-3">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Clientes
             </h1>
             <Link
               to="/adiciona-cliente"
-              className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center"
+              className=" bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
             >
               Adicionar Cliente
             </Link>
           </div>
-          <div className="container bg-white rounded h-96 p-3">
+          <div style={{minHeight: 400}} className="w-full bg-white">
             <DataGrid autoPageSize columns={clientesColumns} rows={clientes} />
           </div>
         </main>
