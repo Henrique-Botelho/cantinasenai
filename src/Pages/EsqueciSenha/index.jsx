@@ -20,12 +20,12 @@ function EsqueciSenha() {
   }, [autenticado]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen w-screen bg-gray-900">
+    <div className="flex flex-col justify-center items-center h-screen w-screen bg-gray-900 px-3 sm:px-0">
       <div className="flex flex-col justify-center items-center h-40 sm:h-60">
         <BsShop className="text-red-800 text-4xl sm:text-8xl"  />
         <h1 className="text-gray-100 text-2xl sm:text-4xl my-3">Cantina SENAI</h1>
       </div>
-      <form className="flex flex-col justify-center items-center space-y-3 bg-white rounded p-4 ">
+      <form className="flex flex-col justify-center items-center space-y-3 bg-white rounded p-4 w-full sm:w-96">
         <div className="w-full flex justify-start items-center">
           <Link className="mr-2" to="/">
             <MdOutlineArrowBack size={25} />
@@ -34,7 +34,7 @@ function EsqueciSenha() {
             Recuperação de senha
           </h1>
         </div>
-        <span className="text-black/90 my-3 text-ellipsis break w-96 text-justify">
+        <span className="text-black/90 my-3 text-ellipsis break w-full text-justify">
           Digite seu email abaixo e enviaremos um link para mudar a senha
         </span>
         <input
@@ -52,7 +52,7 @@ function EsqueciSenha() {
                 setLoading(false);
               });
           }}
-          className=" text-white w-96 bg-gray-400 h-10 rounded hover:scale-105 duration-500 flex justify-center items-center"
+          className=" text-white w-full bg-gray-400 h-10 rounded hover:scale-105 duration-500 flex justify-center items-center"
         >
           {loading ? (
             <VscLoading className="animate-spin text-white" size={30} />
