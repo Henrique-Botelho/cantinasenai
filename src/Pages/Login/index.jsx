@@ -24,13 +24,13 @@ function Login() {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen w-screen bg-gray-900">
-      <div className="flex flex-col justify-center items-center h-60">
-        <BsShop className="text-red-800" size={100} />
-        <h1 className="text-gray-100 text-4xl my-3">Cantina SENAI</h1>
-        <span className="text-gray-100 my-3">Faça login abaixo</span>
+      <div className="flex flex-col justify-center items-center h-40 sm:h-60">
+        <BsShop className="text-red-800 text-4xl sm:text-8xl"  />
+        <h1 className="text-gray-100 text-2xl sm:text-4xl my-3">Cantina SENAI</h1>
+        <span className="text-gray-100 text-sm sm:text-lg my-3">Faça login abaixo</span>
       </div>
-      <form className="flex flex-col justify-center items-center gap-3">
-        <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-96 rounded">
+      <form className="flex flex-col justify-center items-center gap-3 p-3 w-full">
+        <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-full sm:w-96 rounded">
           <MdEmail className="mx-3" size={25} />
           <input
             tabIndex={1}
@@ -42,7 +42,7 @@ function Login() {
             type="email"
           />
         </div>
-        <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-96 rounded">
+        <div className="flex flex-row justify-start items-center bg-red-800 h-10 w-full sm:w-96 rounded">
           <RiLockPasswordFill className="mx-3" size={25} />
           <input
             tabIndex={2}
@@ -75,13 +75,13 @@ function Login() {
         <button
           tabIndex={3}
           onClick={(e) => manipulaLogin(e, email, senha)}
-          className=" text-gray-900 w-96 bg-gray-100 h-10 rounded hover:scale-105 duration-500"
+          className=" text-gray-900 w-full sm:w-96 bg-gray-100 h-10 rounded hover:scale-105 duration-500"
         >
           Entrar
         </button>
         <Link
           to="/esqueci-senha"
-          className="text-red-800 mt-5 hover:text-red-500"
+          className="text-red-800 mt-5 hover:text-red-500 text-sm sm:text-lg"
         >
           Esqueci minha senha
         </Link>

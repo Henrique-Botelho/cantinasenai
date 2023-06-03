@@ -21,9 +21,9 @@ function EsqueciSenha() {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen w-screen bg-gray-900">
-      <div className="flex flex-col justify-center items-center h-40">
-        <BsShop className="text-red-800" size={50} />
-        <h1 className="text-gray-100 text-xl my-3">Cantina SENAI</h1>
+      <div className="flex flex-col justify-center items-center h-40 sm:h-60">
+        <BsShop className="text-red-800 text-4xl sm:text-8xl"  />
+        <h1 className="text-gray-100 text-2xl sm:text-4xl my-3">Cantina SENAI</h1>
       </div>
       <form className="flex flex-col justify-center items-center space-y-3 bg-white rounded p-4 ">
         <div className="w-full flex justify-start items-center">
