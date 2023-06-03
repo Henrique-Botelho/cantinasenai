@@ -35,6 +35,7 @@ function Compras() {
     {
       field: "nome",
       headerName: "Cliente",
+      minWidth: 210,
       flex: 0.2,
       hideable: false,
       description: "Nome do cliente que realizou a compra.",
@@ -43,6 +44,7 @@ function Compras() {
     {
       field: "dataHora",
       headerName: "Data/Hora",
+      minWidth: 210,
       flex: 0.2,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -50,6 +52,7 @@ function Compras() {
     {
       field: "status",
       headerName: "Status",
+      minWidth: 210,
       flex: 0.2,
       hideable: false,
       renderCell: (params) => {
@@ -71,6 +74,7 @@ function Compras() {
       field: "total",
       headerName: "Total",
       type: "number",
+      minWidth: 210,
       flex: 0.2,
       valueFormatter: (params) => {
         if (params.value == null) {
@@ -85,6 +89,7 @@ function Compras() {
       field: "actions",
       headerName: "Ações",
       type: "actions",
+      minWidth: 210,
       flex: 0.2,
       hideable: false,
       renderCell: (params) => (
@@ -268,7 +273,7 @@ function Compras() {
         <Header />
         <Nav />
 
-        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2">
+        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2 ">
           <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Compras
@@ -288,7 +293,7 @@ function Compras() {
               </Link>
             </div>
           </div>
-          <div className="bg-white flex justify-center items-center w-full h-full p-5 overflow-x-scroll">
+          <div style={{minHeight: 400}} className="bg-white w-full">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
           </div>
         </main>
