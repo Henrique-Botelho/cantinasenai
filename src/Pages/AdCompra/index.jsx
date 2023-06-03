@@ -122,6 +122,7 @@ function AdCompra() {
       field: "nome",
       headerName: "Nome",
       flex: 0.3,
+      minWidth: 100,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
@@ -132,6 +133,7 @@ function AdCompra() {
       headerName: "Preço",
       type: "number",
       flex: 0.3,
+      minWidth: 100,
       hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
@@ -142,6 +144,7 @@ function AdCompra() {
       headerName: "Ações",
       type: "actions",
       flex: 0.3,
+      minWidth: 100,
       hideable: false,
       renderCell: (params) => (
         <button onClick={() => adicionaProduto(params.row)}>
@@ -158,6 +161,7 @@ function AdCompra() {
       field: "nome",
       headerName: "Nome",
       flex: 0.2,
+      minWidth: 100,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -166,6 +170,7 @@ function AdCompra() {
       headerName: "Preço",
       type: "number",
       flex: 0.2,
+      minWidth: 100,
       hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
@@ -176,6 +181,7 @@ function AdCompra() {
       headerName: "Quantidade",
       type: "actions",
       flex: 0.2,
+      minWidth: 100,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       renderCell: (params) => (
@@ -208,8 +214,8 @@ function AdCompra() {
         <Header />
         <Nav />
 
-        <main className="container h-4/5 rounded bg-white flex flex-col justify-start items-center p-3">
-          <div className="flex justify-start items-center w-full">
+        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2 overflow-y-scroll">
+          <div className="flex justify-start items-center w-full bg-white p-2">
             <Link
               to="/compras"
               className="flex justify-center items-center mr-3"
@@ -218,8 +224,8 @@ function AdCompra() {
             </Link>
             <h2 className="my-4 text-xl">Nova Compra</h2>
           </div>
-          <div className="flex w-full h-5/6 gap-3">
-            <div className="w-1/2 h-full">
+          <div className="flex flex-col lg:flex-row w-full gap-3 lg:gap-0">
+            <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2">
               <DataGrid
                 columns={produtosColumns}
                 rows={produtos}
@@ -227,8 +233,8 @@ function AdCompra() {
                 disableRowSelectionOnClick
               />
             </div>
-            <div className="w-1/2 h-5/6">
-              <div className="flex flex-col justify-center items-start w-full pl-3">
+            <div className="w-full flex flex-col justify-start items-center lg:w-1/2">
+              <div className="flex flex-col justify-center items-start w-full p-2 bg-white">
                 <span className="font-bold opacity-80 text-lg mr-5">
                   Cliente
                 </span>
@@ -259,7 +265,7 @@ function AdCompra() {
                   )}
                 />
               </div>
-              <div className="h-full">
+              <div style={{minHeight: 400}} className="w-full bg-white p-2">
                 <DataGrid
                   autoPageSize
                   columns={compraColumns}
@@ -268,8 +274,9 @@ function AdCompra() {
                     border: 0,
                   }}
                 />
-                <div className="space-y-2">
-                  <div className="flex h-10 px-2 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
+              </div>
+              <div className="flex flex-col gap-3 w-full bg-white p-2">
+                  <div className="flex h-10 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
                     <span className="font-bold text-lg">Total:</span>
                     <span className="font-bold text-lg opacity-70">
                       R$ {total.toFixed(2).replace(".", ",")}
@@ -302,9 +309,7 @@ function AdCompra() {
                       Adicione um cliente antes de adicionar uma compra
                     </button>
                   )}
-                  {}
                 </div>
-              </div>
             </div>
           </div>
         </main>
