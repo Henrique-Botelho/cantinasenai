@@ -213,8 +213,7 @@ function AdCompra() {
       >
         <Header />
         <Nav />
-
-        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2 overflow-y-scroll">
+        <main className="container flex flex-col fixed top-20 bottom-0 p-2 overflow-y-scroll">
           <div className="flex justify-start items-center w-full bg-white p-2">
             <Link
               to="/compras"
@@ -224,7 +223,7 @@ function AdCompra() {
             </Link>
             <h2 className="my-4 text-xl">Nova Compra</h2>
           </div>
-          <div className="flex flex-col lg:flex-row w-full gap-3 lg:gap-0">
+          <div className="flex flex-col lg:flex-row w-full">
             <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2">
               <DataGrid
                 columns={produtosColumns}
