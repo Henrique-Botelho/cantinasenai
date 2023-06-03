@@ -9,6 +9,7 @@ import { MainContext } from "../../contexts";
 import imagemCantina from "../../assets/fundo.png";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 import Loading from "../Loading";
 
 function FinalizarConta() {
@@ -153,9 +154,10 @@ function FinalizarConta() {
         </Modal>
 
         <Header />
+        <Nav />
 
-        <main className="container w-1/2 rounded bg-white flex flex-col justify-center items-center p-3">
-          <div className="flex justify-start items-center w-full mb-5">
+        <main className="container fixed top-20 bottom-0 rounded flex flex-col p-2 overflow-y-scroll">
+          <div className="bg-white flex justify-start items-center w-full rounded-t p-2">
             <Link
               to="/clientes"
               className="flex justify-center items-center mr-3"
@@ -167,10 +169,10 @@ function FinalizarConta() {
               <span className="font-bold opacity-90">{row.nome}</span>
             </h2>
           </div>
-          <div className="container bg-white rounded h-96">
+          <div style={{minHeight: 400}} className="w-full bg-white">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
           </div>
-          <div className="w-full flex flex-col">
+          <div className="bg-white w-full flex flex-col p-2 rounded-b">
             <div className="flex w-full my-5 px-1 border-t-2 border-t-black border-dotted justify-between items-center">
               <span className="text-lg font-bold opacity-80">Total</span>
               <span className="text-lg">
