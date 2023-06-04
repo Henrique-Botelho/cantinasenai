@@ -276,7 +276,7 @@ function Compras() {
         <Header />
         <Nav />
 
-        <main className="container flex flex-col justify-center items-center fixed top-20 bottom-0 p-2 ">
+        <main className="container flex flex-col lg:justify-center lg:items-center fixed top-20 bottom-0 p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Compras

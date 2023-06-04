@@ -13,7 +13,7 @@ function Nav() {
   return (
     <nav
       id="minhaSideBar"
-      className="fixed h-screen bg-gray-900 right-0 w-screen xl:w-1/3 md:w-1/2 translate-x-full duration-500 z-10"
+      className="fixed h-screen bg-gray-900 right-0 w-screen xl:w-1/3 md:w-1/2 translate-x-full duration-500 z-10 overflow-y-scroll"
     >
       <Modal open={modal} onClose={() => setModal(false)}>
         <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
@@ -35,7 +35,7 @@ function Nav() {
           </div>
         </div>
       </Modal>
-      <div className="flex w-full justify-between items-center my-5 px-10 h-16">
+      <div className="flex w-full justify-between items-center p-10">
         <h2 className="text-gray-100 text-xl font-bold">Menu</h2>
         <button
           className="flex justify-center items-center"
@@ -48,8 +48,8 @@ function Nav() {
           <RiCloseFill className="text-gray-100 h-full" size={32} />
         </button>
       </div>
-      <ul className="w-full flex flex-col justify-center items-start gap-5 px-16">
-        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full flex justify-start items-center">
+      <ul className="w-full flex flex-col gap-5 px-16">
+        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <Link
             onClick={() => {
               document
@@ -57,12 +57,12 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/compras"
-            className="text-gray-100 flex justify-start items-center p-2 w-full"
+            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
           >
             Compras
           </Link>
         </li>
-        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full flex justify-start items-center">
+        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <Link
             onClick={() => {
               document
@@ -70,12 +70,12 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/clientes"
-            className="text-gray-100 flex justify-start items-center p-2 w-full"
+            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
           >
             Clientes
           </Link>
         </li>
-        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full flex justify-start items-center">
+        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <Link
             onClick={() => {
               document
@@ -83,15 +83,15 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/produtos"
-            className="text-gray-100 flex justify-start items-center p-2 w-full"
+            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
           >
             Produtos
           </Link>
         </li>
-        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full flex justify-start items-center">
+        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <button
             onClick={() => setModal(true)}
-            className="text-gray-100 flex justify-start items-center p-2 w-full"
+            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
           >
             Sair
           </button>
