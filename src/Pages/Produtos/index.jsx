@@ -7,6 +7,7 @@ import { IoIosAlert } from "react-icons/io";
 import { Modal } from "@mui/material";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 import Loading from "../Loading";
 
 function Produtos() {
@@ -29,6 +30,7 @@ function Produtos() {
       field: "id",
       headerName: "ID",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -36,6 +38,7 @@ function Produtos() {
       field: "nome",
       headerName: "Nome",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
@@ -45,6 +48,7 @@ function Produtos() {
       field: "categoria",
       headerName: "Categoria",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
@@ -52,6 +56,7 @@ function Produtos() {
       field: "descricao",
       headerName: "Descrição",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
       valueFormatter: (params) =>
@@ -62,6 +67,7 @@ function Produtos() {
       headerName: "Preço",
       type: "number",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       valueFormatter: (params) =>
         `R$ ${params.value.toFixed(2).replace(".", ",")}`,
@@ -72,6 +78,7 @@ function Produtos() {
       headerName: "Ações",
       type: "actions",
       flex: 0.166,
+      minWidth: 210,
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
@@ -112,7 +119,7 @@ function Produtos() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalProduto} onClose={() => setModalProduto(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Excluir este item?</span>
             <div className="flex justify-between items-center gap-3">
@@ -138,19 +145,20 @@ function Produtos() {
           </div>
         </Modal>
         <Header />
-        <main className="container rounded bg-white flex flex-col justify-center items-center">
-          <div className="flex justify-between items-center w-full px-5">
+        <Nav />
+        <main className="container fixed top-20 bottom-0 rounded flex flex-col justify-center items-center p-2">
+          <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full rounded-t p-2 gap-3">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Produtos
             </h1>
             <Link
               to="/adiciona-produto"
-              className="my-8 bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center"
+              className="bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
             >
               Adicionar Produto
             </Link>
           </div>
-          <div className="container bg-white rounded h-96 p-3">
+          <div style={{minHeight: 400}} className="container bg-white rounded-b">
             <DataGrid autoPageSize columns={produtosColumns} rows={produtos} />
           </div>
         </main>
