@@ -147,7 +147,7 @@ function Produtos() {
         <Header />
         <Nav />
         <main className="container fixed top-20 bottom-0 rounded flex flex-col justify-center items-center p-2">
-          <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full rounded-t p-2 gap-3">
+          <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full rounded-t p-5 gap-3">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Produtos
             </h1>

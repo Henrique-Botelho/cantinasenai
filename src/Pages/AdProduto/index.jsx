@@ -5,6 +5,7 @@ import { MainContext } from "../../contexts";
 import CurrencyInput from "react-currency-input-field";
 
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 
 import { BiArrowBack } from "react-icons/bi";
 import { VscLoading } from "react-icons/vsc";
@@ -30,8 +31,9 @@ function AdProduto() {
       className="h-screen w-screen flex justify-center items-center"
     >
       <Header />
-      <main className="container w-1/3 rounded bg-white flex flex-col justify-center items-center p-10">
-        <div className="flex justify-start items-center w-full">
+      <Nav />
+      <main className="container fixed top-20 bottom-0 rounded flex flex-col p-2 overflow-y-scroll">
+        <div className="bg-white flex justify-start items-center self-center w-full sm:w-96 p-2 rounded-t">
           <Link
             to="/produtos"
             className="flex justify-center items-center mr-3"
@@ -40,7 +42,7 @@ function AdProduto() {
           </Link>
           <h2 className="my-4 text-xl">Novo produto</h2>
         </div>
-        <form className="w-full">
+        <form className="w-full sm:w-96 self-center bg-white p-2 rounded-b">
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">
               Nome do produto
