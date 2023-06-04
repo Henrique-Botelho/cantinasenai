@@ -37,7 +37,7 @@ function EdProduto() {
     >
       <Header />
       <Nav />
-      <main className="container fixed top-20 bottom-0 rounded flex flex-col p-2 overflow-y-scroll">
+      <main className="container fixed top-20 bottom-0 rounded flex flex-col sm:pt-[5%] p-2 overflow-y-scroll">
         <div className="flex flex-row w-full sm:w-96 self-center bg-white rounded-t p-2">
           <Link
             to="/produtos"
