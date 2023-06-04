@@ -253,9 +253,9 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
-          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:container h-1/2 flex flex-col justify-center items-center p-2 gap-3">
+          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-1/2 2xl:w-1/3 h-1/2 flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div style={{minHeight: 200}} className="w-full">
+            <div style={{minHeight: 200}} className="w-full h-full">
               <DataGrid
                 autoPageSize
                 columns={detalhesColumns}
@@ -276,7 +276,7 @@ function Compras() {
         <Header />
         <Nav />
 
-        <main className="container flex flex-col lg:justify-center lg:items-center fixed top-20 bottom-0 p-2 overflow-y-scroll">
+        <main className="container flex flex-col fixed top-20 bottom-0 p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Compras
@@ -296,7 +296,7 @@ function Compras() {
               </Link>
             </div>
           </div>
-          <div style={{minHeight: 400}} className="bg-white w-full rounded-b">
+          <div style={{minHeight: 400}} className="bg-white w-full h-full rounded-b">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
           </div>
         </main>

@@ -34,8 +34,8 @@ function EdCliente() {
     >
       <Header />
       <Nav />
-      <main className="container fixed top-20 bottom-0 rounded flex flex-col justify-center items-center p-2">
-        <div className="bg-white flex justify-start items-center w-full sm:w-96 p-2 rounded-t">
+      <main className="container fixed top-20 bottom-0 rounded flex flex-col sm:pt-[15%] p-2 overflow-y-scroll">
+        <div className="bg-white flex self-center justify-start items-center w-full sm:w-96 p-2 rounded-t">
           <Link
             to="/clientes"
             className="flex justify-center items-center mr-3"
@@ -44,7 +44,7 @@ function EdCliente() {
           </Link>
           <h2 className="my-4 text-xl">Editar cliente</h2>
         </div>
-        <form className="w-full sm:w-96 bg-white p-2 rounded-b">
+        <form className="w-full sm:w-96 self-center bg-white p-2 rounded-b">
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">
               Nome do cliente

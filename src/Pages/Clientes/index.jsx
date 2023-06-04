@@ -141,7 +141,7 @@ function Clientes() {
         </Modal>
         <Header />
         <Nav />
-        <main className="container rounded fixed top-20 bottom-0 flex flex-col justify-center items-center p-2">
+        <main className="container rounded fixed top-20 bottom-0 flex flex-col p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full p-5 gap-3 rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
               Tabela de Clientes
@@ -153,7 +153,7 @@ function Clientes() {
               Adicionar Cliente
             </Link>
           </div>
-          <div style={{minHeight: 400}} className="w-full bg-white rounded-b">
+          <div style={{minHeight: 400}} className="w-full h-full bg-white rounded-b">
             <DataGrid autoPageSize columns={clientesColumns} rows={clientes} />
           </div>
         </main>

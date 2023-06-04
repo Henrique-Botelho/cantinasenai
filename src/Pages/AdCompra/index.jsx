@@ -214,7 +214,7 @@ function AdCompra() {
         <Header />
         <Nav />
         <main className="container flex flex-col fixed top-20 bottom-0 p-2 overflow-y-scroll">
-          <div className="flex justify-start items-center w-full bg-white p-2">
+          <div className="flex justify-start items-center w-full bg-white p-2 rounded-t">
             <Link
               to="/compras"
               className="flex justify-center items-center mr-3"
@@ -223,8 +223,8 @@ function AdCompra() {
             </Link>
             <h2 className="my-4 text-xl">Nova Compra</h2>
           </div>
-          <div className="flex flex-col lg:flex-row w-full">
-            <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2">
+          <div className="flex flex-col lg:flex-row lg:h-full w-full">
+            <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2 lg:rounded-bl">
               <DataGrid
                 columns={produtosColumns}
                 rows={produtos}
@@ -264,7 +264,7 @@ function AdCompra() {
                   )}
                 />
               </div>
-              <div style={{minHeight: 400}} className="w-full bg-white p-2">
+              <div style={{minHeight: 400}} className="w-full lg:h-full bg-white p-2">
                 <DataGrid
                   autoPageSize
                   columns={compraColumns}
@@ -274,7 +274,7 @@ function AdCompra() {
                   }}
                 />
               </div>
-              <div className="flex flex-col gap-3 w-full bg-white p-2">
+              <div className="flex flex-col gap-3 w-full bg-white p-2 rounded-b">
                   <div className="flex h-10 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
                     <span className="font-bold text-lg">Total:</span>
                     <span className="font-bold text-lg opacity-70">

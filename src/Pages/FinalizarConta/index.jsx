@@ -175,7 +175,7 @@ function FinalizarConta() {
               <span className="font-bold opacity-90">{row.nome}</span>
             </h2>
           </div>
-          <div style={{minHeight: 400}} className="w-full bg-white">
+          <div style={{minHeight: 400}} className="w-full h-full bg-white">
             <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
           </div>
           <div className="bg-white w-full flex flex-col p-2 rounded-b">
