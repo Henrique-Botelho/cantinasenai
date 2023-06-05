@@ -57,7 +57,7 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/compras"
-            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
+            className="text-gray-100 rounded flex justify-start items-center p-2 w-full h-full"
           >
             Compras
           </Link>
@@ -70,7 +70,7 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/clientes"
-            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
+            className="text-gray-100 flex rounded justify-start items-center p-2 w-full h-full"
           >
             Clientes
           </Link>
@@ -83,15 +83,28 @@ function Nav() {
                 .classList.toggle("translate-x-full");
             }}
             to="/produtos"
-            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
+            className="text-gray-100 flex rounded justify-start items-center p-2 w-full h-full"
           >
             Produtos
           </Link>
         </li>
         <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
+          <Link
+            onClick={() => {
+              document
+                .getElementById("minhaSideBar")
+                .classList.toggle("translate-x-full");
+            }}
+            to="/manual"
+            className="text-gray-100 bg-green-800 rounded flex justify-start items-center p-2 w-full h-full"
+          >
+            Manual do Usuário
+          </Link>
+        </li>
+        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <button
             onClick={() => setModal(true)}
-            className="text-gray-100 flex justify-start items-center p-2 w-full h-full"
+            className="text-gray-100 bg-red-800 rounded flex justify-start items-center p-2 w-full h-full"
           >
             Sair
           </button>
