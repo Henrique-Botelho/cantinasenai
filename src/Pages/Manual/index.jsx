@@ -7,6 +7,7 @@ import Menu2 from "../../assets/manual/menu2.png";
 
 import Compras1 from "../../assets/manual/compras1.png";
 import Compras2 from "../../assets/manual/compras2.png";
+import Compras3 from "../../assets/manual/compras3.mp4";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -133,7 +134,10 @@ function Manual() {
             Para adicionar uma compra, clique no botão verde{" "}
             <strong className="text-green-500">Adicionar Compra</strong>{" "}
             localizado no canto superior direito da tela de compras{" "}
-            <a href="#compras2" className="hover:underline text-blue-400">(Figura 4)</a>.
+            <a href="#compras2" className="hover:underline text-blue-400">
+              (Figura 4)
+            </a>
+            .
           </p>
           <figure id="compras2" className="w-full lg:w-1/2">
             <img
@@ -145,6 +149,15 @@ function Manual() {
               <strong>Figura 4:</strong>Indicação do botão de Adicionar Compra.
             </figcaption>
           </figure>
+          <p className="w-full text-justify sm:text-left tracking-wider">
+            Na tela de Adicionar Compra, uma tabela à esquerda apresenta todos
+            os produtos disponíveis e uma tabela a direita os itens que o cliente está 
+            comprando. Clique na seta azul ao lado do produto para adicioná-lo a lista 
+            de compras. 
+          </p>
+          <video className="w-full lg:w-1/2" controls>
+            <source src={Compras3} type="video/mp4" />
+          </video>
         </div>
       </main>
     </div>
