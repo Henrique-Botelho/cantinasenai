@@ -131,11 +131,13 @@ function MainProvider({ children }) {
 
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let index = preco.indexOf(',');
-    if (index > -1) {
-      preco = preco.replace(',','.');
+    if (typeof preco === "string") {
+      let index = preco.indexOf(',');
+      if (index > -1) {
+        preco = preco.replace(',','.');
+      }
+      preco = parseFloat(preco);
     }
-    preco = parseFloat(preco);
     try {
       const { data } = await api.post("/produtos", {
         nome,
@@ -152,11 +154,13 @@ function MainProvider({ children }) {
 
   async function editarProduto(e, id, nome, preco, categoria, descricao) {
     e.preventDefault();
-    let index = preco.indexOf(',');
-    if (index > -1) {
-      preco = preco.replace(',','.');
+    if (typeof preco === "string") {
+      let index = preco.indexOf(',');
+      if (index > -1) {
+        preco = preco.replace(',','.');
+      }
+      preco = parseFloat(preco);
     }
-    preco = parseFloat(preco);
     try {
       const { data } = await api.put(`/produtos/${id}`, {
         nome,
