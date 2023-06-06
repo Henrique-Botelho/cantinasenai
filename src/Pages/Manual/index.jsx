@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
 
 import imagemCantina from "../../assets/fundo.png";
 
 import Menu1 from "../../assets/manual/menu1.png";
 import Menu2 from "../../assets/manual/menu2.png";
+
+import Compras1 from "../../assets/manual/compras1.png";
+import Compras2 from "../../assets/manual/compras2.png";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -73,7 +74,7 @@ function Manual() {
             <img
               src={Menu1}
               alt="Imagem indicando o menu no canto superior direito"
-              className="w-full"
+              className="w-full rounded"
             />
             <figcaption>
               <strong>Figura 1:</strong> Indicação do botão para acessar o menu
@@ -92,7 +93,7 @@ function Manual() {
             <img
               src={Menu2}
               alt="Imagem mostrando o menu lateral direito aberto."
-              className="w-full"
+              className="w-full rounded"
             />
             <figcaption>
               <strong>Figura 2:</strong> Menu lateral aberto.
@@ -106,19 +107,42 @@ function Manual() {
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
           <p className="w-full text-justify sm:text-left tracking-wider">
-            Na tela de compras <a href="">(Figura 3)</a> é possível ver todas cada compra registrada, o
-            nome do cliente que realizou a compra, a data e a hora em que a
-            compra foi realizada, o status da compra (paga ou não paga), o
-            total da compra e um conjunto de botões (ações).
+            Na tela de compras{" "}
+            <a href="#compras1" className="hover:underline text-blue-400">
+              (Figura 3)
+            </a>{" "}
+            é possível ver todas cada compra registrada, o nome do cliente que
+            realizou a compra, a data e a hora em que a compra foi realizada, o
+            status da compra (paga ou não paga), o total da compra e um conjunto
+            de botões (ações).
           </p>
-          <figure id="menu2" className="w-full lg:w-1/2">
+          <figure id="compras1" className="w-full lg:w-1/2">
             <img
-              alt="Foto indicando o menu no canto superior direito"
-              className="w-full"
+              src={Compras1}
+              alt="Imagem da tela de compras."
+              className="w-full rounded"
             />
             <figcaption>
-              <strong>Figura 2:</strong> Indicação do botão para acessar o menu
-              na página.
+              <strong>Figura 3:</strong>Tela de compras.
+            </figcaption>
+          </figure>
+          <div id="compras" className="w-full bg-white p-5 pl-10 pb-0">
+            <h3 className="text-lg font-bold opacity-70">Adicionar Compra</h3>
+          </div>
+          <p className="w-full text-justify sm:text-left tracking-wider">
+            Para adicionar uma compra, clique no botão verde{" "}
+            <strong className="text-green-500">Adicionar Compra</strong>{" "}
+            localizado no canto superior direito da tela de compras{" "}
+            <a href="#compras2" className="hover:underline text-blue-400">(Figura 4)</a>.
+          </p>
+          <figure id="compras2" className="w-full lg:w-1/2">
+            <img
+              src={Compras2}
+              alt="Imagem indicando o botão de adicionar compra."
+              className="w-full rounded"
+            />
+            <figcaption>
+              <strong>Figura 4:</strong>Indicação do botão de Adicionar Compra.
             </figcaption>
           </figure>
         </div>
