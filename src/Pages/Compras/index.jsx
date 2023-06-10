@@ -100,7 +100,7 @@ function Compras() {
                 setIdLinha(params.row.id);
                 setModalPagar(true);
               }}
-              className="flex justify-center items-center p-2 rounded bg-indigo-600 font-medium text-white text-sm"
+              className="flex justify-center items-center p-2 rounded bg-green-500 font-medium text-white text-sm"
             >
               Pagar
             </button>

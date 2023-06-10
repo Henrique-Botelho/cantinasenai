@@ -3,14 +3,10 @@ import React from "react";
 import imagemCantina from "../../assets/fundo.png";
 
 import Menu1 from "../../assets/manual/menu1.png";
-import Menu2 from "../../assets/manual/menu2.png";
-
-import Compras1 from "../../assets/manual/compras1.png";
-import Compras2 from "../../assets/manual/compras2.png";
-import Compras3 from "../../assets/manual/compras3.mp4";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 
 function Manual() {
   const backgroundImageStyle = {
@@ -41,37 +37,36 @@ function Manual() {
           <li className="list-none">
             <ul className="w-full pl-5 bg-white flex flex-col gap-3 list-disc">
               <li className="hover:underline text-blue-400">
-                <a href="">Adicionar uma compra</a>
+                <a href="#adicionar-uma-compra">Adicionar uma compra</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="">Colocar uma compra como paga</a>
+                <a href="#pagar-compra">Colocar uma compra como paga</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="">Detalhes de uma compra</a>
+                <a href="#detalhes-compra">Detalhes de uma compra</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="">Excluir uma compra</a>
+                <a href="#excluir-compra">Excluir uma compra</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="">Excluir todas as compras pagas</a>
+                <a href="#excluir-compras-pagas">
+                  Excluir todas as compras pagas
+                </a>
               </li>
             </ul>
           </li>
         </ul>
         {/* Começo do Menu */}
         <div id="menu" className="w-full bg-white p-5 pl-10 pb-0">
-          <h2 className="text-xl font-bold opacity-70">Menu</h2>
+          <h2 className="text-xl font-bold opacity-90">Menu</h2>
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
-          <p className="w-full text-justify sm:text-left tracking-wider">
+          <p className="w-full text-justify tracking-wider">
             Para acessar o menu, clique no botão localizado no canto superior
-            direito da página{" "}
-            <a href="#menu1" className="hover:underline text-blue-400">
-              (Figura 1)
-            </a>
-            :
+            direito da página. O menu permite visualizar as opções do sistema,
+            que incluem os links para as principais páginas e o botão de Sair.
           </p>
-          <figure id="menu1" className="w-full lg:w-1/2">
+          {/* <figure className="w-full lg:w-1/2">
             <img
               src={Menu1}
               alt="Imagem indicando o menu no canto superior direito"
@@ -81,83 +76,101 @@ function Manual() {
               <strong>Figura 1:</strong> Indicação do botão para acessar o menu
               na página.
             </figcaption>
-          </figure>
-          <p className="w-full text-justify sm:text-left tracking-wider">
-            No menu lateral{" "}
-            <a href="#menu2" className="hover:underline text-blue-400">
-              (Figura 2)
-            </a>
-            , é possível visualizar as opções do sistema que incluem os links
-            para as principais páginas e o botão de <a href="">Sair</a>.
-          </p>
-          <figure id="menu2" className="w-full lg:w-1/2">
-            <img
-              src={Menu2}
-              alt="Imagem mostrando o menu lateral direito aberto."
-              className="w-full rounded"
-            />
-            <figcaption>
-              <strong>Figura 2:</strong> Menu lateral aberto.
-            </figcaption>
-          </figure>
+          </figure> */}
         </div>
         {/* Fim do Menu */}
         {/* Começo das Compras */}
         <div id="compras" className="w-full bg-white p-5 pl-10 pb-0">
-          <h2 className="text-xl font-bold opacity-70">Compras</h2>
+          <h2 className="text-xl font-bold opacity-90">Compras</h2>
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
-          <p className="w-full text-justify sm:text-left tracking-wider">
-            Na tela de compras{" "}
-            <a href="#compras1" className="hover:underline text-blue-400">
-              (Figura 3)
-            </a>{" "}
-            é possível ver todas cada compra registrada, o nome do cliente que
-            realizou a compra, a data e a hora em que a compra foi realizada, o
-            status da compra (paga ou não paga), o total da compra e um conjunto
-            de botões (ações).
+          <p className="w-full text-justify tracking-wider">
+            A tela de compras é a primeira tela a ser aberta após o login. Nela
+            é possível ver uma tabela contendo todas as compras registradas no
+            sistema. Cada compra apresenta o nome do cliente que a realizou, a
+            data/Hora em que foi realizada, o status dela (paga ou não paga), o
+            total da compra e um conjunto de ações (pagar/detalhes/excluir).
           </p>
-          <figure id="compras1" className="w-full lg:w-1/2">
-            <img
-              src={Compras1}
-              alt="Imagem da tela de compras."
-              className="w-full rounded"
-            />
-            <figcaption>
-              <strong>Figura 3:</strong>Tela de compras.
-            </figcaption>
-          </figure>
-          <div id="compras" className="w-full bg-white p-5 pl-10 pb-0">
-            <h3 className="text-lg font-bold opacity-70">Adicionar Compra</h3>
+          <div
+            id="adicionar-uma-compra"
+            className="w-full bg-white p-5 pb-0"
+          >
+            <h3 className="text-lg font-bold opacity-90">Adicionar Compra</h3>
           </div>
-          <p className="w-full text-justify sm:text-left tracking-wider">
+          <p className="w-full text-justify tracking-wider">
             Para adicionar uma compra, clique no botão verde{" "}
-            <strong className="text-green-500">Adicionar Compra</strong>{" "}
-            localizado no canto superior direito da tela de compras{" "}
-            <a href="#compras2" className="hover:underline text-blue-400">
-              (Figura 4)
-            </a>
+            <span className="bg-green-500 text-white whitespace-nowrap p-1 rounded">
+              Adicionar Compra
+            </span>{" "}
+            localizado no canto superior direito da tela de compras.
+          </p>
+          <p className="w-full text-justify tracking-wider">
+            Na tela de Adicionar Compra, aparece um campo para escolher o
+            cliente e duas tabelas. A primeira tabela lista todos os produtos
+            registrados no sistema, mostrando o nome, o preço e uma seta azul em
+            cada produto. A segunda tabela começa vazia e ela representa o
+            carrinho do cliente, ou seja, o que ele quer comprar.
+          </p>
+          <p className="w-full text-justify tracking-wider">
+            Para adicionar uma compra, basta selecionar o nome do cliente que
+            está comprando no campo <strong>Cliente</strong>, selecionar os
+            produtos que ele quer comprar clicando na seta azul na linha do
+            produto, escolher a quantidade de cada item na segunda tabela e
+            clicar em{" "}
+            <span className="bg-green-500 text-white p-1 rounded">
+              Adicionar
+            </span>
             .
           </p>
-          <figure id="compras2" className="w-full lg:w-1/2">
-            <img
-              src={Compras2}
-              alt="Imagem indicando o botão de adicionar compra."
-              className="w-full rounded"
-            />
-            <figcaption>
-              <strong>Figura 4:</strong>Indicação do botão de Adicionar Compra.
-            </figcaption>
-          </figure>
-          <p className="w-full text-justify sm:text-left tracking-wider">
-            Na tela de Adicionar Compra, uma tabela à esquerda apresenta todos
-            os produtos disponíveis e uma tabela a direita os itens que o cliente está 
-            comprando. Clique na seta azul ao lado do produto para adicioná-lo a lista 
-            de compras. 
+          <div id="pagar-compra" className="w-full bg-white p-5 pb-0">
+            <h3 className="text-lg font-bold opacity-90">
+              Colocar uma compra como paga
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider">
+            Assim que uma compra é adicionada, seu status está como "não paga".
+            Caso você queira colocar alguma compra como paga, basta ir na tela
+            de <strong>Compras</strong>, achar a compra que deseja colocar como
+            paga e clicar no botão{" "}
+            <span className="bg-green-500 text-white p-1 rounded">Pagar</span>{" "}
+            na coluna <strong>Ações</strong> da tabela.
           </p>
-          <video className="w-full lg:w-1/2" controls>
-            <source src={Compras3} type="video/mp4" />
-          </video>
+          <div id="detalhes-compra" className="w-full bg-white p-5 pb-0">
+            <h3 className="text-lg font-bold opacity-90">
+              Detalhes de uma compra
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider">
+            Na tela de <strong>Compras</strong>, você pode clicar no botão{" "}
+            <span className="text-white bg-blue-500 p-1 rounded">Detalhes</span>{" "}
+            para ver os produtos, as quantidades e os preços de uma certa
+            compra.
+          </p>
+          <div id="excluir-compra" className="w-full bg-white p-5 pb-0">
+            <h3 className="text-lg font-bold opacity-90">Excluir uma compra</h3>
+          </div>
+          <p className="w-full text-justify tracking-wider">
+            Na tela de <strong>Compras</strong>, você pode excluir uma
+            determinada clicando no botão{" "}
+            <span className="text-white bg-red-500 p-1 rounded">Excluir</span>{" "}
+            na coluna <strong>Ações</strong> do item que deseja excluir.
+          </p>
+          <div
+            id="excluir-compras-pagas"
+            className="w-full bg-white p-5 pb-0"
+          >
+            <h3 className="text-lg font-bold opacity-90">
+              Excluir todas as compras pagas
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider">
+            Caso você queira excluir todas as compras que já foram pagas, você
+            pode ir na tela de <strong>Compras</strong> e clicar no botão{" "}
+            <span className="text-white bg-red-500 p-1 rounded whitespace-nowrap">
+              Exlcuir compras pagas
+            </span>
+            . <strong>Cuidado!</strong> essa ação não tem volta.
+          </p>
         </div>
       </main>
     </div>
