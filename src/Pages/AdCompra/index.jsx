@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Autocomplete } from "@mui/material";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
+import { AiOutlineSearch } from "react-icons/ai";
 
 // Icones do react icons
 import { BiArrowBack } from "react-icons/bi";

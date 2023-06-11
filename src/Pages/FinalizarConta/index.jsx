@@ -6,6 +6,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { VscLoading } from "react-icons/vsc";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import imagemCantina from "../../assets/fundo.png";
 

@@ -7,6 +7,7 @@ import { IoIosAlert } from "react-icons/io";
 import Loading from "../Loading";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
