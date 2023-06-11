@@ -75,23 +75,12 @@ function AdProduto() {
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">Categoria</span>
             <input
-              list="opcoes-categoria"
               value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
               required
               className="h-8 text-sm border-2 border-gray-300 focus:outline-none rounded pl-2"
               type="text"
             />
-            <datalist id="opcoes-categoria">
-              <option value="bebidas" />
-              <option value="lanches" />
-              <option value="pastéis" />
-              <option value="pizzas" />
-              <option value="salgados" />
-              <option value="sobremesas" />
-              <option value="tapiocas salgadas" />
-              <option value="tapiocas doces" />
-            </datalist>
           </div>
           <div className="flex flex-col mb-5">
             <span className="font-bold opacity-75 text-sm mb-2">Descrição</span>

@@ -73,6 +73,9 @@ function Manual() {
               </li>
             </ul>
           </li>
+          <li className="hover:underline text-blue-400">
+            <a href="#produtos">Produtos</a>
+          </li>
         </ul>
         {/* Começo do Menu */}
         <div id="menu" className="w-full bg-white p-5 pb-0 border-t-4">
@@ -276,8 +279,45 @@ function Manual() {
             <span className="text-gray-100 bg-red-500 p-1 rounded">
               Exlcuir
             </span>{" "}
-            na tela de <strong>Clientes</strong>, coluna{" "}
-            <strong>Ações</strong> do cliente que deseja excluir.
+            na tela de <strong>Clientes</strong>, coluna <strong>Ações</strong>{" "}
+            do cliente que deseja excluir.
+          </p>
+        </div>
+        {/* Fim de Clientes */}
+        {/* Começo de Produtos */}
+        <div id="produtos" className="w-full bg-white p-5 pb-0 border-t-4">
+          <h2 className="text-xl font-bold opacity-90">4. Produtos</h2>
+        </div>
+        <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
+          <p className="w-full text-justify tracking-wider leading-9">
+            Para acessar a tela de produtos basta clicar no{" "}
+            <strong>Menu</strong> e depois em <strong>Produtos</strong>. Uma
+            tabela mostra cada produto registrado no sistema com seu nome, sua
+            categoria, sua descrição, seu preço e um conjunto de Ações.
+          </p>
+          <div
+            id="excluir-cliente"
+            className="w-full bg-white p-5 pb-0 border-t"
+          >
+            <h3 className="text-lg font-bold opacity-90">
+              4.1. Adicionar um produto
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider leading-9">
+            Clique no botão{" "}
+            <span className="text-gray-100 bg-green-500 p-1 rounded whitespace-nowrap">
+              Adicionar Produto
+            </span>{" "}
+            na tela de <strong>Produtos</strong> para adicionar um produto.
+          </p>
+          <p className="w-full text-justify tracking-wider leading-9">
+            Na tela de Adicionar Produto você deve informar o nome, o preço, a
+            categoria e uma descrição para o produto que quer adicionar. Depois,
+            basta clicar no botão{" "}
+            <span className="text-gray-100 bg-green-500 p-1 rounded">
+              Adicionar
+            </span>{" "}
+            para adicionar o produto.
           </p>
         </div>
       </main>
