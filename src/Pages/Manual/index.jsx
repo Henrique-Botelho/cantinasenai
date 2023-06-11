@@ -76,6 +76,28 @@ function Manual() {
           <li className="hover:underline text-blue-400">
             <a href="#produtos">Produtos</a>
           </li>
+          <li className="list-none">
+            <ul className="w-full pl-5 bg-white flex flex-col gap-3 list-disc">
+              <li className="hover:underline text-blue-400">
+                <a href="#adicionar-produto">Adicionar um produto</a>
+              </li>
+              <li className="hover:underline text-blue-400">
+                <a href="#editar-produto">Editar um produto</a>
+              </li>
+              <li className="hover:underline text-blue-400">
+                <a href="#excluir-produto">Excluir um produto</a>
+              </li>
+            </ul>
+          </li>
+          <li className="hover:underline text-blue-400">
+            <a href="#filtro">Procurar um item (Filtro)</a>
+          </li>
+          <li className="hover:underline text-blue-400">
+            <a href="#sair-sistema">Sair do sistema</a>
+          </li>
+          <li className="hover:underline text-blue-400">
+            <a href="#contato">Dúvidas? Entre em contato</a>
+          </li>
         </ul>
         {/* Começo do Menu */}
         <div id="menu" className="w-full bg-white p-5 pb-0 border-t-4">
@@ -296,7 +318,7 @@ function Manual() {
             categoria, sua descrição, seu preço e um conjunto de Ações.
           </p>
           <div
-            id="excluir-cliente"
+            id="adicionar-produto"
             className="w-full bg-white p-5 pb-0 border-t"
           >
             <h3 className="text-lg font-bold opacity-90">
@@ -318,6 +340,83 @@ function Manual() {
               Adicionar
             </span>{" "}
             para adicionar o produto.
+          </p>
+          <div
+            id="editar-produto"
+            className="w-full bg-white p-5 pb-0 border-t"
+          >
+            <h3 className="text-lg font-bold opacity-90">
+              4.2. Editar um produto
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider leading-9">
+            Para editar um produto, basta clicar no botão{" "}
+            <span className="text-black bg-yellow-500 p-1 rounded">Editar</span>{" "}
+            na coluna <strong>Ações</strong> do cliente que deseja editar.
+          </p>
+          <div
+            id="excluir-produto"
+            className="w-full bg-white p-5 pb-0 border-t"
+          >
+            <h3 className="text-lg font-bold opacity-90">
+              4.3. Excluir um produto
+            </h3>
+          </div>
+          <p className="w-full text-justify tracking-wider leading-9">
+            Para excluir um produto, basta clicar no botão{" "}
+            <span className="text-gray-100 bg-red-500 p-1 rounded">
+              Excluir
+            </span>{" "}
+            na coluna <strong>Ações</strong> do cliente que deseja excluir.
+          </p>
+        </div>
+        {/* Fim de Produtos */}
+        <div id="filtro" className="w-full bg-white p-5 pb-0 border-t-4">
+          <h2 className="text-xl font-bold opacity-90">
+            5. Procurar um item (Filtro)
+          </h2>
+        </div>
+        <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
+          <p className="w-full text-justify tracking-wider leading-9">
+            Todas as tabelas do sistema possuem um mecanismo de filtragem dos
+            itens para procurar alguma compra, cliente ou produto de forma
+            rápida. Para isso, basta ir na tabela do que deseja procurar, clicar
+            nos três pontinhos ao lado do nome da coluna pela qual deseja
+            filtrar, clicar em <strong>filtro</strong> e escrever o item que
+            deseja procurar.
+          </p>
+          <p className="w-full text-justify tracking-wider leading-9">
+            <strong>Exemplo:</strong> digamos que eu queira procurar o cliente
+            com o nome de Henrique Botelho. Basta ir na tela de{" "}
+            <strong>Clientes</strong>, passar o mouse na coluna{" "}
+            <strong>Nome</strong> e clicar nos três pontinhos que aparecem.
+            Depois, clico em filtro e escrevo no último campo o nome "Henrique
+            Botelho". Pronto! a tabela irá retornar o cliente, se ele estiver
+            registrado.
+          </p>
+          <p className="w-full text-justify tracking-wider leading-9">
+            Para retirar o filtro basta clicar no icone ao lado do nome da
+            coluna com o filtro e depois clicar no "X".
+          </p>
+        </div>
+        <div id="sair-sistema" className="w-full bg-white p-5 pb-0 border-t-4">
+          <h2 className="text-xl font-bold opacity-90">6. Sair do sistema</h2>
+        </div>
+        <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
+          <p className="w-full text-justify tracking-wider leading-9">
+            Para sair do sistema basta acessar o <strong>Menu</strong> e clicar
+            no botão{" "}
+            <span className="text-gray-100 bg-red-500 p-1 rounded">Sair</span>
+          </p>
+        </div>
+        <div id="contato" className="w-full bg-white p-5 pb-0 border-t-4">
+          <h2 className="text-xl font-bold opacity-90">7. Dúvidas? Entre em contato</h2>
+        </div>
+        <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
+          <p className="w-full text-justify tracking-wider leading-9">
+            Caso tenha qualquer dúvida ou problema com o sistema, entre em contato com o suporte por: <br />
+            <strong>Email:</strong> henriquedmbds@gmail.com <br />
+            <strong>WhatsApp:</strong> (11) 94567-3858
           </p>
         </div>
       </main>
