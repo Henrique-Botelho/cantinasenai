@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { Autocomplete } from "@mui/material";
 import { MainContext } from "../../contexts";
+import localePTBR from "../locale";
 
 // Icones do react icons
 import { BiArrowBack } from "react-icons/bi";
@@ -226,6 +227,7 @@ function AdCompra() {
           <div className="flex flex-col lg:flex-row lg:h-full w-full">
             <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2 lg:rounded-bl">
               <DataGrid
+                localeText={localePTBR}
                 columns={produtosColumns}
                 rows={produtos}
                 autoPageSize
@@ -266,6 +268,7 @@ function AdCompra() {
               </div>
               <div style={{minHeight: 400}} className="w-full lg:h-full bg-white p-2">
                 <DataGrid
+                  localeText={localePTBR}
                   autoPageSize
                   columns={compraColumns}
                   rows={itens}

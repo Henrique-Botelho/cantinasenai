@@ -5,6 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { MainContext } from "../../contexts";
 import { IoIosAlert } from "react-icons/io";
 import { Modal } from "@mui/material";
+import localePTBR from "../locale";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -151,7 +152,7 @@ function Produtos() {
             </Link>
           </div>
           <div style={{minHeight: 400}} className="w-full h-full bg-white rounded-b">
-            <DataGrid autoPageSize columns={produtosColumns} rows={produtos} />
+            <DataGrid localeText={localePTBR} autoPageSize columns={produtosColumns} rows={produtos} />
           </div>
         </main>
       </div>

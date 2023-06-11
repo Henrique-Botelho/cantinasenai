@@ -5,6 +5,7 @@ import { Modal } from "@mui/material";
 import { BiArrowBack } from "react-icons/bi";
 import { VscLoading } from "react-icons/vsc";
 import { MainContext } from "../../contexts";
+import localePTBR from "../locale";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -143,6 +144,7 @@ function FinalizarConta() {
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div style={{minHeight: 200}} className="w-full">
               <DataGrid
+                localeText={localePTBR}
                 autoPageSize
                 columns={detalhesColumns}
                 rows={detalhes}
@@ -176,7 +178,7 @@ function FinalizarConta() {
             </h2>
           </div>
           <div style={{minHeight: 400}} className="w-full h-full bg-white">
-            <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
+            <DataGrid localeText={localePTBR} autoPageSize rows={compras} columns={comprasColumns} />
           </div>
           <div className="bg-white w-full flex flex-col p-2 rounded-b">
             <div className="flex w-full my-5 px-1 border-t-2 border-t-black border-dotted justify-between items-center">

@@ -6,6 +6,7 @@ import { Modal } from "@mui/material";
 import { IoIosAlert } from "react-icons/io";
 import Loading from "../Loading";
 import { MainContext } from "../../contexts";
+import localePTBR from "../locale";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -154,7 +155,7 @@ function Clientes() {
             </Link>
           </div>
           <div style={{minHeight: 400}} className="w-full h-full bg-white rounded-b">
-            <DataGrid autoPageSize columns={clientesColumns} rows={clientes} />
+            <DataGrid localeText={localePTBR} autoPageSize columns={clientesColumns} rows={clientes} />
           </div>
         </main>
       </div>

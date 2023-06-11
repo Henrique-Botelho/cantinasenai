@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoIosAlert } from "react-icons/io";
 import { Modal } from "@mui/material";
 import { MainContext } from "../../contexts";
+import localePTBR from "../locale";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -257,6 +258,7 @@ function Compras() {
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div style={{minHeight: 200}} className="w-full h-full">
               <DataGrid
+                localeText={localePTBR}
                 autoPageSize
                 columns={detalhesColumns}
                 rows={detalhes}
@@ -297,7 +299,7 @@ function Compras() {
             </div>
           </div>
           <div style={{minHeight: 400}} className="bg-white w-full h-full rounded-b">
-            <DataGrid autoPageSize rows={compras} columns={comprasColumns} />
+            <DataGrid localeText={localePTBR} autoPageSize rows={compras} columns={comprasColumns} />
           </div>
         </main>
       </div>
