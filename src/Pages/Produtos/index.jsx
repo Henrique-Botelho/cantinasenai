@@ -98,11 +98,10 @@ function Produtos() {
   ];
 
   useEffect(() => {
-    listarProdutos()
-      .then((prods) => {
-        setProdutos(prods);
-        setLoad(true);
-      });
+    listarProdutos().then((prods) => {
+      setProdutos(prods);
+      setLoad(true);
+    });
   }, [reload]);
 
   if (load) {
@@ -125,10 +124,9 @@ function Produtos() {
               <button
                 onClick={() => {
                   setModalProduto(false);
-                  exlcuirProduto(idLinha)
-                    .finally(() => {
-                      setReload(!reload);
-                    });
+                  exlcuirProduto(idLinha).finally(() => {
+                    setReload(!reload);
+                  });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
@@ -151,8 +149,21 @@ function Produtos() {
               Adicionar Produto
             </Link>
           </div>
-          <div style={{minHeight: 400}} className="w-full h-full bg-white rounded-b">
-            <DataGrid localeText={localePTBR} autoPageSize columns={produtosColumns} rows={produtos} />
+          <div
+            style={{ minHeight: 400 }}
+            className="w-full h-full bg-white rounded-b"
+          >
+            <DataGrid
+              slots={{
+                columnMenuFilterIcon: () => <AiOutlineSearch />,
+                columnsPanel: () => {},
+                columnMenuManageColumnsIcon: () => {},
+              }}
+              localeText={localePTBR}
+              autoPageSize
+              columns={produtosColumns}
+              rows={produtos}
+            />
           </div>
         </main>
       </div>

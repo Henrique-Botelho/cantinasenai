@@ -225,8 +225,16 @@ function AdCompra() {
             <h2 className="my-4 text-xl">Nova Compra</h2>
           </div>
           <div className="flex flex-col lg:flex-row lg:h-full w-full">
-            <div style={{minHeight: 400}} className="w-full lg:w-1/2 bg-white p-2 lg:rounded-bl">
+            <div
+              style={{ minHeight: 400 }}
+              className="w-full lg:w-1/2 bg-white p-2 lg:rounded-bl"
+            >
               <DataGrid
+                slots={{
+                  columnMenuFilterIcon: () => <AiOutlineSearch />,
+                  columnsPanel: () => {},
+                  columnMenuManageColumnsIcon: () => {},
+                }}
                 localeText={localePTBR}
                 columns={produtosColumns}
                 rows={produtos}
@@ -266,8 +274,16 @@ function AdCompra() {
                   )}
                 />
               </div>
-              <div style={{minHeight: 400}} className="w-full lg:h-full bg-white p-2">
+              <div
+                style={{ minHeight: 400 }}
+                className="w-full lg:h-full bg-white p-2"
+              >
                 <DataGrid
+                  slots={{
+                    columnMenuFilterIcon: () => <AiOutlineSearch />,
+                    columnsPanel: () => {},
+                    columnMenuManageColumnsIcon: () => {},
+                  }}
                   localeText={localePTBR}
                   autoPageSize
                   columns={compraColumns}
@@ -278,40 +294,40 @@ function AdCompra() {
                 />
               </div>
               <div className="flex flex-col gap-3 w-full bg-white p-2 rounded-b">
-                  <div className="flex h-10 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
-                    <span className="font-bold text-lg">Total:</span>
-                    <span className="font-bold text-lg opacity-70">
-                      R$ {total.toFixed(2).replace(".", ",")}
-                    </span>
-                  </div>
-                  {carregando ? (
-                    <button
-                      className="bg-green-500 text-gray-100 p-2 w-full rounded flex justify-center items-center"
-                      disabled
-                    >
-                      <VscLoading className="animate-spin" size={25} />
-                    </button>
-                  ) : clientes.length > 0 ? (
-                    <button
-                      onClick={() => {
-                        setCarregando(true);
-                        adicionarCompra(cliente, total, itens).finally(() =>
-                          setCarregando(false)
-                        );
-                      }}
-                      className="bg-green-500 text-gray-100 p-2 w-full rounded"
-                    >
-                      Adicionar
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      className="bg-orange-500 text-gray-100 p-2 w-full rounded"
-                    >
-                      Adicione um cliente antes de adicionar uma compra
-                    </button>
-                  )}
+                <div className="flex h-10 border-t-2 border-dotted border-t-gray-600 justify-between items-center">
+                  <span className="font-bold text-lg">Total:</span>
+                  <span className="font-bold text-lg opacity-70">
+                    R$ {total.toFixed(2).replace(".", ",")}
+                  </span>
                 </div>
+                {carregando ? (
+                  <button
+                    className="bg-green-500 text-gray-100 p-2 w-full rounded flex justify-center items-center"
+                    disabled
+                  >
+                    <VscLoading className="animate-spin" size={25} />
+                  </button>
+                ) : clientes.length > 0 ? (
+                  <button
+                    onClick={() => {
+                      setCarregando(true);
+                      adicionarCompra(cliente, total, itens).finally(() =>
+                        setCarregando(false)
+                      );
+                    }}
+                    className="bg-green-500 text-gray-100 p-2 w-full rounded"
+                  >
+                    Adicionar
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="bg-orange-500 text-gray-100 p-2 w-full rounded"
+                  >
+                    Adicione um cliente antes de adicionar uma compra
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </main>

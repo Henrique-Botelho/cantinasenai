@@ -103,7 +103,7 @@ const localePTBR = {
    // Column menu text
    columnMenuLabel: 'Menu',
    columnMenuShowColumns: 'Mostrar colunas',
-   columnMenuManageColumns: 'Gerenciar colunas',
+   columnMenuManageColumns: '', // Gerenciador de colunas desabilitado
    columnMenuFilter: 'Filtro',
    columnMenuHideColumn: 'Esconder coluna',
    columnMenuUnsort: 'Sem ordem',

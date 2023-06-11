@@ -5,6 +5,7 @@ import { IoIosAlert } from "react-icons/io";
 import { Modal } from "@mui/material";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -18,7 +19,8 @@ function Compras() {
     backgroundSize: "cover",
   };
 
-  const { listarCompras, excluirCompra, pagarCompra, excluirComprasPagas } = useContext(MainContext);
+  const { listarCompras, excluirCompra, pagarCompra, excluirComprasPagas } =
+    useContext(MainContext);
 
   const [compras, setCompras] = useState([]);
   const [load, setLoad] = useState(false);
@@ -227,10 +229,16 @@ function Compras() {
             </div>
           </div>
         </Modal>
-        <Modal open={modalTodasCompras} onClose={() => setModalTodasCompras(false)}>
+        <Modal
+          open={modalTodasCompras}
+          onClose={() => setModalTodasCompras(false)}
+        >
           <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
-            <span className="text-center">Tem certeza que deseja excluir todas as compras pagas? Essa ação é <strong>irreversível!</strong></span>
+            <span className="text-center">
+              Tem certeza que deseja excluir todas as compras pagas? Essa ação é{" "}
+              <strong>irreversível!</strong>
+            </span>
             <div className="flex justify-between items-center gap-3">
               <button
                 onClick={() => setModalTodasCompras(false)}
@@ -241,9 +249,8 @@ function Compras() {
               <button
                 onClick={() => {
                   setModalTodasCompras(false);
-                  excluirComprasPagas()
-                    .finally(() => {
-                      setReload(!reload);
+                  excluirComprasPagas().finally(() => {
+                    setReload(!reload);
                   });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
@@ -256,8 +263,13 @@ function Compras() {
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
           <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-1/2 2xl:w-1/3 h-1/2 flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div style={{minHeight: 200}} className="w-full h-full">
+            <div style={{ minHeight: 200 }} className="w-full h-full">
               <DataGrid
+                slots={{
+                  columnMenuFilterIcon: () => <AiOutlineSearch />,
+                  columnsPanel: () => {},
+                  columnMenuManageColumnsIcon: () => {},
+                }}
                 localeText={localePTBR}
                 autoPageSize
                 columns={detalhesColumns}
@@ -298,8 +310,21 @@ function Compras() {
               </Link>
             </div>
           </div>
-          <div style={{minHeight: 400}} className="bg-white w-full h-full rounded-b">
-            <DataGrid localeText={localePTBR} autoPageSize rows={compras} columns={comprasColumns} />
+          <div
+            style={{ minHeight: 400 }}
+            className="bg-white w-full h-full rounded-b"
+          >
+            <DataGrid
+              slots={{
+                columnMenuFilterIcon: () => <AiOutlineSearch />,
+                columnsPanel: () => {},
+                columnMenuManageColumnsIcon: () => {},
+              }}
+              localeText={localePTBR}
+              autoPageSize
+              rows={compras}
+              columns={comprasColumns}
+            />
           </div>
         </main>
       </div>

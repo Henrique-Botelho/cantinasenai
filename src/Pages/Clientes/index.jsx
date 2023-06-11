@@ -16,7 +16,7 @@ function Clientes() {
     backgroundImage: `url('${imagemCantina}')`,
     backgroundSize: "cover",
   };
-  
+
   const { listarClientes, exlcuirCliente } = useContext(MainContext);
 
   const [clientes, setClientes] = useState([]);
@@ -101,11 +101,10 @@ function Clientes() {
   ];
 
   useEffect(() => {
-    listarClientes()
-      .then((clients) => {
-        setClientes(clients);
-        setLoad(true);
-      });
+    listarClientes().then((clients) => {
+      setClientes(clients);
+      setLoad(true);
+    });
   }, [reload]);
 
   if (load) {
@@ -128,10 +127,9 @@ function Clientes() {
               <button
                 onClick={() => {
                   setModalCliente(false);
-                  exlcuirCliente(idLinha)
-                    .finally(() => {
-                      setReload(!reload);
-                    });
+                  exlcuirCliente(idLinha).finally(() => {
+                    setReload(!reload);
+                  });
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
@@ -154,8 +152,21 @@ function Clientes() {
               Adicionar Cliente
             </Link>
           </div>
-          <div style={{minHeight: 400}} className="w-full h-full bg-white rounded-b">
-            <DataGrid localeText={localePTBR} autoPageSize columns={clientesColumns} rows={clientes} />
+          <div
+            style={{ minHeight: 400 }}
+            className="w-full h-full bg-white rounded-b"
+          >
+            <DataGrid
+              slots={{
+                columnMenuFilterIcon: () => <AiOutlineSearch />,
+                columnsPanel: () => {},
+                columnMenuManageColumnsIcon: () => {},
+              }}
+              localeText={localePTBR}
+              autoPageSize
+              columns={clientesColumns}
+              rows={clientes}
+            />
           </div>
         </main>
       </div>
@@ -163,7 +174,6 @@ function Clientes() {
   } else {
     return <Loading />;
   }
-
 }
 
 export default Clientes;

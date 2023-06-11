@@ -142,8 +142,13 @@ function FinalizarConta() {
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
           <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-1/3 h-1/2 flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div style={{minHeight: 200}} className="w-full">
+            <div style={{ minHeight: 200 }} className="w-full">
               <DataGrid
+                slots={{
+                  columnMenuFilterIcon: () => <AiOutlineSearch />,
+                  columnsPanel: () => {},
+                  columnMenuManageColumnsIcon: () => {},
+                }}
                 localeText={localePTBR}
                 autoPageSize
                 columns={detalhesColumns}
@@ -177,8 +182,18 @@ function FinalizarConta() {
               <span className="font-bold opacity-90">{row.nome}</span>
             </h2>
           </div>
-          <div style={{minHeight: 400}} className="w-full h-full bg-white">
-            <DataGrid localeText={localePTBR} autoPageSize rows={compras} columns={comprasColumns} />
+          <div style={{ minHeight: 400 }} className="w-full h-full bg-white">
+            <DataGrid
+              slots={{
+                columnMenuFilterIcon: () => <AiOutlineSearch />,
+                columnsPanel: () => {},
+                columnMenuManageColumnsIcon: () => {},
+              }}
+              localeText={localePTBR}
+              autoPageSize
+              rows={compras}
+              columns={comprasColumns}
+            />
           </div>
           <div className="bg-white w-full flex flex-col p-2 rounded-b">
             <div className="flex w-full my-5 px-1 border-t-2 border-t-black border-dotted justify-between items-center">
@@ -197,9 +212,8 @@ function FinalizarConta() {
             ) : compras.length ? (
               <button
                 onClick={() => {
-                  setCarregando(true)
-                  finalizarConta(row.id)
-                    .finally(() => setCarregando(false));
+                  setCarregando(true);
+                  finalizarConta(row.id).finally(() => setCarregando(false));
                 }}
                 className="w-full rounded p-2 bg-green-500 text-white"
               >
