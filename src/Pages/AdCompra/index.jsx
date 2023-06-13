@@ -324,7 +324,7 @@ function AdCompra() {
                 ) : (
                   <button
                     disabled
-                    className="bg-orange-500 text-gray-100 p-2 w-full rounded"
+                    className="bg-gray-500/40 text-gray-100 p-2 w-full rounded"
                   >
                     Adicione um cliente antes de adicionar uma venda
                   </button>
