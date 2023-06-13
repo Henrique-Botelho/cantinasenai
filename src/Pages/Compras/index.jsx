@@ -310,7 +310,7 @@ function Compras() {
             <div className="flex justify-center items-center gap-3">
               <button
                 onClick={() => setModalTodasCompras(true)}
-                className=" bg-red-500 p-1 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
+                className=" bg-red-400 p-1 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
               >
                 Excluir vendas pagas
               </button>
