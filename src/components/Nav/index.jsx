@@ -59,7 +59,7 @@ function Nav() {
             to="/compras"
             className="text-gray-100 rounded flex justify-start items-center p-2 w-full h-full"
           >
-            Compras
+            Vendas
           </Link>
         </li>
         <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">

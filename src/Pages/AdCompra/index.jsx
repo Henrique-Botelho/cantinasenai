@@ -223,7 +223,7 @@ function AdCompra() {
             >
               <BiArrowBack size={24} />
             </Link>
-            <h2 className="my-4 text-xl">Nova Compra</h2>
+            <h2 className="my-4 text-xl">Nova Venda</h2>
           </div>
           <div className="flex flex-col lg:flex-row lg:h-full w-full">
             <div
@@ -325,7 +325,7 @@ function AdCompra() {
                     disabled
                     className="bg-orange-500 text-gray-100 p-2 w-full rounded"
                   >
-                    Adicione um cliente antes de adicionar uma compra
+                    Adicione um cliente antes de adicionar uma venda
                   </button>
                 )}
               </div>

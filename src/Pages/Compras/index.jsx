@@ -192,7 +192,7 @@ function Compras() {
         <Modal open={modalCompra} onClose={() => setModalCompra(false)}>
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
-            <span>Excluir esta compra?</span>
+            <span>Excluir esta venda?</span>
             <div className="flex justify-between items-center gap-3">
               <button
                 onClick={() => setModalCompra(false)}
@@ -217,7 +217,7 @@ function Compras() {
         <Modal open={modalPagar} onClose={() => setModalPagar(false)}>
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
-            <span>Deseja colocar essa compra como paga?</span>
+            <span>Deseja colocar essa venda como paga?</span>
             <div className="flex justify-between items-center gap-3">
               <button
                 onClick={() => setModalPagar(false)}
@@ -247,7 +247,7 @@ function Compras() {
           <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span className="text-center">
-              Tem certeza que deseja excluir todas as compras pagas? Essa ação é{" "}
+              Tem certeza que deseja excluir todas as vendas pagas? Essa ação é{" "}
               <strong>irreversível!</strong>
             </span>
             <div className="flex justify-between items-center gap-3">
@@ -304,20 +304,20 @@ function Compras() {
         <main className="container flex flex-col fixed top-20 bottom-0 p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
-              Tabela de Compras
+              Tabela de Vendas
             </h1>
             <div className="flex justify-center items-center gap-3">
               <button
                 onClick={() => setModalTodasCompras(true)}
                 className=" bg-red-500 p-1 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
               >
-                Excluir compras pagas
+                Excluir vendas pagas
               </button>
               <Link
                 to="/adiciona-compra"
                 className=" bg-green-500 p-1 px-3 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
               >
-                Adicionar Compra
+                Adicionar Venda
               </Link>
             </div>
           </div>
