@@ -2,8 +2,6 @@ import React from "react";
 
 import imagemCantina from "../../assets/fundo.png";
 
-import Menu1 from "../../assets/manual/menu1.png";
-
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 
@@ -31,25 +29,25 @@ function Manual() {
             <a href="#menu">Menu</a>
           </li>
           <li className="hover:underline text-blue-400">
-            <a href="#compras">Compras</a>
+            <a href="#vendas">Vendas</a>
           </li>
           <li className="list-none">
             <ul className="w-full pl-5 bg-white flex flex-col gap-3 list-disc">
               <li className="hover:underline text-blue-400">
-                <a href="#adicionar-uma-compra">Adicionar uma compra</a>
+                <a href="#adicionar-uma-venda">Adicionar uma venda</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="#pagar-compra">Colocar uma compra como paga</a>
+                <a href="#pagar-venda">Colocar uma venda como paga</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="#detalhes-compra">Detalhes de uma compra</a>
+                <a href="#detalhes-venda">Detalhes de uma venda</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="#excluir-compra">Excluir uma compra</a>
+                <a href="#excluir-venda">Excluir uma venda</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="#excluir-compras-pagas">
-                  Excluir todas as compras pagas
+                <a href="#excluir-vendas-pagas">
+                  Excluir todas as venda pagas
                 </a>
               </li>
             </ul>
@@ -111,42 +109,42 @@ function Manual() {
           </p>
         </div>
         {/* Fim do Menu */}
-        {/* Começo das Compras */}
-        <div id="compras" className="w-full bg-white p-5 pb-0 border-t-4">
+        {/* Começo das Vendas */}
+        <div id="vendas" className="w-full bg-white p-5 pb-0 border-t-4">
           <h2 className="text-xl font-bold opacity-90">2. Compras</h2>
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
           <p className="w-full text-justify tracking-wider leading-9">
-            A tela de compras é a primeira tela a ser aberta após o login. Nela
-            é possível ver uma tabela contendo todas as compras registradas no
-            sistema. Cada compra apresenta o nome do cliente que a realizou, a
+            A tela de vendas é a primeira tela a ser aberta após o login. Nela
+            é possível ver uma tabela contendo todas as vendas registradas no
+            sistema. Cada venda apresenta o nome do cliente que a realizou, a
             data/Hora em que foi realizada, o status dela (paga ou não paga), o
-            total da compra e um conjunto de ações (pagar/detalhes/excluir).
+            total da venda e um conjunto de ações (pagar/detalhes/excluir).
           </p>
           <div
-            id="adicionar-uma-compra"
+            id="adicionar-uma-venda"
             className="w-full bg-white p-5 pb-0 border-t"
           >
             <h3 className="text-lg font-bold opacity-90">
-              2.1. Adicionar Compra
+              2.1. Adicionar Venda
             </h3>
           </div>
           <p className="w-full text-justify tracking-wider">
-            Para adicionar uma compra, clique no botão verde{" "}
+            Para adicionar uma venda, clique no botão verde{" "}
             <span className="bg-green-500 text-white whitespace-nowrap p-1 rounded">
-              Adicionar Compra
+              Adicionar Venda
             </span>{" "}
-            localizado no canto superior direito da tela de compras.
+            localizado no canto superior direito da tela de vendas.
           </p>
           <p className="w-full text-justify tracking-wider leading-9">
-            Na tela de Adicionar Compra, aparece um campo para escolher o
+            Na tela de Adicionar Venda, aparece um campo para escolher o
             cliente e duas tabelas. A primeira tabela lista todos os produtos
             registrados no sistema, mostrando o nome, o preço e uma seta azul em
             cada produto. A segunda tabela começa vazia e ela representa o
             carrinho do cliente, ou seja, o que ele quer comprar.
           </p>
           <p className="w-full text-justify tracking-wider leading-9">
-            Para adicionar uma compra, basta selecionar o nome do cliente que
+            Para adicionar uma venda, basta selecionar o nome do cliente que
             está comprando no campo <strong>Cliente</strong>, selecionar os
             produtos que ele quer comprar clicando na seta azul na linha do
             produto, escolher a quantidade de cada item na segunda tabela e
@@ -156,65 +154,65 @@ function Manual() {
             </span>
             .
           </p>
-          <div id="pagar-compra" className="w-full bg-white p-5 pb-0 border-t">
+          <div id="pagar-venda" className="w-full bg-white p-5 pb-0 border-t">
             <h3 className="text-lg font-bold opacity-90">
-              2.2. Colocar uma compra como paga
+              2.2. Colocar uma venda como paga
             </h3>
           </div>
           <p className="w-full text-justify tracking-wider leading-9">
-            Assim que uma compra é adicionada, seu status está como "não paga".
-            Caso você queira colocar alguma compra como paga, basta ir na tela
-            de <strong>Compras</strong>, achar a compra que deseja colocar como
+            Assim que uma venda é adicionada, seu status está como "não paga".
+            Caso você queira colocar alguma venda como paga, basta ir na tela
+            de <strong>Vendas</strong>, achar a venda que deseja colocar como
             paga e clicar no botão{" "}
             <span className="bg-green-500 text-white p-1 rounded">Pagar</span>{" "}
             na coluna <strong>Ações</strong> da tabela.
           </p>
           <div
-            id="detalhes-compra"
+            id="detalhes-venda"
             className="w-full bg-white p-5 pb-0 border-t"
           >
             <h3 className="text-lg font-bold opacity-90">
-              2.3. Detalhes de uma compra
+              2.3. Detalhes de uma venda
             </h3>
           </div>
           <p className="w-full text-justify tracking-wider leading-9">
-            Na tela de <strong>Compras</strong>, você pode clicar no botão{" "}
+            Na tela de <strong>Vendas</strong>, você pode clicar no botão{" "}
             <span className="text-white bg-blue-500 p-1 rounded">Detalhes</span>{" "}
             para ver os produtos, as quantidades e os preços de uma certa
-            compra.
+            venda.
           </p>
           <div
-            id="excluir-compra"
+            id="excluir-venda"
             className="w-full bg-white p-5 pb-0 border-t"
           >
             <h3 className="text-lg font-bold opacity-90">
-              2.4. Excluir uma compra
+              2.4. Excluir uma venda
             </h3>
           </div>
           <p className="w-full text-justify tracking-wider leading-9">
-            Na tela de <strong>Compras</strong>, você pode excluir uma
-            determinada compra clicando no botão{" "}
+            Na tela de <strong>Vendas</strong>, você pode excluir uma
+            determinada venda clicando no botão{" "}
             <span className="text-white bg-red-500 p-1 rounded">Excluir</span>{" "}
             na coluna <strong>Ações</strong> do item que deseja excluir.
           </p>
           <div
-            id="excluir-compras-pagas"
+            id="excluir-vendas-pagas"
             className="w-full bg-white p-5 pb-0 border-t"
           >
             <h3 className="text-lg font-bold opacity-90">
-              2.5. Excluir todas as compras pagas
+              2.5. Excluir todas as vendas pagas
             </h3>
           </div>
           <p className="w-full text-justify tracking-wider leading-9">
-            Caso você queira excluir todas as compras que já foram pagas, você
-            pode ir na tela de <strong>Compras</strong> e clicar no botão{" "}
+            Caso você queira excluir todas as vendas que já foram pagas, você
+            pode ir na tela de <strong>Vendas</strong> e clicar no botão{" "}
             <span className="text-white bg-red-500 p-1 rounded whitespace-nowrap">
-              Exlcuir compras pagas
+              Exlcuir vendas pagas
             </span>
             . <strong>Cuidado!</strong> essa ação não tem volta.
           </p>
         </div>
-        {/* Fim das Compras */}
+        {/* Fim das Vendas */}
         {/* Começo dos Clientes */}
         <div id="clientes" className="w-full bg-white p-5 pb-0 border-t-4">
           <h2 className="text-xl font-bold opacity-90">3. Clientes</h2>
