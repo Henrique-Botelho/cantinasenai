@@ -97,13 +97,24 @@ function Compras() {
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
-          {params.row.status === 0 && (
+          {params.row.status === 0 ? (
             <button
               onClick={() => {
                 setIdLinha(params.row.id);
                 setModalPagar(true);
               }}
               className="flex justify-center items-center p-2 rounded bg-green-500 font-medium text-white text-sm"
+            >
+              Pagar
+            </button>
+          ): (
+            <button
+              disabled
+              onClick={() => {
+                setIdLinha(params.row.id);
+                setModalPagar(true);
+              }}
+              className="flex justify-center items-center p-2 rounded bg-gray-500/40 font-medium text-white text-sm"
             >
               Pagar
             </button>

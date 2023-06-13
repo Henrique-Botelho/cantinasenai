@@ -223,7 +223,7 @@ function FinalizarConta() {
             ) : (
               <button
                 disabled
-                className="w-full rounded p-2 bg-orange-500 text-white"
+                className="w-full rounded p-2 bg-gray-500/40 text-white"
               >
                 Esse cliente não possui compras em aberto
               </button>
