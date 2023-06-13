@@ -7,6 +7,7 @@ import { VscLoading } from "react-icons/vsc";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
 import { AiOutlineSearch } from "react-icons/ai";
+import configFilterPanel from "../slotProps";
 
 import imagemCantina from "../../assets/fundo.png";
 
@@ -151,6 +152,7 @@ function FinalizarConta() {
                   toolbar: CustomToolbar,
                   openFilterButtonIcon: () => <AiOutlineSearch />,
                 }}
+                slotProps={configFilterPanel}
                 localeText={localePTBR}
                 autoPageSize
                 columns={detalhesColumns}
@@ -191,6 +193,7 @@ function FinalizarConta() {
                 toolbar: CustomToolbar,
                 openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
+              slotProps={configFilterPanel}
               localeText={localePTBR}
               autoPageSize
               rows={compras}

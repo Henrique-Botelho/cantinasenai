@@ -8,6 +8,7 @@ import Loading from "../Loading";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
 import { AiOutlineSearch } from "react-icons/ai";
+import configFilterPanel from "../slotProps";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -164,6 +165,7 @@ function Clientes() {
                 toolbar: CustomToolbar,
                 openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
+              slotProps={configFilterPanel}
               localeText={localePTBR}
               autoPageSize
               columns={clientesColumns}

@@ -5,6 +5,7 @@ import { Autocomplete } from "@mui/material";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
 import { AiOutlineSearch } from "react-icons/ai";
+import configFilterPanel from "../slotProps";
 
 // Icones do react icons
 import { BiArrowBack } from "react-icons/bi";
@@ -237,6 +238,7 @@ function AdCompra() {
                   toolbar: CustomToolbar,
                   openFilterButtonIcon: () => <AiOutlineSearch />,
                 }}
+                slotProps={configFilterPanel}
                 localeText={localePTBR}
                 columns={produtosColumns}
                 rows={produtos}
@@ -286,6 +288,7 @@ function AdCompra() {
                     toolbar: CustomToolbar,
                     openFilterButtonIcon: () => <AiOutlineSearch />,
                   }}
+                  slotProps={configFilterPanel}
                   localeText={localePTBR}
                   autoPageSize
                   columns={compraColumns}

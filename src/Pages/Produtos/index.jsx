@@ -7,6 +7,7 @@ import { IoIosAlert } from "react-icons/io";
 import { Modal } from "@mui/material";
 import localePTBR from "../locale";
 import { AiOutlineSearch } from "react-icons/ai";
+import configFilterPanel from "../slotProps";
 
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
@@ -161,6 +162,7 @@ function Produtos() {
                 toolbar: CustomToolbar,
                 openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
+              slotProps={configFilterPanel}
               localeText={localePTBR}
               autoPageSize
               columns={produtosColumns}
