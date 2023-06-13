@@ -46,9 +46,7 @@ function Manual() {
                 <a href="#excluir-venda">Excluir uma venda</a>
               </li>
               <li className="hover:underline text-blue-400">
-                <a href="#excluir-vendas-pagas">
-                  Excluir todas as venda pagas
-                </a>
+                <a href="#excluir-vendas-pagas">Excluir todas as venda pagas</a>
               </li>
             </ul>
           </li>
@@ -88,7 +86,7 @@ function Manual() {
             </ul>
           </li>
           <li className="hover:underline text-blue-400">
-            <a href="#filtro">Procurar um item (Filtro)</a>
+            <a href="#procurar">Procurar um item</a>
           </li>
           <li className="hover:underline text-blue-400">
             <a href="#sair-sistema">Sair do sistema</a>
@@ -115,8 +113,8 @@ function Manual() {
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
           <p className="w-full text-justify tracking-wider leading-9">
-            A tela de vendas é a primeira tela a ser aberta após o login. Nela
-            é possível ver uma tabela contendo todas as vendas registradas no
+            A tela de vendas é a primeira tela a ser aberta após o login. Nela é
+            possível ver uma tabela contendo todas as vendas registradas no
             sistema. Cada venda apresenta o nome do cliente que a realizou, a
             data/Hora em que foi realizada, o status dela (paga ou não paga), o
             total da venda e um conjunto de ações (pagar/detalhes/excluir).
@@ -137,8 +135,8 @@ function Manual() {
             localizado no canto superior direito da tela de vendas.
           </p>
           <p className="w-full text-justify tracking-wider leading-9">
-            Na tela de Adicionar Venda, aparece um campo para escolher o
-            cliente e duas tabelas. A primeira tabela lista todos os produtos
+            Na tela de Adicionar Venda, aparece um campo para escolher o cliente
+            e duas tabelas. A primeira tabela lista todos os produtos
             registrados no sistema, mostrando o nome, o preço e uma seta azul em
             cada produto. A segunda tabela começa vazia e ela representa o
             carrinho do cliente, ou seja, o que ele quer comprar.
@@ -161,9 +159,9 @@ function Manual() {
           </div>
           <p className="w-full text-justify tracking-wider leading-9">
             Assim que uma venda é adicionada, seu status está como "não paga".
-            Caso você queira colocar alguma venda como paga, basta ir na tela
-            de <strong>Vendas</strong>, achar a venda que deseja colocar como
-            paga e clicar no botão{" "}
+            Caso você queira colocar alguma venda como paga, basta ir na tela de{" "}
+            <strong>Vendas</strong>, achar a venda que deseja colocar como paga
+            e clicar no botão{" "}
             <span className="bg-green-500 text-white p-1 rounded">Pagar</span>{" "}
             na coluna <strong>Ações</strong> da tabela.
           </p>
@@ -178,13 +176,9 @@ function Manual() {
           <p className="w-full text-justify tracking-wider leading-9">
             Na tela de <strong>Vendas</strong>, você pode clicar no botão{" "}
             <span className="text-white bg-blue-500 p-1 rounded">Detalhes</span>{" "}
-            para ver os produtos, as quantidades e os preços de uma certa
-            venda.
+            para ver os produtos, as quantidades e os preços de uma certa venda.
           </p>
-          <div
-            id="excluir-venda"
-            className="w-full bg-white p-5 pb-0 border-t"
-          >
+          <div id="excluir-venda" className="w-full bg-white p-5 pb-0 border-t">
             <h3 className="text-lg font-bold opacity-90">
               2.4. Excluir uma venda
             </h3>
@@ -369,32 +363,25 @@ function Manual() {
           </p>
         </div>
         {/* Fim de Produtos */}
-        <div id="filtro" className="w-full bg-white p-5 pb-0 border-t-4">
-          <h2 className="text-xl font-bold opacity-90">
-            5. Procurar um item (Filtro)
-          </h2>
+        <div id="procurar" className="w-full bg-white p-5 pb-0 border-t-4">
+          <h2 className="text-xl font-bold opacity-90">5. Procurar um item</h2>
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
           <p className="w-full text-justify tracking-wider leading-9">
-            Todas as tabelas do sistema possuem um mecanismo de filtragem dos
-            itens para procurar alguma compra, cliente ou produto de forma
-            rápida. Para isso, basta ir na tabela do que deseja procurar, clicar
-            nos três pontinhos ao lado do nome da coluna pela qual deseja
-            filtrar, clicar em <strong>filtro</strong> e escrever o item que
-            deseja procurar.
+            Todas as tabelas do sistema possuem um botão de procurar em cima (com um
+            símbolo de lupa). Clicando no botão de procurar você pode escrever o
+            nome do que deseja procurar na tabela.
           </p>
           <p className="w-full text-justify tracking-wider leading-9">
             <strong>Exemplo:</strong> digamos que eu queira procurar o cliente
             com o nome de Henrique Botelho. Basta ir na tela de{" "}
-            <strong>Clientes</strong>, passar o mouse na coluna{" "}
-            <strong>Nome</strong> e clicar nos três pontinhos que aparecem.
-            Depois, clico em filtro e escrevo no último campo o nome "Henrique
-            Botelho". Pronto! a tabela irá retornar o cliente, se ele estiver
-            registrado.
+            <strong>Clientes</strong>, clicar no botão <strong>Procurar</strong>{" "}
+            e escrever Henrique Botelho. Se o cliente existir no sistema, a
+            tabela irá mostrar ele.
           </p>
           <p className="w-full text-justify tracking-wider leading-9">
-            Para retirar o filtro basta clicar no icone ao lado do nome da
-            coluna com o filtro e depois clicar no "X".
+            Para retirar o filtro basta clicar no botão procurar novamente e
+            clicar no "X" no canto superior esquerdo da caixa de procurar.
           </p>
         </div>
         <div id="sair-sistema" className="w-full bg-white p-5 pb-0 border-t-4">
@@ -408,11 +395,14 @@ function Manual() {
           </p>
         </div>
         <div id="contato" className="w-full bg-white p-5 pb-0 border-t-4">
-          <h2 className="text-xl font-bold opacity-90">7. Dúvidas? Entre em contato</h2>
+          <h2 className="text-xl font-bold opacity-90">
+            7. Dúvidas? Entre em contato
+          </h2>
         </div>
         <div className="w-full bg-white p-5 flex flex-col justify-center items-center gap-3">
           <p className="w-full text-justify tracking-wider leading-9">
-            Caso tenha qualquer dúvida ou problema com o sistema, entre em contato com o suporte por: <br />
+            Caso tenha qualquer dúvida ou problema com o sistema, entre em
+            contato com o suporte por: <br />
             <strong>Email:</strong> henriquedmbds@gmail.com <br />
             <strong>WhatsApp:</strong> (11) 94567-3858
           </p>
