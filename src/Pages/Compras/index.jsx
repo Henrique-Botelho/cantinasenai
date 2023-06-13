@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { IoIosAlert } from "react-icons/io";
-import { Modal } from "@mui/material";
+import { Grid, Modal } from "@mui/material";
 import { MainContext } from "../../contexts";
 import localePTBR from "../locale";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -12,6 +12,7 @@ import imagemCantina from "../../assets/fundo.png";
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 import Loading from "../Loading";
+import CustomToolbar from "../../components/CustomToolbar";
 
 function Compras() {
   const backgroundImageStyle = {
@@ -276,10 +277,10 @@ function Compras() {
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div style={{ minHeight: 200 }} className="w-full h-full">
               <DataGrid
+                disableColumnMenu
                 slots={{
-                  columnMenuFilterIcon: () => <AiOutlineSearch />,
-                  columnsPanel: () => {},
-                  columnMenuManageColumnsIcon: () => {},
+                  toolbar: CustomToolbar,
+                  openFilterButtonIcon: () => <AiOutlineSearch />,
                 }}
                 localeText={localePTBR}
                 autoPageSize
@@ -326,10 +327,10 @@ function Compras() {
             className="bg-white w-full h-full rounded-b"
           >
             <DataGrid
+              disableColumnMenu
               slots={{
-                columnMenuFilterIcon: () => <AiOutlineSearch />,
-                columnsPanel: () => {},
-                columnMenuManageColumnsIcon: () => {},
+                toolbar: CustomToolbar,
+                openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
               localeText={localePTBR}
               autoPageSize

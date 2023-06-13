@@ -11,6 +11,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 import Loading from "../Loading";
+import CustomToolbar from "../../components/CustomToolbar";
 
 function Produtos() {
   const backgroundImageStyle = {
@@ -155,10 +156,10 @@ function Produtos() {
             className="w-full h-full bg-white rounded-b"
           >
             <DataGrid
+              disableColumnMenu
               slots={{
-                columnMenuFilterIcon: () => <AiOutlineSearch />,
-                columnsPanel: () => {},
-                columnMenuManageColumnsIcon: () => {},
+                toolbar: CustomToolbar,
+                openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
               localeText={localePTBR}
               autoPageSize

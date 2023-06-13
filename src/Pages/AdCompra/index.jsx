@@ -17,6 +17,7 @@ import imagemCantina from "../../assets/fundo.png";
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 import Loading from "../Loading";
+import CustomToolbar from "../../components/CustomToolbar";
 
 function AdCompra() {
   const backgroundImageStyle = {
@@ -231,10 +232,10 @@ function AdCompra() {
               className="w-full lg:w-1/2 bg-white p-2 lg:rounded-bl"
             >
               <DataGrid
+                disableColumnMenu
                 slots={{
-                  columnMenuFilterIcon: () => <AiOutlineSearch />,
-                  columnsPanel: () => {},
-                  columnMenuManageColumnsIcon: () => {},
+                  toolbar: CustomToolbar,
+                  openFilterButtonIcon: () => <AiOutlineSearch />,
                 }}
                 localeText={localePTBR}
                 columns={produtosColumns}
@@ -280,10 +281,10 @@ function AdCompra() {
                 className="w-full lg:h-full bg-white p-2"
               >
                 <DataGrid
+                  disableColumnMenu
                   slots={{
-                    columnMenuFilterIcon: () => <AiOutlineSearch />,
-                    columnsPanel: () => {},
-                    columnMenuManageColumnsIcon: () => {},
+                    toolbar: CustomToolbar,
+                    openFilterButtonIcon: () => <AiOutlineSearch />,
                   }}
                   localeText={localePTBR}
                   autoPageSize

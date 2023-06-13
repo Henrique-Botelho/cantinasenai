@@ -15,7 +15,7 @@ const localePTBR = {
    toolbarColumnsLabel: 'Selecionar colunas',
  
    // Filters toolbar button text
-   toolbarFilters: 'Filtros',
+   toolbarFilters: 'Procurar',
    toolbarFiltersLabel: 'Mostrar filtros',
    toolbarFiltersTooltipHide: 'Esconder filtros',
    toolbarFiltersTooltipShow: 'Mostrar filtros',
@@ -46,12 +46,12 @@ const localePTBR = {
    filterPanelRemoveAll: 'Remover tudo',
    filterPanelDeleteIconLabel: 'Deletar',
    filterPanelLogicOperator: 'Operador lógico',
-   filterPanelOperator: 'Operador',
+   filterPanelOperator: 'Como procurar?',
    filterPanelOperatorAnd: 'E',
    filterPanelOperatorOr: 'Ou',
-   filterPanelColumns: 'Colunas',
-   filterPanelInputLabel: 'Valor',
-   filterPanelInputPlaceholder: 'Valor do filtro',
+   filterPanelColumns: 'Coluna',
+   filterPanelInputLabel: 'O que procurar?',
+   filterPanelInputPlaceholder: 'O que deseja procurar',
  
    // Filter operators text
    filterOperatorContains: 'Contém',

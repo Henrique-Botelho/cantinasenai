@@ -13,6 +13,7 @@ import imagemCantina from "../../assets/fundo.png";
 import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 import Loading from "../Loading";
+import CustomToolbar from "../../components/CustomToolbar";
 
 function FinalizarConta() {
   const backgroundImageStyle = {
@@ -145,10 +146,10 @@ function FinalizarConta() {
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
             <div style={{ minHeight: 200 }} className="w-full">
               <DataGrid
+                disableColumnMenu
                 slots={{
-                  columnMenuFilterIcon: () => <AiOutlineSearch />,
-                  columnsPanel: () => {},
-                  columnMenuManageColumnsIcon: () => {},
+                  toolbar: CustomToolbar,
+                  openFilterButtonIcon: () => <AiOutlineSearch />,
                 }}
                 localeText={localePTBR}
                 autoPageSize
@@ -185,10 +186,10 @@ function FinalizarConta() {
           </div>
           <div style={{ minHeight: 400 }} className="w-full h-full bg-white">
             <DataGrid
+              disableColumnMenu
               slots={{
-                columnMenuFilterIcon: () => <AiOutlineSearch />,
-                columnsPanel: () => {},
-                columnMenuManageColumnsIcon: () => {},
+                toolbar: CustomToolbar,
+                openFilterButtonIcon: () => <AiOutlineSearch />,
               }}
               localeText={localePTBR}
               autoPageSize
