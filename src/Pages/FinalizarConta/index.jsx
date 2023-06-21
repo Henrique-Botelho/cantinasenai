@@ -143,10 +143,11 @@ function FinalizarConta() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalDetalhes} onClose={() => setModalDetalhes(false)}>
-          <div className="absolute top-auto left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-1/3 h-1/2 flex flex-col justify-center items-center p-2 gap-3">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] h-[95%] flex flex-col justify-center items-center p-2 gap-3">
             <h3 className="font-bold opacity-80 text-lg">Detalhes da compra</h3>
-            <div style={{ minHeight: 200 }} className="w-full">
+            <div className="w-full h-full">
               <DataGrid
+                style={{ height: '100%' }}
                 disableColumnMenu
                 slots={{
                   toolbar: CustomToolbar,
