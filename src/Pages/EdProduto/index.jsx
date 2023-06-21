@@ -92,6 +92,7 @@ function EdProduto() {
             <textarea
               value={descricao}
               onChange={(e) => setDescricao(e.target.value)}
+              onKeyDown={(event) => event.key === "Enter" && event.preventDefault()}
               className="resize-none text-sm border-2 border-gray-300 focus:outline-none rounded p-2"
               name=""
               id=""
