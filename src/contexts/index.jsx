@@ -2,15 +2,23 @@ import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 // Criação do contexto
 export const MainContext = createContext({});
 
 import Loading from "../Pages/Loading";
 
+const noReloadRoutes = ["/", "/edita-cliente", "/edita-produto"];
+
 // Criação do provedor do contexto
 function MainProvider({ children }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  let noEnableReload = noReloadRoutes.find(element => element === location.pathname);
+  if (!noEnableReload) {
+    localStorage.setItem('lastpathuser', location.pathname);
+  }
 
   // Variáveis de Estado
   const [autenticado, setAutenticado] = useState(false);
@@ -108,6 +116,7 @@ function MainProvider({ children }) {
   async function logout() {
     setAutenticado(false);
     localStorage.removeItem("cantinasenaitoken");
+    localStorage.removeItem("lastpathuser");
     api.defaults.headers.Authorization = undefined;
     navigate("/");
     avisoSucesso("Deslogado com sucesso!");

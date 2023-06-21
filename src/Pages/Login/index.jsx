@@ -18,7 +18,12 @@ function Login() {
 
   useEffect(() => {
     if (autenticado) {
-      navigate("/compras");
+      let lastpathuser = localStorage.getItem('lastpathuser');
+      if (lastpathuser) {
+        navigate(lastpathuser);
+      } else {
+        navigate("/compras");
+      }
     }
   }, [autenticado]);
 
