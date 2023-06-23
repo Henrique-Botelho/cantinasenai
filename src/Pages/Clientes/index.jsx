@@ -20,7 +20,7 @@ function Clientes() {
     backgroundSize: "cover",
   };
 
-  const { listarClientes, exlcuirCliente } = useContext(MainContext);
+  const { listarClientes, excluirCliente } = useContext(MainContext);
 
   const [clientes, setClientes] = useState([]);
   const [load, setLoad] = useState(false);
@@ -130,7 +130,7 @@ function Clientes() {
               <button
                 onClick={() => {
                   setModalCliente(false);
-                  exlcuirCliente(idLinha).finally(() => {
+                  excluirCliente(idLinha).finally(() => {
                     setReload(!reload);
                   });
                 }}

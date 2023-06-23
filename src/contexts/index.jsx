@@ -15,9 +15,11 @@ const noReloadRoutes = ["/", "/edita-cliente", "/edita-produto"];
 function MainProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
-  let noEnableReload = noReloadRoutes.find(element => element === location.pathname);
+  let noEnableReload = noReloadRoutes.find(
+    (element) => element === location.pathname
+  );
   if (!noEnableReload) {
-    localStorage.setItem('lastpathuser', location.pathname);
+    localStorage.setItem("lastpathuser", location.pathname);
   }
 
   // Variáveis de Estado
@@ -70,7 +72,9 @@ function MainProvider({ children }) {
         .catch((error) => {
           api.defaults.headers.Authorization = undefined;
           localStorage.removeItem("cantinasenaitoken");
+          localStorage.removeItem("lastpathuser");
           setAutenticado(false);
+          setUserIsAdmin(false);
         });
     }
     setLoading(false); // IMPORTANTE: ele sempre deve deixar de carregar!
@@ -99,7 +103,7 @@ function MainProvider({ children }) {
   async function esqueciSenha(e, email) {
     e.preventDefault();
     try {
-      await api.post('/usuarios/esqueci-senha', { email });
+      await api.post("/usuarios/esqueci-senha", { email });
       avisoSucesso(`Um email foi enviado para ${email}!`);
     } catch (e) {
       manipulaErros(e);
@@ -109,8 +113,12 @@ function MainProvider({ children }) {
   async function trocarSenha(e, token, senha, confirmaSenha) {
     e.preventDefault();
     try {
-      const { data } = await api.post('/usuarios/alterar-senha', { token, senha , confirmaSenha });
-      navigate('/');
+      const { data } = await api.post("/usuarios/alterar-senha", {
+        token,
+        senha,
+        confirmaSenha,
+      });
+      navigate("/");
       avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
@@ -125,6 +133,69 @@ function MainProvider({ children }) {
     api.defaults.headers.Authorization = undefined;
     navigate("/");
     avisoSucesso("Deslogado com sucesso!");
+  }
+
+  // =================================================
+
+  // ==================== Usuários ====================
+  async function listarUsuarios() {
+    try {
+      const { data } = await api.get("/usuarios");
+      return data;
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
+  async function cadastraUsuario(
+    e,
+    userName,
+    email,
+    senha,
+    confirmaSenha,
+    tipo
+  ) {
+    e.preventDefault();
+    try {
+      const { data } = await api.post("/usuarios/cadastro", {
+        userName,
+        email,
+        senha,
+        confirmaSenha,
+        tipo,
+      });
+      navigate("/usuarios");
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
+  async function editarTipo(id, tipo) {
+    try {
+      const { data } = await api.put(`/usuarios/tipo/${id}`, { tipo });
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
+  async function editarAtivado(id, ativado) {
+    try {
+      const { data } = await api.put(`/usuarios/ativado/${id}`, { ativado });
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
+  }
+
+  async function excluirUsuario(id) {
+    try {
+      const { data } = await api.delete(`/usuarios/${id}`);
+      avisoSucesso(data.message);
+    } catch (e) {
+      manipulaErros(e);
+    }
   }
 
   // =================================================
@@ -146,9 +217,9 @@ function MainProvider({ children }) {
   async function adicionarProduto(e, nome, preco, categoria, descricao) {
     e.preventDefault();
     if (typeof preco === "string") {
-      let index = preco.indexOf(',');
+      let index = preco.indexOf(",");
       if (index > -1) {
-        preco = preco.replace(',','.');
+        preco = preco.replace(",", ".");
       }
       preco = parseFloat(preco);
     }
@@ -169,9 +240,9 @@ function MainProvider({ children }) {
   async function editarProduto(e, id, nome, preco, categoria, descricao) {
     e.preventDefault();
     if (typeof preco === "string") {
-      let index = preco.indexOf(',');
+      let index = preco.indexOf(",");
       if (index > -1) {
-        preco = preco.replace(',','.');
+        preco = preco.replace(",", ".");
       }
       preco = parseFloat(preco);
     }
@@ -216,7 +287,7 @@ function MainProvider({ children }) {
       const { data } = await api.post("/clientes", {
         nome,
         numero,
-        email
+        email,
       });
       navigate("/clientes");
       avisoSucesso(data.message);
@@ -225,13 +296,13 @@ function MainProvider({ children }) {
     }
   }
 
-  async function editarCliente(e,id, nome, numero, email) {
+  async function editarCliente(e, id, nome, numero, email) {
     e.preventDefault();
     try {
       const { data } = await api.put(`/clientes/${id}`, {
         nome,
         numero,
-        email
+        email,
       });
       navigate("/clientes");
       avisoSucesso(data.message);
@@ -240,7 +311,7 @@ function MainProvider({ children }) {
     }
   }
 
-  async function exlcuirCliente(id) {
+  async function excluirCliente(id) {
     try {
       const { data } = await api.delete(`/clientes/${id}`);
       avisoSucesso(data.message);
@@ -291,7 +362,7 @@ function MainProvider({ children }) {
         cliente,
         total,
         compra,
-        dataHora
+        dataHora,
       });
       navigate("/compras");
       avisoSucesso(data.message);
@@ -322,8 +393,8 @@ function MainProvider({ children }) {
 
   async function excluirComprasPagas() {
     try {
-      const { data } = await api.delete('/compras/excluir/pagas');
-      navigate('/compras');
+      const { data } = await api.delete("/compras/excluir/pagas");
+      navigate("/compras");
       avisoSucesso(data.message);
     } catch (e) {
       manipulaErros(e);
@@ -360,6 +431,11 @@ function MainProvider({ children }) {
         logout,
         autenticado,
         userIsAdmin,
+        listarUsuarios,
+        cadastraUsuario,
+        editarTipo,
+        editarAtivado,
+        excluirUsuario,
         listarProdutos,
         adicionarProduto,
         editarProduto,
@@ -367,14 +443,14 @@ function MainProvider({ children }) {
         listarClientes,
         adicionarCliente,
         editarCliente,
-        exlcuirCliente,
+        excluirCliente,
         listarCompras,
         listarComprasPorCliente,
         adicionarCompra,
         pagarCompra,
         finalizarConta,
         excluirComprasPagas,
-        excluirCompra
+        excluirCompra,
       }}
     >
       {children}

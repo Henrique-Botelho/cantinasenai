@@ -20,28 +20,26 @@ function Usuarios() {
     backgroundSize: "cover",
   };
 
-  const { listarClientes, exlcuirCliente } = useContext(MainContext);
+  const { listarUsuarios, editarTipo, editarAtivado, excluirUsuario } =
+    useContext(MainContext);
 
-  const [clientes, setClientes] = useState([]);
+  const [users, setUsers] = useState([]);
   const [load, setLoad] = useState(false);
   const [reload, setReload] = useState(false);
 
-  const [modalCliente, setModalCliente] = useState(false);
-  const [idLinha, setIdLinha] = useState({});
+  const [modalUsuario, setModalUsuario] = useState(false);
+  const [modalTipo, setModalTipo] = useState(false);
+  const [modalAtivado, setModalAtivado] = useState(false);
 
-  const clientesColumns = [
+  const [idLinha, setIdLinha] = useState({});
+  const [typeUser, setTypeUser] = useState("");
+  const [ativado, setAtivado] = useState();
+
+  const usuariosColumns = [
     {
-      field: "nome",
-      headerName: "Nome",
-      flex: 0.2,
-      minWidth: 210,
-      hideable: false,
-      renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
-    },
-    {
-      field: "numero",
-      headerName: "Telefone",
-      flex: 0.2,
+      field: "userName",
+      headerName: "Nome do Usuário",
+      flex: 0.25,
       minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
@@ -49,49 +47,79 @@ function Usuarios() {
     {
       field: "email",
       headerName: "Email",
-      flex: 0.2,
+      flex: 0.25,
       minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
     },
     {
-      field: "conta",
-      headerName: "Conta",
-      type: "actions",
-      flex: 0.2,
+      field: "tipo",
+      headerName: "Tipo",
+      flex: 0.25,
       minWidth: 210,
       hideable: false,
       renderHeader: (params) => <strong>{params.colDef.headerName}</strong>,
-      renderCell: (params) => (
-        <Link
-          to="/finalizar-conta"
-          state={params.row}
-          className="flex justify-center items-center p-2 rounded text-white/90 bg-blue-400"
-        >
-          Finalizar conta
-        </Link>
-      ),
+      renderCell: params => params.row.tipo === "admin" ? <span className="text-blue-500">ADMIN</span> : "Padrão"
     },
     {
       field: "actions",
       headerName: "Ações",
       type: "actions",
-      flex: 0.2,
-      minWidth: 210,
+      flex: 0.25,
+      minWidth: 400,
       hideable: false,
       renderCell: (params) => (
         <div className="flex justify-center items-center gap-2">
-          <Link
-            to="/edita-cliente"
-            state={params.row}
-            className="flex justify-center items-center p-2 rounded text-black/90 bg-yellow-400"
-          >
-            Editar
-          </Link>
+          {params.row.ativado === 1 ? (
+            <button
+              onClick={() => {
+                setAtivado(0);
+                setIdLinha(params.row.id);
+                setModalAtivado(true);
+              }}
+              className="flex justify-center items-center p-2 rounded text-blue-500 bg-white border-2 border-blue-500"
+            >
+              Desativar
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setAtivado(1);
+                setIdLinha(params.row.id);
+                setModalAtivado(true);
+              }}
+              className="flex justify-center items-center p-2 rounded text-white/90 bg-blue-500"
+            >
+              Ativar
+            </button>
+          )}
+          {params.row.tipo === "admin" ? (
+            <button
+              onClick={() => {
+                setTypeUser("padrao");
+                setIdLinha(params.row.id);
+                setModalTipo(true);
+              }}
+              className="flex justify-center items-center p-2 rounded text-white bg-yellow-500 w-40"
+            >
+              Mudar para Padrão
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setTypeUser("admin");
+                setIdLinha(params.row.id);
+                setModalTipo(true);
+              }}
+              className="flex justify-center items-center p-2 rounded text-white bg-yellow-500 w-40"
+            >
+              Mudar para Admin
+            </button>
+          )}
           <button
             onClick={() => {
               setIdLinha(params.row.id);
-              setModalCliente(true);
+              setModalUsuario(true);
             }}
             className="flex justify-center items-center p-2 rounded text-white/90 bg-red-400"
           >
@@ -104,8 +132,8 @@ function Usuarios() {
   ];
 
   useEffect(() => {
-    listarClientes().then((clients) => {
-      setClientes(clients);
+    listarUsuarios().then((users) => {
+      setUsers(users);
       setLoad(true);
     });
   }, [reload]);
@@ -116,23 +144,78 @@ function Usuarios() {
         style={backgroundImageStyle}
         className="h-screen w-screen flex justify-center items-center"
       >
-        <Modal open={modalCliente} onClose={() => setModalCliente(false)}>
-          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+        <Modal open={modalTipo} onClose={() => setModalTipo(false)}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
-            <span>Excluir este cliente?</span>
+            <span className="text-center">
+              Alterar usuário para {typeUser}? Apenas usuários administradores
+              podem acessar a Área de Administrador.
+            </span>
             <div className="flex justify-between items-center gap-3">
               <button
-                onClick={() => setModalCliente(false)}
+                onClick={() => setModalTipo(false)}
                 className="bg-gray-300 w-32 text-white rounded p-2"
               >
                 Cancelar
               </button>
               <button
                 onClick={() => {
-                  setModalCliente(false);
-                  exlcuirCliente(idLinha).finally(() => {
-                    setReload(!reload);
-                  });
+                  setModalTipo(false);
+                  editarTipo(idLinha, typeUser).finally(() =>
+                    setReload(!reload)
+                  );
+                }}
+                className="bg-blue-500 w-32 text-white rounded p-2"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </Modal>
+        <Modal open={modalAtivado} onClose={() => setModalAtivado(false)}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+            <IoIosAlert size={60} className="text-yellow-300" />
+            <span className="text-center">
+              {ativado
+                ? "Ativar o usuário?"
+                : "Desativar o usuário? Usuários desativados não podem acessar o sistema."}
+            </span>
+            <div className="flex justify-between items-center gap-3">
+              <button
+                onClick={() => setModalAtivado(false)}
+                className="bg-gray-300 w-32 text-white rounded p-2"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  setModalAtivado(false);
+                  editarAtivado(idLinha, ativado).finally(() =>
+                    setReload(!reload)
+                  );
+                }}
+                className="bg-blue-500 w-32 text-white rounded p-2"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </Modal>
+        <Modal open={modalUsuario} onClose={() => setModalUsuario(false)}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+            <IoIosAlert size={60} className="text-yellow-300" />
+            <span>Excluir este usuário?</span>
+            <div className="flex justify-between items-center gap-3">
+              <button
+                onClick={() => setModalUsuario(false)}
+                className="bg-gray-300 w-32 text-white rounded p-2"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  setModalUsuario(false);
+                  excluirUsuario(idLinha).finally(() => setReload(!reload));
                 }}
                 className="bg-blue-500 w-32 text-white rounded p-2"
               >
@@ -146,13 +229,13 @@ function Usuarios() {
         <main className="container rounded fixed top-20 bottom-0 flex flex-col p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full p-5 gap-3 rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
-              Clientes
+              Usuários do Sistema
             </h1>
             <Link
-              to="/adiciona-cliente"
+              to="/adiciona-usuario"
               className=" bg-green-500 w-40 h-10 text-gray-100 rounded flex justify-center items-center text-sm sm:text-base"
             >
-              Adicionar Cliente
+              Adicionar Usuário
             </Link>
           </div>
           <div
@@ -168,8 +251,8 @@ function Usuarios() {
               slotProps={configFilterPanel}
               localeText={localePTBR}
               autoPageSize
-              columns={clientesColumns}
-              rows={clientes}
+              columns={usuariosColumns}
+              rows={users}
             />
           </div>
         </main>
