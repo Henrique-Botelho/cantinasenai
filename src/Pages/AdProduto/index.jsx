@@ -32,8 +32,8 @@ function AdProduto() {
     >
       <Header />
       <Nav />
-      <main className="container fixed top-20 bottom-0 rounded flex flex-col sm:pt-[5%] p-2 overflow-y-scroll">
-        <div className="bg-white flex justify-start items-center self-center w-full sm:w-96 p-2 rounded-t">
+      <main className="container fixed top-20 bottom-0 rounded flex flex-col p-2 overflow-y-scroll">
+        <div className="bg-white flex justify-start mt-[10vh] items-center self-center w-full sm:w-96 p-2 rounded-t">
           <Link
             to="/produtos"
             className="flex justify-center items-center mr-3"

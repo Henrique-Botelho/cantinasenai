@@ -10,6 +10,9 @@ import EsqueciSenha from "./Pages/EsqueciSenha";
 import Error from "./Pages/Error";
 import TrocarSenha from "./Pages/TrocarSenha";
 
+import Usuarios from "./Pages/Usuarios";
+import AdUsuario from "./Pages/AdUsuario";
+
 import Clientes from "./Pages/Clientes";
 import AdCliente from "./Pages/AdCliente";
 import EdCliente from "./Pages/EdCliente";
@@ -38,6 +41,9 @@ function RoutesApp() {
           <Route path="/" element={<Login />} />
           <Route path="/esqueci-senha" element={<EsqueciSenha />} />
           <Route path="/trocar-senha" element={<TrocarSenha />} />
+
+          <Route path="/usuarios" element={<Private Item={Usuarios} />} />
+          <Route path="/adiciona-usuario" element={<Private Item={AdUsuario} />} />
 
           <Route path="/compras" element={<Private Item={Compras} />} />
           <Route
