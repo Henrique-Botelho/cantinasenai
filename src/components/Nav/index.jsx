@@ -88,20 +88,21 @@ function Nav() {
             Produtos
           </Link>
         </li>
-        
-        <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
-          <Link
-            onClick={() => {
-              document
-                .getElementById("minhaSideBar")
-                .classList.toggle("translate-x-full");
-            }}
-            to="/usuarios"
-            className="text-gray-100 bg-blue-800 rounded flex justify-start items-center p-2 w-full h-full"
-          >
-            Área de Administrador
-          </Link>
-        </li>
+        {userIsAdmin && (
+          <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
+            <Link
+              onClick={() => {
+                document
+                  .getElementById("minhaSideBar")
+                  .classList.toggle("translate-x-full");
+              }}
+              to="/usuarios"
+              className="text-gray-100 bg-blue-800 rounded flex justify-start items-center p-2 w-full h-full"
+            >
+              Área de Administrador
+            </Link>
+          </li>
+        )}
         <li className="hover:scale-105 hover:bg-gray-600 duration-500 rounded w-full h-10">
           <Link
             onClick={() => {
