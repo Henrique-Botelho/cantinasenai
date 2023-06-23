@@ -308,7 +308,7 @@ function Compras() {
         <main className="container flex flex-col fixed top-20 bottom-0 p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col justify-between items-center w-full p-5 gap-3 sm:flex-row rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
-              Tabela de Vendas
+              Vendas
             </h1>
             <div className="flex justify-center items-center gap-3">
               <button
