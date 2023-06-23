@@ -146,7 +146,7 @@ function Clientes() {
         <main className="container rounded fixed top-20 bottom-0 flex flex-col p-2 overflow-y-scroll">
           <div className="bg-white flex flex-col sm:flex-row justify-between items-center w-full p-5 gap-3 rounded-t">
             <h1 className="text-black font-bold opacity-75 text-xl">
-              Tabela de Clientes
+              Clientes
             </h1>
             <Link
               to="/adiciona-cliente"
