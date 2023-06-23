@@ -22,6 +22,7 @@ function MainProvider({ children }) {
 
   // Variáveis de Estado
   const [autenticado, setAutenticado] = useState(false);
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Função aviso de sucesso
@@ -84,6 +85,9 @@ function MainProvider({ children }) {
       const { data } = await api.post("/usuarios", { email, senha });
       localStorage.setItem("cantinasenaitoken", JSON.stringify(data.token));
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
+      if (data.userIsAdmin === true) {
+        setUserIsAdmin(true);
+      }
       setAutenticado(true);
       navigate("/compras");
       avisoSucesso("Login realizado com sucesso!");
@@ -115,6 +119,7 @@ function MainProvider({ children }) {
 
   async function logout() {
     setAutenticado(false);
+    setUserIsAdmin(false);
     localStorage.removeItem("cantinasenaitoken");
     localStorage.removeItem("lastpathuser");
     api.defaults.headers.Authorization = undefined;
@@ -354,6 +359,7 @@ function MainProvider({ children }) {
         trocarSenha,
         logout,
         autenticado,
+        userIsAdmin,
         listarProdutos,
         adicionarProduto,
         editarProduto,
