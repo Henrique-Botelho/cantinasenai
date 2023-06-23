@@ -114,7 +114,7 @@ function Produtos() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalProduto} onClose={() => setModalProduto(false)}>
-          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Excluir este item?</span>
             <div className="flex justify-between items-center gap-3">
