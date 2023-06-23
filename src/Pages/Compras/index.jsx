@@ -192,7 +192,7 @@ function Compras() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalCompra} onClose={() => setModalCompra(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Excluir esta venda?</span>
             <div className="flex justify-between items-center gap-3">
@@ -217,7 +217,7 @@ function Compras() {
           </div>
         </Modal>
         <Modal open={modalPagar} onClose={() => setModalPagar(false)}>
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Deseja colocar essa venda como paga?</span>
             <div className="flex justify-between items-center gap-3">
@@ -246,7 +246,7 @@ function Compras() {
           open={modalTodasCompras}
           onClose={() => setModalTodasCompras(false)}
         >
-          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span className="text-center">
               Tem certeza que deseja excluir todas as vendas pagas? Essa ação é{" "}
