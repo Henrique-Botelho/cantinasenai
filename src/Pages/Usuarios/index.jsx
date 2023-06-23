@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import imagemCantina from "../../assets/fundo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { Modal } from "@mui/material";
 import { IoIosAlert } from "react-icons/io";
@@ -20,8 +20,16 @@ function Usuarios() {
     backgroundSize: "cover",
   };
 
-  const { listarUsuarios, editarTipo, editarAtivado, excluirUsuario } =
+  const navigate = useNavigate();
+
+  const { listarUsuarios, editarTipo, editarAtivado, excluirUsuario, userIsAdmin } =
     useContext(MainContext);
+
+  useEffect(() => {
+    if (!userIsAdmin) {
+      navigate("/compras");
+    }
+  },[]);
 
   const [users, setUsers] = useState([]);
   const [load, setLoad] = useState(false);
