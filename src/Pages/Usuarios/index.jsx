@@ -14,7 +14,7 @@ import Header from "../../components/Header";
 import Nav from "../../components/Nav";
 import CustomToolbar from "../../components/CustomToolbar";
 
-function Clientes() {
+function Usuarios() {
   const backgroundImageStyle = {
     backgroundImage: `url('${imagemCantina}')`,
     backgroundSize: "cover",
@@ -117,7 +117,7 @@ function Clientes() {
         className="h-screen w-screen flex justify-center items-center"
       >
         <Modal open={modalCliente} onClose={() => setModalCliente(false)}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
+          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 translate-y-1/2 bg-white rounded w-[95%] sm:w-96 flex flex-col justify-center items-center p-8 gap-3">
             <IoIosAlert size={60} className="text-yellow-300" />
             <span>Excluir este cliente?</span>
             <div className="flex justify-between items-center gap-3">
@@ -180,4 +180,4 @@ function Clientes() {
   }
 }
 
-export default Clientes;
+export default Usuarios;
