@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import imagemCantina from "../../assets/fundo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MainContext } from "../../contexts";
 
 import Header from "../../components/Header";
@@ -15,7 +15,15 @@ function AdUsuario() {
     backgroundSize: "cover",
   };
 
-  const { cadastraUsuario } = useContext(MainContext);
+  const navigate = useNavigate();
+
+  const { cadastraUsuario, userIsAdmin } = useContext(MainContext);
+
+  useEffect(() => {
+    if (!userIsAdmin) {
+      navigate('/compras');
+    }
+  }, []);
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
